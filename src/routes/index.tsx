@@ -14,7 +14,6 @@ import { CtaFooter } from "@/components/site/CtaFooter";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ImpactStats } from "@/components/site/ImpactStats";
 import { ProductShowcase } from "@/components/site/ProductShowcase";
-import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -81,7 +80,6 @@ function Index() {
   return (
     <main className="min-h-screen bg-background">
       <Nav variant="over" />
-      <div className="fixed bottom-5 left-5 z-50"><ThemeToggle /></div>
       <Hero />
       <Marquee />
       <ImpactStats />
