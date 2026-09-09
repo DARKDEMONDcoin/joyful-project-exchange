@@ -601,11 +601,11 @@
 .sahl-carousel-stage { position: absolute; z-index: 3; inset: 0; }
 .sahl-carousel-person { position: absolute; aspect-ratio: 0.6 / 1; transition: transform 650ms cubic-bezier(0.4, 0, 0.2, 1), filter 650ms cubic-bezier(0.4, 0, 0.2, 1), opacity 650ms cubic-bezier(0.4, 0, 0.2, 1), left 650ms cubic-bezier(0.4, 0, 0.2, 1), height 650ms cubic-bezier(0.4, 0, 0.2, 1), bottom 650ms cubic-bezier(0.4, 0, 0.2, 1); will-change: transform, filter, opacity; }
 .sahl-carousel-person img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 2.6rem 1.5rem color-mix(in oklab, var(--foreground) 22%, transparent)); user-select: none; }
-.sahl-carousel-person.is-center { z-index: 20; left: 50%; bottom: 0; height: 92%; opacity: 1; filter: none; transform: translateX(-50%) scale(1.52); }
+.sahl-carousel-person.is-center { z-index: 20; left: 50%; bottom: 1%; height: min(86%, 52rem); opacity: 1; filter: none; transform: translateX(-50%) scale(1.42); }
 .sahl-carousel-person.is-left { z-index: 10; left: 30%; bottom: 12%; height: 28%; opacity: 0.82; filter: blur(2px); transform: translateX(-50%) scale(1); }
 .sahl-carousel-person.is-right { z-index: 10; left: 70%; bottom: 12%; height: 28%; opacity: 0.82; filter: blur(2px); transform: translateX(-50%) scale(1); }
 .sahl-carousel-person.is-back { z-index: 5; left: 50%; bottom: 12%; height: 22%; opacity: 0.92; filter: blur(4px); transform: translateX(-50%) scale(1); }
-.sahl-carousel-copy { position: absolute; z-index: 60; bottom: 4.5rem; left: clamp(1.5rem, 6vw, 6rem); width: min(22rem, 28vw); color: var(--primary-foreground); }
+.sahl-carousel-copy { position: absolute; z-index: 60; bottom: clamp(4.5rem, 8vh, 7rem); left: clamp(1.5rem, 6vw, 6rem); width: min(23rem, 29vw); color: var(--primary-foreground); }
 .sahl-carousel-kicker { display: inline-flex; margin-bottom: 0.75rem; padding: 0.35rem 0.65rem; border: 1px solid color-mix(in oklab, var(--primary-foreground) 28%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--foreground) 12%, transparent); font-size: 0.68rem; font-weight: 800; backdrop-filter: blur(10px); }
 .sahl-carousel-copy h1 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 4.2rem); font-weight: 900; line-height: 1.05; }
 .sahl-carousel-copy h1 span { color: color-mix(in oklab, var(--amber) 72%, var(--primary-foreground)); }
@@ -614,11 +614,6 @@
 .sahl-carousel-member strong { font-family: var(--font-display); font-size: 1.15rem; }
 .sahl-carousel-member span::before { content: "—"; margin-inline: 0.45rem; opacity: 0.58; }
 .sahl-carousel-member p { margin-top: 0.4rem; max-width: 20rem; color: color-mix(in oklab, var(--primary-foreground) 82%, transparent); font-size: 0.8rem; line-height: 1.65; }
-.sahl-carousel-controls { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.1rem; }
-.sahl-carousel-controls button { width: 3.1rem; height: 3.1rem; border: 2px solid color-mix(in oklab, var(--primary-foreground) 88%, transparent); border-radius: 50%; color: var(--primary-foreground); background: transparent; transition: transform 150ms ease, background-color 150ms ease; }
-.sahl-carousel-controls button:hover { color: var(--primary-foreground); background: color-mix(in oklab, var(--primary-foreground) 12%, transparent); transform: scale(1.08); }
-.sahl-carousel-controls button svg { width: 1.45rem; height: 1.45rem; stroke-width: 2.25; }
-.sahl-carousel-controls > span { min-width: 3rem; text-align: center; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; }
 .sahl-carousel-actions { position: absolute; z-index: 60; right: clamp(1.5rem, 4vw, 4rem); bottom: 4.5rem; display: grid; justify-items: end; gap: 1rem; }
 .sahl-carousel-primary { display: inline-flex; min-height: 3.2rem; align-items: center; gap: 0.6rem; border-radius: 999px; padding: 0.7rem 1.25rem; color: var(--foreground); background: var(--primary-foreground); font-weight: 900; box-shadow: 0 1rem 2.5rem -1.2rem color-mix(in oklab, var(--foreground) 55%, transparent); transition: transform 200ms ease, box-shadow 200ms ease; }
 .sahl-carousel-primary:hover { transform: translateY(-3px); box-shadow: 0 1.25rem 3rem -1.1rem color-mix(in oklab, var(--foreground) 65%, transparent); }
@@ -627,8 +622,11 @@
 .sahl-carousel-discover:hover { opacity: 0.8; transform: translateX(-4px); }
 .sahl-carousel-discover svg { width: clamp(1.25rem, 2vw, 2rem); height: clamp(1.25rem, 2vw, 2rem); }
 .sahl-carousel-progress { position: absolute; z-index: 60; bottom: 1.5rem; left: 50%; display: flex; gap: 0.4rem; transform: translateX(-50%); }
-.sahl-carousel-progress i { width: 1.4rem; height: 2px; background: color-mix(in oklab, var(--primary-foreground) 32%, transparent); transition: width 650ms ease, background 650ms ease; }
-.sahl-carousel-progress i.is-active { width: 3.2rem; background: var(--primary-foreground); }
+.sahl-carousel-progress i { position: relative; width: 1.4rem; height: 3px; overflow: hidden; background: color-mix(in oklab, var(--primary-foreground) 32%, transparent); transition: width 650ms ease; }
+.sahl-carousel-progress i.is-active { width: 3.2rem; }
+.sahl-carousel-progress i span { position: absolute; inset: 0; background: var(--primary-foreground); transform: scaleX(0); transform-origin: left center; }
+.sahl-carousel-progress i.is-active span { animation: carousel-progress 3600ms linear both; }
+@keyframes carousel-progress { to { transform: scaleX(1); } }
 @keyframes carousel-copy-in { from { opacity: 0; transform: translateY(0.6rem); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 639px) {
@@ -636,18 +634,16 @@
   .sahl-carousel-ghost { top: 18%; font-size: clamp(5.6rem, 27vw, 8rem); }
   .sahl-carousel-brand { top: 5rem; left: 1rem; }
   .sahl-carousel-brand small { display: none; }
-  .sahl-carousel-person.is-center { bottom: 22%; height: 60%; transform: translateX(-50%) scale(1.25); }
+  .sahl-carousel-person.is-center { bottom: 19%; height: min(59%, 31rem); transform: translateX(-50%) scale(1.2); }
   .sahl-carousel-person.is-left { left: 20%; bottom: 32%; height: 16%; }
   .sahl-carousel-person.is-right { left: 80%; bottom: 32%; height: 16%; }
   .sahl-carousel-person.is-back { bottom: 32%; height: 13%; }
-  .sahl-carousel-copy { bottom: 1.25rem; left: 1rem; width: calc(100% - 2rem); }
+  .sahl-carousel-copy { bottom: 1.2rem; left: 1rem; width: calc(100% - 2rem); }
   .sahl-carousel-kicker, .sahl-carousel-member p { display: none; }
   .sahl-carousel-copy h1 { width: 70%; font-size: 1.85rem; }
   .sahl-carousel-member { margin-top: 0.45rem; }
   .sahl-carousel-member strong { font-size: 1rem; }
   .sahl-carousel-member span { font-size: 0.76rem; }
-  .sahl-carousel-controls { margin-top: 0.7rem; }
-  .sahl-carousel-controls button { width: 2.8rem; height: 2.8rem; }
   .sahl-carousel-actions { right: 1rem; bottom: 1.35rem; gap: 0.7rem; }
   .sahl-carousel-primary { min-height: 2.8rem; padding: 0.6rem 0.85rem; font-size: 0.75rem; }
   .sahl-carousel-discover { display: none; }
@@ -659,6 +655,13 @@
 @media (prefers-reduced-motion: reduce) {
   .sahl-carousel-hero, .sahl-carousel-person, .sahl-carousel-progress i { transition-duration: 1ms; }
   .sahl-carousel-member { animation: none; }
+  .sahl-carousel-progress i.is-active span { animation: none; transform: scaleX(1); }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .sahl-carousel-person.is-center { bottom: 10%; height: min(72%, 42rem); transform: translateX(-50%) scale(1.3); }
+  .sahl-carousel-copy { bottom: 4rem; left: 2rem; width: min(20rem, 32vw); }
+  .sahl-carousel-actions { right: 2rem; bottom: 4rem; }
 }
 .hero-object-3d { position: absolute; z-index: 1; inset: 50% auto auto 50%; width: min(18rem, 34vw); aspect-ratio: 1; translate: -50% -50%; opacity: 0.3; filter: blur(0.2px); pointer-events: none; }
 .hero-kicker, .auth-eyebrow, .section-kicker { color: var(--primary); font-size: 0.78rem; font-weight: 800; letter-spacing: 0; }
