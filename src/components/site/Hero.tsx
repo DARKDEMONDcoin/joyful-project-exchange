@@ -2,27 +2,15 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Crown, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import siraj from "@/assets/hero/siraj-figurine.png";
-import amal from "@/assets/hero/amal-figurine.png";
-import salim from "@/assets/hero/salim-figurine.png";
-import nour from "@/assets/hero/nour-figurine.png";
+import { Portrait } from "@/components/site/Portrait";
+import { team } from "@/data/team";
 
-const EMPLOYEES = [
-  { src: siraj, name: "سراج", role: "مسؤول المحتوى", task: "يخطط، يكتب وينشر محتواك" },
-  { src: amal, name: "آمال", role: "المساعدة التنفيذية", task: "ترتب يومك وتتابع أولوياتك" },
-  { src: salim, name: "آدم", role: "محلل الأعمال", task: "يحوّل أرقامك إلى قرارات واضحة" },
-  { src: nour, name: "نور", role: "خبيرة الظهور", task: "تجعل عملاءك يجدونك أسرع" },
-] as const;
+const EMPLOYEES = team;
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    EMPLOYEES.forEach(({ src }) => {
-      const image = new Image();
-      image.src = src;
-    });
-
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % EMPLOYEES.length);
     }, 4200);
@@ -30,6 +18,7 @@ export function Hero() {
   }, []);
 
   const active = EMPLOYEES[activeIndex] ?? EMPLOYEES[0];
+  if (!active) return null;
 
   return (
     <section id="top" className="cinematic-hero" aria-label="فريق سهل الرقمي">
@@ -45,13 +34,11 @@ export function Hero() {
           const position = offset === 0 ? "active" : offset === 1 ? "next" : offset === 3 ? "prev" : "away";
           return (
             <figure key={employee.name} className={cn("cinematic-employee", `is-${position}`)} aria-hidden={position !== "active"}>
-              <img
-                src={employee.src}
-                alt={position === "active" ? `${employee.name}، ${employee.role} في فريق سهل` : ""}
-                width={1024}
-                height={1536}
-                loading={index === 0 ? "eager" : "lazy"}
-                draggable={false}
+              <Portrait
+                memberId={employee.id}
+                name={employee.name}
+                className="cinematic-employee-photo"
+                eager={index < 2}
               />
             </figure>
           );
@@ -60,7 +47,7 @@ export function Hero() {
           <span><i /> يعمل الآن</span>
           <strong>{active.name}</strong>
           <small>{active.role}</small>
-          <p>{active.task}</p>
+          <p>{active.title}</p>
         </div>
       </div>
 
