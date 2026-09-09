@@ -141,7 +141,7 @@ function Blob({ quality, reduced }: { quality: Quality; reduced: boolean }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uAmp: { value: quality === "high" ? 0.34 : 0.26 },
+      uAmp: { value: quality === "high" ? 0.28 : 0.22 },
       uFreq: { value: 0.95 },
       uOctaves: { value: quality === "high" ? 3 : 2 },
       uPointer: { value: new THREE.Vector3(0, 0, 1) },
