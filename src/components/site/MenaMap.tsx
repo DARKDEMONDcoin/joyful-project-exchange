@@ -91,6 +91,15 @@ export function MenaMap({ orbit = false }: { orbit?: boolean }) {
             <circle className="mena-capital-dot" cx={770} cy={315} r="4.6" />
           </g>
         </g>
+        <g className="mena-place-labels">
+          <text x="952" y="457">الرياض</text>
+          <text x="1084" y="388">دبي</text>
+          <text x="1028" y="426">الدوحة</text>
+          <text x="920" y="273">بغداد</text>
+          <text x="818" y="282">عمّان</text>
+          <text x="104" y="350">الدار البيضاء</text>
+          <text x="758" y="302">القاهرة</text>
+        </g>
         <path className="mena-map-scan" d="M85 350 Q580 215 1090 380" />
       </svg>
     </div>
