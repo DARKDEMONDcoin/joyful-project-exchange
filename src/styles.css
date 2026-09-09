@@ -728,6 +728,7 @@
 
 @media (max-width: 1023px) {
   .hero-object-3d { width: 70vw; opacity: 0.22; }
+  .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .employee-editorial-grid > div { grid-column: span 6; }
   .auth-layout { display: block; }
   .auth-story { display: none; }
@@ -757,7 +758,15 @@
   .orbit-slot.orbit-employee-4 { top: 41%; left: -2%; }
   .orbit-slot.orbit-employee-5 { bottom: 1%; right: 8%; }
   .orbit-slot.orbit-employee-6 { bottom: 1%; left: 8%; }
-  .impact-card { min-height: 8.5rem; }
+  .impact-strip { padding-block: 2rem 3.5rem; }
+  .impact-grid { gap: 0.7rem; }
+  .impact-card, .impact-card-inner { min-height: 12rem; }
+  .impact-card-inner { padding: 1rem; }
+  .impact-icon-shell { top: 1rem; right: 1rem; width: 2.35rem; height: 2.35rem; }
+  .impact-icon { width: 1.05rem; }
+  .impact-mini-visual { top: 1.15rem; left: 0.85rem; width: 3.8rem; }
+  .impact-value { font-size: clamp(1.55rem, 7vw, 2.1rem); }
+  .impact-card p { font-size: 0.7rem; line-height: 1.65; }
   .employee-editorial-grid { display: flex; gap: 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 1.25rem; margin-inline: -1.25rem; padding-inline: 1.25rem; scrollbar-width: none; touch-action: pan-x; overscroll-behavior-inline: contain; }
   .employee-editorial-grid::-webkit-scrollbar { display: none; }
   .employee-editorial-grid > div { width: min(84vw, 21rem); min-width: min(84vw, 21rem); scroll-snap-align: center; }
@@ -776,6 +785,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ambient-cloud, .orbit-employee, .hero-status i { animation: none !important; }
+  .impact-card, .impact-card::after, .impact-mini-visual *, .impact-mini-pulse path { animation: none !important; }
+  .impact-card { opacity: 1; }
   .ambient-cloud { transform: none !important; }
   .hero-object-3d { display: none; }
 }
