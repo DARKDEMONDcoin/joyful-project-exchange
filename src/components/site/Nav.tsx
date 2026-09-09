@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useScrolled } from "@/hooks/use-reveal";
+import { Button } from "@/components/ui/button";
 
 const links = [
   { label: "الموظفون", to: "/employees" },
@@ -16,21 +16,18 @@ const links = [
 ] as const;
 
 export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
-  const scrolled = useScrolled(24);
   const [open, setOpen] = useState(false);
-  const solid = variant === "solid" || scrolled;
+  const solid = variant === "solid";
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        solid
-          ? "nav-liquid-glass border-b border-border/70 py-2 text-foreground shadow-card"
-          : "py-4 text-white",
+        "pointer-events-none fixed inset-x-0 top-0 z-50 py-4 text-white",
+        solid && "text-foreground",
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5">
-        <Link to="/" className="group flex items-center gap-2.5">
+        <Link to="/" className="nav-floating-control pointer-events-auto group flex items-center gap-2.5 rounded-full py-1.5 pe-4 ps-1.5">
           <span
             className="grid size-9 place-items-center rounded-xl text-primary-foreground"
             style={{ backgroundImage: "var(--gradient-aurora)" }}
@@ -40,14 +37,14 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
           <span className="font-display text-xl font-extrabold tracking-tight">سهل</span>
         </Link>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="pointer-events-auto hidden items-center gap-1 lg:flex">
           {links.map((l) => (
             <li key={l.to}>
               <Link
                 to={l.to}
                 className={cn(
-                  "relative rounded-lg px-3 py-2 text-[0.93rem] font-medium transition-colors",
-                  solid ? "text-ink-soft hover:text-primary" : "text-white/85 hover:text-white",
+                  "nav-floating-control relative rounded-full px-3 py-2 text-[0.93rem] font-medium transition-colors",
+                  solid ? "text-ink-soft hover:text-primary" : "text-white/90 hover:text-white",
                 )}
                 activeProps={{
                   className: solid ? "text-primary font-bold" : "text-white font-bold",
@@ -59,12 +56,12 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="pointer-events-auto hidden items-center gap-2 md:flex">
           <Link
             to="/app"
             className={cn(
-              "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-              solid ? "text-ink-soft hover:text-primary" : "text-white/85 hover:text-white",
+              "nav-floating-control rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+              solid ? "text-ink-soft hover:text-primary" : "text-white/90 hover:text-white",
             )}
           >
             جرّب الموظفين
@@ -73,8 +70,8 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
             to="/auth"
             search={{ mode: "signin" as const }}
             className={cn(
-              "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-              solid ? "text-ink-soft hover:text-primary" : "text-white/85 hover:text-white",
+              "nav-floating-control rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+              solid ? "text-ink-soft hover:text-primary" : "text-white/90 hover:text-white",
             )}
           >
             دخول
@@ -91,21 +88,24 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
           </Link>
         </div>
 
-        <button
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
           onClick={() => setOpen((v) => !v)}
           aria-label="القائمة"
           className={cn(
-            "grid size-10 place-items-center rounded-xl border lg:hidden",
-            solid ? "border-border" : "border-white/30 text-white",
+            "nav-floating-control pointer-events-auto size-10 rounded-full lg:hidden",
+            solid ? "text-foreground" : "text-white",
           )}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        </Button>
       </nav>
 
       <div
         className={cn(
-          "transition-[max-height,opacity] duration-400 lg:hidden",
+          "pointer-events-auto transition-[max-height,opacity] duration-400 lg:hidden",
           open
             ? "max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain opacity-100"
             : "max-h-0 overflow-hidden opacity-0",
