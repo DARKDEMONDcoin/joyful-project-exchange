@@ -853,10 +853,15 @@
 }
 .integration-team-glass .integration-employee { border-color: color-mix(in oklab, var(--background) 13%, transparent); background: color-mix(in oklab, var(--background) 7%, transparent); color: var(--background); }
 .integration-team-glass .integration-employee span span { color: color-mix(in oklab, var(--background) 64%, transparent); }
+.integration-team-glass .integration-employee { animation-name: integration-employee-dark-active; }
+@keyframes integration-employee-dark-active {
+  0%, 38%, 100% { border-color: color-mix(in oklab, var(--background) 13%, transparent); background-color: color-mix(in oklab, var(--background) 7%, transparent); }
+  48%, 68% { border-color: color-mix(in oklab, var(--primary) 58%, transparent); background-color: color-mix(in oklab, var(--primary) 22%, var(--foreground)); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .mena-map-layer svg { opacity: 0.62; }
-  .mena-route, .mena-capital-pulse { animation: none; }
+  .mena-route, .mena-capital-pulse, .orbit-map-center, .mena-map-orbit .mena-map-outline { animation: none; }
 }
 
 /* ===== إعادة تصميم أقسام الصفحة ===== */
