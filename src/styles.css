@@ -852,7 +852,7 @@
   position: absolute;
   top: 0.35rem;
   bottom: 0.35rem;
-  right: var(--rail);
+  inset-inline-start: var(--rail);
   width: 2px;
   border-radius: 2px;
 }
@@ -862,11 +862,11 @@
   transform-origin: top center;
   transition: transform 0.35s linear;
 }
-.timeline-step { padding-inline-end: 2.5rem; }
+.timeline-step { padding-inline-start: 0; }
 .timeline-dot {
   position: absolute;
   top: 0;
-  inset-inline-end: -2.75rem;
+  inset-inline-start: -2.75rem;
   display: grid;
   place-items: center;
   width: 2.75rem;
