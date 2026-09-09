@@ -1,9 +1,9 @@
 import { Activity } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
-const dashboard = "/product-shots/chat.png";
-const calendar = "/product-shots/calendar.png";
-const chat = "/product-shots/chat.png";
+const dashboard = "/product-shots/overview.png";
+const calendar = "/product-shots/calendar-mobile.png";
+const chat = "/product-shots/chat-mobile.png";
 
 export function ProductShowcase() {
   return (
