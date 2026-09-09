@@ -124,7 +124,7 @@ export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: bo
       {mapCenter ? (
         <div className="orbit-map-center">
           <MenaMap orbit />
-          <small>فريقك يعمل من هنا</small>
+          <small>من قلب المنطقة، يعمل فريقك</small>
         </div>
       ) : (
         <LiquidGlass className="orbit-user">

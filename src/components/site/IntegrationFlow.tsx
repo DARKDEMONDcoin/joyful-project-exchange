@@ -70,24 +70,24 @@ export function IntegrationFlow() {
                 <span aria-hidden className="integration-pulse integration-pulse-a" />
                 <span aria-hidden className="integration-pulse integration-pulse-b" />
                 <div className="integration-team-glass relative z-10 p-3 sm:p-4">
-                  <div className="flex items-center justify-between border-b border-border px-2 pb-3">
-                    <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
+                  <div className="flex items-center justify-between border-b border-background/15 px-2 pb-3">
+                    <span className="flex items-center gap-2 text-xs font-bold text-background/65">
                       <span className="status-dot size-2 rounded-full bg-jade" />
                       يعمل الآن
                     </span>
-                    <span className="font-display text-lg font-black text-foreground">فريق سهل</span>
+                    <span className="font-display text-lg font-black text-background">فريق سهل</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2.5 pt-3">
                     {employees.map((employee, index) => (
                       <div
                         key={employee.name}
-                        className="integration-employee flex min-h-20 items-center gap-3 border border-border bg-secondary/70 p-3 text-foreground"
+                        className="integration-employee flex min-h-20 items-center gap-3 border p-3"
                         style={{ animationDelay: `${index * 450}ms` }}
                       >
                         <span className={`status-dot size-2.5 shrink-0 rounded-full ${employee.tone}`} style={{ animationDelay: `${index * 400}ms` }} />
                         <span>
                           <strong className="block font-display text-sm font-black">{employee.name}</strong>
-                          <span className="mt-0.5 block text-xs text-muted-foreground">{employee.job}</span>
+                          <span className="mt-0.5 block text-xs">{employee.job}</span>
                         </span>
                       </div>
                     ))}
