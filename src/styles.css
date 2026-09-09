@@ -771,31 +771,42 @@
   height: auto;
   max-height: 92%;
   margin-inline-end: -6%;
-  opacity: 0.72;
+  opacity: 0.9;
 }
 
-.mena-map-fill { fill: color-mix(in oklab, var(--primary) 7%, transparent); }
+.mena-map-fill { fill: color-mix(in oklab, var(--primary) 6%, transparent); }
 .mena-map-outline {
   fill: none;
-  stroke: color-mix(in oklab, var(--primary) 68%, transparent);
-  stroke-width: 1.4;
+  stroke: color-mix(in oklab, var(--primary) 92%, transparent);
+  stroke-width: 1.5;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 14px color-mix(in oklab, var(--primary) 35%, transparent));
 }
 .mena-map-borders {
   fill: none;
-  stroke: color-mix(in oklab, var(--foreground) 16%, transparent);
+  stroke: color-mix(in oklab, var(--primary) 30%, transparent);
   stroke-width: 0.7;
 }
-.mena-routes path { fill: none; stroke: color-mix(in oklab, var(--amber) 72%, transparent); stroke-width: 1.25; stroke-linecap: round; stroke-dasharray: 5 9; animation: mena-route-flow 8s linear infinite; }
-.mena-capital-dot { fill: var(--primary); stroke: color-mix(in oklab, var(--card) 88%, transparent); stroke-width: 1.5; }
-.mena-capital-pulse { fill: color-mix(in oklab, var(--primary) 20%, transparent); transform-box: fill-box; transform-origin: center; animation: mena-capital-pulse 2.8s ease-out infinite; }
-.mena-capital-hub .mena-capital-dot { fill: var(--amber); r: 4.6px; }
-@keyframes mena-route-flow { to { stroke-dashoffset: -56; } }
+.mena-route {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primary) 55%, transparent);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-dasharray: 4 8;
+  animation: mena-route-flow 9s linear infinite;
+}
+.mena-pulse {
+  fill: var(--amber);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--amber) 90%, transparent));
+}
+.mena-capital-dot { fill: var(--primary); stroke: color-mix(in oklab, var(--card) 88%, transparent); stroke-width: 1.4; }
+.mena-capital-pulse { fill: color-mix(in oklab, var(--primary) 26%, transparent); transform-box: fill-box; transform-origin: center; animation: mena-capital-pulse 2.8s ease-out infinite; }
+.mena-capital-hub .mena-capital-dot { fill: var(--amber); }
+.mena-capital-hub .mena-capital-pulse { fill: color-mix(in oklab, var(--amber) 30%, transparent); }
+@keyframes mena-route-flow { to { stroke-dashoffset: -60; } }
 @keyframes mena-capital-pulse { 0% { scale: 0.45; opacity: 0.9; } 75%, 100% { scale: 1.65; opacity: 0; } }
 
 .dark .mena-map-fill { fill: color-mix(in oklab, var(--primary) 10%, transparent); }
-.dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 55%, transparent); }
+.dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 85%, transparent); }
 .dark .mena-map-borders { stroke: color-mix(in oklab, var(--foreground) 22%, transparent); }
 
 @media (max-width: 768px) {
@@ -805,7 +816,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mena-map-layer svg { opacity: 0.62; }
-  .mena-routes path, .mena-capital-pulse { animation: none; }
+  .mena-route, .mena-capital-pulse { animation: none; }
 }
 
 /* ===== إعادة تصميم أقسام الصفحة ===== */
