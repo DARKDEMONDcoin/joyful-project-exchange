@@ -5,7 +5,7 @@ import { LiquidGlass } from "@/components/site/LiquidGlass";
 const stats = [
   { value: 40, prefix: "+", suffix: " ساعة", label: "وقت يعود لك كل شهر", icon: Clock3 },
   { value: 70, prefix: "", suffix: "% أقل", label: "من تكلفة فريق تقليدي مماثل", icon: Coins },
-  { value: 24, prefix: "", suffix: "/6", label: "أيام عمل ممتدة مع يوم صيانة", icon: Gauge },
+  { value: 24, prefix: "", suffix: "/٦", label: "أيام عمل ممتدة مع يوم صيانة", icon: Gauge },
   { value: 1000, prefix: "+", suffix: " مهمة", label: "سعة شهرية في باقات الفرق", icon: Layers3 },
 ];
 

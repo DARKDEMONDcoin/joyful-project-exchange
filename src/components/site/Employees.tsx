@@ -36,7 +36,7 @@ export function Employees() {
             return (
               <Reveal key={member.id} delay={index * 55}>
                 <article
-                  className={cn("employee-editorial-card", on && "is-active")}
+                  className={cn("employee-editorial-card liquid-glass", on && "is-active")}
                   onMouseEnter={() => setActive(member.id)}
                   onFocus={() => setActive(member.id)}
                   tabIndex={0}

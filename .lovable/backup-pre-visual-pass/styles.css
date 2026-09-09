@@ -551,7 +551,7 @@
 
 .dark .ambient-cloud { mix-blend-mode: screen; opacity: 0.18; }
 .ambient-cloud-a { inset: -10% auto auto -18%; background: color-mix(in oklab, var(--primary) 62%, var(--amber)); animation: smoke-drift-a 22s ease-in-out infinite alternate; }
-.ambient-cloud-b { inset: 18% -24% auto auto; background: color-mix(in oklab, var(--primary) 48%, var(--amber)); animation: smoke-drift-b 27s ease-in-out infinite alternate; }
+.ambient-cloud-b { inset: 18% -24% auto auto; background: color-mix(in oklab, var(--jade) 70%, var(--sky)); animation: smoke-drift-b 27s ease-in-out infinite alternate; }
 .ambient-cloud-c { inset: auto 20% -22% auto; background: color-mix(in oklab, var(--amber) 68%, var(--coral)); animation: smoke-drift-a 31s ease-in-out infinite alternate-reverse; }
 .ambient-field-quiet .ambient-cloud { opacity: 0.2; }
 .ambient-grain { position: absolute; inset: 0; opacity: 0.2; background-image: radial-gradient(circle, color-mix(in oklab, var(--foreground) 18%, transparent) 0.55px, transparent 0.75px); background-size: 6px 6px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
@@ -571,12 +571,9 @@
   box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 92%, transparent), var(--shadow-card);
   backdrop-filter: blur(24px) saturate(145%);
 }
-.nav-liquid-glass { background: color-mix(in oklab, var(--card) 66%, transparent); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 96%, transparent), var(--shadow-card); backdrop-filter: blur(22px) saturate(150%); }
-.pricing-liquid-glass { background: color-mix(in oklab, var(--card) 68%, transparent); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 94%, transparent), var(--shadow-card); backdrop-filter: blur(24px) saturate(145%); }
-.pricing-liquid-glass.is-highlight { background: color-mix(in oklab, var(--foreground) 90%, transparent); }
 
 .home-hero { position: relative; min-height: min(980px, 96svh); overflow: hidden; padding-bottom: 3rem; }
-.hero-object-3d { position: absolute; z-index: 1; inset: 50% auto auto 50%; width: min(18rem, 34vw); aspect-ratio: 1; translate: -50% -50%; opacity: 0.3; filter: blur(0.2px); pointer-events: none; }
+.hero-object-3d { position: absolute; inset: -12% auto auto -17%; width: min(48rem, 52vw); aspect-ratio: 1; opacity: 0.3; filter: blur(0.2px); pointer-events: none; }
 .hero-kicker, .auth-eyebrow, .section-kicker { color: var(--primary); font-size: 0.78rem; font-weight: 800; letter-spacing: 0; }
 .hero-kicker { display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.48rem 0.85rem; border: 1px solid color-mix(in oklab, var(--primary) 25%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--card) 55%, transparent); backdrop-filter: blur(12px); }
 .hero-live-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--jade); box-shadow: 0 0 0 0.35rem color-mix(in oklab, var(--jade) 14%, transparent); }
@@ -592,7 +589,7 @@
 .hero-assurances { display: flex; flex-wrap: wrap; gap: 0.7rem 1.4rem; margin-top: 1.2rem; color: var(--muted-foreground); font-size: 0.82rem; font-weight: 600; }
 .hero-assurances li { display: flex; align-items: center; gap: 0.35rem; }
 .hero-assurances svg { width: 0.95rem; color: var(--jade); }
-.hero-orbit-shell { position: relative; max-width: 71rem; min-height: 31rem; margin: 3.2rem auto 0; border-radius: 1.4rem; padding: 1rem; }
+.hero-orbit-shell { max-width: 71rem; min-height: 31rem; margin: 3.2rem auto 0; border-radius: 1.4rem; padding: 1rem; }
 .hero-orbit-topline { position: relative; z-index: 3; display: flex; justify-content: space-between; color: var(--muted-foreground); font-size: 0.75rem; font-weight: 700; }
 .hero-orbit-topline > span { display: flex; align-items: center; gap: 0.45rem; }
 .hero-orbit-topline svg { width: 0.9rem; color: var(--primary); }
@@ -603,16 +600,12 @@
 .orbit-rings { position: absolute; inset: 5% 7%; border: 1px solid color-mix(in oklab, var(--primary) 16%, transparent); border-radius: 50%; }
 .orbit-rings::before, .orbit-rings::after { content: ""; position: absolute; inset: 15%; border: 1px dashed color-mix(in oklab, var(--jade) 22%, transparent); border-radius: inherit; }
 .orbit-rings::after { inset: 31%; border-style: solid; }
-.orbit-connections { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.orbit-connection { stroke: color-mix(in oklab, var(--primary) 28%, transparent); stroke-width: 1.15; stroke-dasharray: 5 8; vector-effect: non-scaling-stroke; transition: stroke 280ms ease, stroke-width 280ms ease, filter 280ms ease; }
 .orbit-user { position: absolute; z-index: 2; inset: 50% auto auto 50%; display: grid; width: 8.5rem; min-height: 8.5rem; translate: -50% -50%; place-items: center; align-content: center; border-radius: 50%; text-align: center; }
 .orbit-user-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; color: var(--primary); background: color-mix(in oklab, var(--primary) 12%, transparent); }
 .orbit-user strong, .orbit-user small { display: block; }
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
 .orbit-user small { color: var(--muted-foreground); font-size: 0.67rem; }
-.orbit-employee { position: absolute; z-index: 2; display: flex; width: min(15.5rem, 27%); min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
-.orbit-connections .orbit-connection.is-active { stroke: var(--primary) !important; stroke-width: 2.2px !important; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
-.orbit-employee:hover { border-color: color-mix(in oklab, var(--employee-tone) 54%, var(--border)); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 96%, transparent), 0 18px 38px -22px color-mix(in oklab, var(--employee-tone) 65%, transparent); }
+.orbit-employee { position: absolute; z-index: 2; display: flex; width: min(15.5rem, 27%); min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); }
 .orbit-portrait { position: relative; width: 3.5rem; height: 3.5rem; flex: none; overflow: hidden; border-radius: 0.8rem; background: color-mix(in oklab, var(--employee-tone) 16%, var(--secondary)); }
 .orbit-portrait i { position: absolute; inset: auto 0 0; height: 3px; background: var(--employee-tone); }
 .orbit-copy { min-width: 0; line-height: 1.3; }
@@ -638,7 +631,6 @@
 .employee-editorial-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; margin-top: 3rem; }
 .employee-editorial-grid > div { grid-column: span 4; }
 .employee-editorial-card { position: relative; min-height: 34rem; overflow: hidden; border: 1px solid var(--border); border-radius: 0.65rem; background: var(--card); outline: none; transition: transform 350ms var(--ease-enter), box-shadow 350ms ease, border-color 350ms ease; }
-.employee-editorial-card.liquid-glass { background: color-mix(in oklab, var(--card) 68%, transparent); }
 .employee-editorial-card:hover, .employee-editorial-card:focus-visible, .employee-editorial-card.is-active { transform: translateY(-7px); border-color: color-mix(in oklab, var(--employee-tone) 42%, var(--border)); box-shadow: var(--shadow-lift); }
 .employee-photo-wrap { position: relative; height: 15rem; overflow: hidden; background: color-mix(in oklab, var(--employee-tone) 17%, var(--secondary)); }
 .employee-photo-wrap img { object-position: center top; transition: transform 700ms var(--ease-enter); }
@@ -716,23 +708,12 @@
   .hero-title { font-size: clamp(2.45rem, 12vw, 4rem); }
   .hero-lead { font-size: 1rem; }
   .hero-actions > * { width: 100%; }
-  .hero-orbit-shell { min-height: 27rem; padding: 0.7rem; }
-  .team-orbit, .team-orbit-compact { min-height: 24.5rem; }
-  .orbit-rings { inset: 9% 2%; }
-  .orbit-user { display: grid; width: 6.2rem; min-height: 6.2rem; }
-  .hero-object-3d { width: 14rem; opacity: 0.16; }
-  .orbit-user-icon { width: 2rem; height: 2rem; }
-  .orbit-connections { display: block; }
-  .orbit-employee { width: 7.2rem; min-height: 4.25rem; gap: 0.4rem; border-radius: 0.75rem; padding: 0.42rem; animation-duration: 5.5s; }
-  .orbit-portrait { width: 2.45rem; height: 2.85rem; border-radius: 0.55rem; }
-  .orbit-copy strong { font-size: 0.78rem; }
-  .orbit-copy small { font-size: 0.55rem; line-height: 1.35; }
-  .orbit-employee-1 { top: 3%; right: 8%; }
-  .orbit-employee-2 { top: 3%; left: 8%; }
-  .orbit-employee-3 { top: 41%; right: -2%; }
-  .orbit-employee-4 { top: 41%; left: -2%; }
-  .orbit-employee-5 { bottom: 1%; right: 8%; }
-  .orbit-employee-6 { bottom: 1%; left: 8%; }
+  .hero-orbit-shell { min-height: auto; padding: 0.7rem; }
+  .team-orbit, .team-orbit-compact { min-height: auto; }
+  .orbit-rings, .orbit-user { display: none; }
+  .orbit-rail { display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 1.4rem 0.1rem 0.5rem; scrollbar-width: none; }
+  .orbit-rail::-webkit-scrollbar { display: none; }
+  .orbit-employee { position: relative; inset: auto; width: 14rem; min-width: 14rem; scroll-snap-align: center; animation: none; }
   .impact-card { min-height: 8.5rem; }
   .employee-editorial-grid { display: flex; gap: 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -1.25rem; padding-inline: 1.25rem; scrollbar-width: none; }
   .employee-editorial-grid::-webkit-scrollbar { display: none; }
@@ -771,13 +752,13 @@
   height: auto;
   max-height: 92%;
   margin-inline-end: -6%;
-  opacity: 0.72;
+  opacity: 0.5;
 }
 
 .mena-map-fill { fill: color-mix(in oklab, var(--primary) 7%, transparent); }
 .mena-map-outline {
   fill: none;
-  stroke: color-mix(in oklab, var(--primary) 68%, transparent);
+  stroke: color-mix(in oklab, var(--primary) 42%, transparent);
   stroke-width: 1.4;
   stroke-linejoin: round;
   filter: drop-shadow(0 0 14px color-mix(in oklab, var(--primary) 35%, transparent));
@@ -787,12 +768,6 @@
   stroke: color-mix(in oklab, var(--foreground) 16%, transparent);
   stroke-width: 0.7;
 }
-.mena-routes path { fill: none; stroke: color-mix(in oklab, var(--amber) 72%, transparent); stroke-width: 1.25; stroke-linecap: round; stroke-dasharray: 5 9; animation: mena-route-flow 8s linear infinite; }
-.mena-capital-dot { fill: var(--primary); stroke: color-mix(in oklab, var(--card) 88%, transparent); stroke-width: 1.5; }
-.mena-capital-pulse { fill: color-mix(in oklab, var(--primary) 20%, transparent); transform-box: fill-box; transform-origin: center; animation: mena-capital-pulse 2.8s ease-out infinite; }
-.mena-capital-hub .mena-capital-dot { fill: var(--amber); r: 4.6px; }
-@keyframes mena-route-flow { to { stroke-dashoffset: -56; } }
-@keyframes mena-capital-pulse { 0% { scale: 0.45; opacity: 0.9; } 75%, 100% { scale: 1.65; opacity: 0; } }
 
 .dark .mena-map-fill { fill: color-mix(in oklab, var(--primary) 10%, transparent); }
 .dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 55%, transparent); }
@@ -800,10 +775,9 @@
 
 @media (max-width: 768px) {
   .mena-map-layer { justify-content: center; }
-  .mena-map-layer svg { width: 145%; margin-inline-end: 0; opacity: 0.58; }
+  .mena-map-layer svg { width: 130%; margin-inline-end: 0; opacity: 0.35; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mena-map-layer svg { opacity: 0.62; }
-  .mena-routes path, .mena-capital-pulse { animation: none; }
+  .mena-map-layer svg { opacity: 0.4; }
 }

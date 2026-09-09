@@ -56,10 +56,10 @@ export function Pricing() {
               <Reveal key={p.name} delay={i * 90}>
                 <article
                   className={cn(
-                    "pricing-liquid-glass relative h-full rounded-3xl border p-8 transition-all duration-400 hover:-translate-y-1",
+                    "relative h-full rounded-3xl border p-8 transition-all duration-400 hover:-translate-y-1",
                     p.highlight
-                      ? "is-highlight border-transparent shadow-lift"
-                      : "border-border shadow-card",
+                      ? "border-transparent shadow-lift"
+                      : "border-border bg-card shadow-card",
                   )}
                   style={p.highlight ? { backgroundImage: "var(--gradient-ink)" } : undefined}
                 >
