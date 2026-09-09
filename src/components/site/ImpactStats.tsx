@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Clock3, Coins, Gauge, Layers3 } from "lucide-react";
-import { LiquidGlass } from "@/components/site/LiquidGlass";
 
 const stats = [
-  { value: 40, prefix: "+", suffix: " ساعة", label: "وقت يعود لك كل شهر", icon: Clock3 },
-  { value: 70, prefix: "", suffix: "% أقل", label: "من تكلفة فريق تقليدي مماثل", icon: Coins },
-  { value: 24, prefix: "", suffix: "/٦", label: "أيام عمل ممتدة مع يوم صيانة", icon: Gauge },
-  { value: 1000, prefix: "+", suffix: " مهمة", label: "سعة شهرية في باقات الفرق", icon: Layers3 },
+  { value: 40, prefix: "+", suffix: " ساعة", label: "وقت يعود لك كل شهر", icon: Clock3, visual: "clock" },
+  { value: 70, prefix: "", suffix: "% أقل", label: "من تكلفة فريق تقليدي مماثل", icon: Coins, visual: "saving" },
+  { value: 24, prefix: "", suffix: "/٦", label: "أيام عمل ممتدة مع يوم صيانة", icon: Gauge, visual: "pulse" },
+  { value: 1000, prefix: "+", suffix: " مهمة", label: "سعة شهرية في باقات الفرق", icon: Layers3, visual: "stack" },
 ];
 
 function AnimatedNumber({ value }: { value: number }) {
@@ -39,15 +38,23 @@ function AnimatedNumber({ value }: { value: number }) {
 export function ImpactStats() {
   return (
     <section className="impact-strip" aria-label="أثر فريق سهل">
-      <div className="mx-auto grid max-w-6xl gap-3 px-5 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <LiquidGlass key={stat.label} className="impact-card">
-            <stat.icon className="impact-icon" />
-            <div className="font-display text-3xl font-black tabular-nums md:text-4xl">
-              {stat.prefix}<AnimatedNumber value={stat.value} />{stat.suffix}
+      <div className="impact-grid mx-auto max-w-6xl px-5">
+        {stats.map((stat, index) => (
+          <article key={stat.label} className="impact-card" style={{ "--impact-delay": `${index * 130}ms` } as React.CSSProperties}>
+            <div className="impact-card-inner">
+              <div className="impact-icon-shell"><stat.icon className="impact-icon" /></div>
+              <div className={`impact-mini-visual impact-mini-${stat.visual}`} aria-hidden="true">
+                {stat.visual === "clock" && <><i /><i /><i /></>}
+                {stat.visual === "saving" && <><b /><b /><b /><b /></>}
+                {stat.visual === "pulse" && <><svg viewBox="0 0 120 28"><path d="M2 17h24l7-11 12 20 11-15 9 6h53" /></svg></>}
+                {stat.visual === "stack" && <><i /><i /><i /></>}
+              </div>
+              <div className="impact-value font-display tabular-nums">
+                {stat.prefix}<AnimatedNumber value={stat.value} />{stat.suffix}
+              </div>
+              <p>{stat.label}</p>
             </div>
-            <p>{stat.label}</p>
-          </LiquidGlass>
+          </article>
         ))}
       </div>
     </section>
