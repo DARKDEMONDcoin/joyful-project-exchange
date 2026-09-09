@@ -52,7 +52,7 @@ export function IntegrationFlow() {
             <span aria-hidden className="flow-spark flow-spark-in hidden lg:block" />
             <span aria-hidden className="flow-spark flow-spark-out hidden lg:block" />
 
-            <div className="grid items-center gap-9 lg:grid-cols-[1fr_1.4fr_1fr] lg:gap-12">
+            <div className="grid items-center gap-9 lg:grid-cols-[0.75fr_2.1fr_0.75fr] lg:gap-8">
               <div className="relative mx-auto flex items-center gap-5 lg:mx-0 lg:justify-self-start">
                 <AppCluster apps={inputs} />
                 <div className="hidden text-right lg:block">

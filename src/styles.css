@@ -908,6 +908,11 @@
   padding-bottom: 0.75rem;
 }
 .integration-orbit-panel .team-orbit-compact { min-height: 25rem; }
+@media (min-width: 1024px) {
+  .integration-orbit-panel { margin-inline: -3.5rem; }
+  .integration-orbit-panel .orbit-slot { width: min(13.5rem, 30%); }
+  .integration-orbit-panel .orbit-map-center { width: 16rem; height: 9.5rem; }
+}
 @media (max-width: 640px) {
   .integration-orbit-panel .team-orbit-compact { min-height: 23rem; }
 }
