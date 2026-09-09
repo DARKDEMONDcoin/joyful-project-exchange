@@ -69,7 +69,7 @@ export function IntegrationFlow() {
               <div className="relative mx-auto w-full max-w-md">
                 <span aria-hidden className="integration-pulse integration-pulse-a" />
                 <span aria-hidden className="integration-pulse integration-pulse-b" />
-                <div className="relative z-10 border border-background/15 bg-card p-3 shadow-lift sm:p-4">
+                <div className="integration-team-glass relative z-10 p-3 sm:p-4">
                   <div className="flex items-center justify-between border-b border-border px-2 pb-3">
                     <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
                       <span className="status-dot size-2 rounded-full bg-jade" />
