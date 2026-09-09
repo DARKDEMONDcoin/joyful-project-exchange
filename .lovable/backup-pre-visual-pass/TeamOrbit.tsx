@@ -17,18 +17,6 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
   return (
     <div className={cn("team-orbit", compact && "team-orbit-compact")}>
       <div className="orbit-rings" aria-hidden />
-      <svg className="orbit-connections" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden>
-        {[
-          [700, 62],
-          [300, 62],
-          [875, 250],
-          [125, 250],
-          [700, 438],
-          [300, 438],
-        ].map(([x, y], index) => (
-          <line key={index} className={`orbit-connection orbit-connection-${index + 1}`} x1="500" y1="250" x2={x} y2={y} />
-        ))}
-      </svg>
       <LiquidGlass className="orbit-user">
         <span className="orbit-user-icon"><UserRound /></span>
         <strong>أنت تقود</strong>
