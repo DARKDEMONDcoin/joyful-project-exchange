@@ -902,11 +902,14 @@
   display: flex;
   gap: 1.25rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: none;
   padding: 0.5rem 1.25rem 1.5rem;
   scrollbar-width: none;
 }
 .testimonial-track::-webkit-scrollbar { display: none; }
+@media (hover: none) {
+  .testimonial-track.is-user { scroll-snap-type: x proximity; }
+}
 .testimonial-card {
   position: relative;
   flex: 0 0 auto;
