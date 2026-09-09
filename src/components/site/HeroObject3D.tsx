@@ -75,15 +75,20 @@ varying vec3 vNormalW; varying vec3 vViewDir; varying float vDisp;
 
 // بيئة إجرائية دافئة (كريمي/ذهبي/طيني) بدل ملف HDR
 vec3 envColor(vec3 r){
-  float up = r.y * 0.5 + 0.5;
-  vec3 sky = mix(uBase * 0.10, mix(uBase, uCream, 0.45), pow(up, 2.2));
-  float glint = pow(max(0.0, r.y), 3.2);
-  sky += uGold * glint * 1.35;
-  float side = pow(max(0.0, dot(normalize(vec3(0.6, 0.15, 0.7)), r)), 8.0);
-  sky += uGold * side * 0.6;
-  float band = 0.5 + 0.5 * sin(r.x * 1.6 + r.z * 1.2 + uTime * 0.25);
-  sky = mix(sky, uBase * 0.7, 0.14 * band);
-  return sky;
+  float y = r.y;
+  float az = atan(r.z, r.x);
+  vec3 ground = uBase * 0.04;
+  vec3 sky = mix(uBase * 0.30, uCream * 1.15, smoothstep(-0.05, 0.95, y));
+  vec3 col = mix(ground, sky, smoothstep(-0.22, 0.06, y));
+  // شرائط إضاءة استوديو تعطي انعكاسات حادة (إحساس معدن سائل)
+  float top = smoothstep(0.34, 0.40, y) * (1.0 - smoothstep(0.62, 0.70, y));
+  float side = smoothstep(-0.62, -0.54, y) * (1.0 - smoothstep(-0.30, -0.22, y));
+  float sweep = 0.5 + 0.5 * sin(az * 2.0 + uTime * 0.4);
+  col += uCream * 2.4 * top * (0.35 + 0.65 * sweep);
+  col += uGold * 2.0 * side * (0.4 + 0.6 * (1.0 - sweep));
+  float rim = pow(max(0.0, sin(az * 5.0 + uTime * 0.25)), 12.0);
+  col += uGold * rim * 0.5;
+  return col;
 }
 
 void main(){
@@ -104,7 +109,7 @@ void main(){
     col = envColor(r);
   }
 
-  col = mix(col * mix(uBase, uGold, 0.45), col, 0.4);
+  col = mix(col * mix(uBase, uGold, 0.5), col, 0.65);
   col += uGold * fres * 1.9;
   col += uCream * pow(fres, 4.0) * 0.6;
 
@@ -117,8 +122,8 @@ void main(){
   float spec2 = pow(max(dot(n, normalize(vec3(-0.6, 0.3, 0.7))), 0.0), 24.0);
   col += uGold * spec2 * 0.7;
 
-  col = mix(col, uBase, 0.22);
-  col *= 1.32;
+  col = mix(col, uBase, 0.10);
+  col *= 1.35;
   col = col / (col + vec3(0.85));
   col = pow(col, vec3(0.85));
   gl_FragColor = vec4(col, 1.0);
