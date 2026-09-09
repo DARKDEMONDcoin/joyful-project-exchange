@@ -733,3 +733,51 @@
   .ambient-cloud { transform: none !important; }
   .hero-object-3d { display: none; }
 }
+
+/* MENA map background layer (hero only) — purely decorative, sits below all content (z-10) */
+.mena-map-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  mask-image: linear-gradient(to bottom, black 55%, transparent 96%);
+}
+
+.mena-map-layer svg {
+  width: min(64rem, 88%);
+  height: auto;
+  max-height: 92%;
+  margin-inline-end: -6%;
+  opacity: 0.5;
+}
+
+.mena-map-fill { fill: color-mix(in oklab, var(--primary) 7%, transparent); }
+.mena-map-outline {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primary) 42%, transparent);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 14px color-mix(in oklab, var(--primary) 35%, transparent));
+}
+.mena-map-borders {
+  fill: none;
+  stroke: color-mix(in oklab, var(--foreground) 16%, transparent);
+  stroke-width: 0.7;
+}
+
+.dark .mena-map-fill { fill: color-mix(in oklab, var(--primary) 10%, transparent); }
+.dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 55%, transparent); }
+.dark .mena-map-borders { stroke: color-mix(in oklab, var(--foreground) 22%, transparent); }
+
+@media (max-width: 768px) {
+  .mena-map-layer { justify-content: center; }
+  .mena-map-layer svg { width: 130%; margin-inline-end: 0; opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mena-map-layer svg { opacity: 0.4; }
+}
