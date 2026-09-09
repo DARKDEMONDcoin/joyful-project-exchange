@@ -70,7 +70,7 @@ export function Hero() {
   const left = (activeIndex + 3) % CHARACTERS.length;
   const right = (activeIndex + 1) % CHARACTERS.length;
   const back = (activeIndex + 2) % CHARACTERS.length;
-  const active = CHARACTERS[activeIndex];
+  const active = CHARACTERS[activeIndex] ?? CHARACTERS[0];
 
   const roleFor = (index: number): CharacterRole => {
     if (index === center) return "center";
