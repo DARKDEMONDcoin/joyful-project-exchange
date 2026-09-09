@@ -4,13 +4,11 @@ import { Reveal } from "@/components/Reveal";
 import { AmbientBackground } from "@/components/site/AmbientBackground";
 import { LiquidGlass } from "@/components/site/LiquidGlass";
 import { TeamOrbit } from "@/components/site/TeamOrbit";
-import { MenaMap } from "@/components/site/MenaMap";
 
 export function Hero() {
   return (
     <section id="top" className="home-hero">
       <AmbientBackground />
-      <MenaMap />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 pt-32 md:pt-40">
         <Reveal>
@@ -62,7 +60,7 @@ export function Hero() {
               <span><Sparkles /> فريق سهل</span>
               <span className="hero-status"><i /> يعمل الآن</span>
             </div>
-            <TeamOrbit compact />
+            <TeamOrbit compact mapCenter />
           </LiquidGlass>
         </Reveal>
       </div>

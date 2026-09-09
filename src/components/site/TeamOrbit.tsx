@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { UserRound } from "lucide-react";
 import { team } from "@/data/team";
 import { Portrait } from "@/components/site/Portrait";
 import { AppIcon } from "@/components/site/AppIcon";
 import { LiquidGlass } from "@/components/site/LiquidGlass";
+import { MenaMap } from "@/components/site/MenaMap";
 import { cn } from "@/lib/utils";
 
 const outcomes: Record<string, { short: string; detail: string }> = {
@@ -59,20 +59,31 @@ const ROUTES = [
   { x: 300, y: 438 },
 ];
 
-function curve(x: number, y: number) {
-  const mx = (500 + x) / 2;
-  const my = (250 + y) / 2;
-  const dx = x - 500;
-  const dy = y - 250;
-  return `M500 250 Q${(mx - dy * 0.14).toFixed(1)} ${(my + dx * 0.14).toFixed(1)} ${x} ${y}`;
+const MAP_EDGES = [
+  { x: 560, y: 198 },
+  { x: 440, y: 198 },
+  { x: 622, y: 248 },
+  { x: 378, y: 248 },
+  { x: 560, y: 302 },
+  { x: 440, y: 302 },
+];
+
+function curve(x: number, y: number, index: number) {
+  const start = MAP_EDGES[index] ?? { x: 500, y: 250 };
+  const mx = (start.x + x) / 2;
+  const my = (start.y + y) / 2;
+  const dx = x - start.x;
+  const dy = y - start.y;
+  return `M${start.x} ${start.y} Q${(mx - dy * 0.14).toFixed(1)} ${(my + dx * 0.14).toFixed(1)} ${x} ${y}`;
 }
 
 const STEP_MS = 3200;
 const TRAVEL_MS = 1100;
 
-export function TeamOrbit({ compact = false }: { compact?: boolean }) {
+export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: boolean; mapCenter?: boolean }) {
   const [step, setStep] = useState(0);
   const [arrived, setArrived] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
@@ -89,6 +100,7 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
   }, [step]);
 
   const active = step % ROUTES.length;
+  const activeConnection = hovered ?? active;
   const round = Math.floor(step / ROUTES.length);
 
   return (
@@ -98,22 +110,28 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
           <path
             key={index}
             id={`orbit-route-${index}`}
-            className={cn("orbit-connection", active === index && "is-active")}
-            d={curve(r.x, r.y)}
+            className={cn("orbit-connection", activeConnection === index && "is-active")}
+            d={curve(r.x, r.y, index)}
           />
         ))}
         <circle key={step} className="orbit-travel-dot" r="6">
           <animateMotion dur={`${TRAVEL_MS}ms`} begin="0s" fill="freeze" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1">
-            <mpath href={`#orbit-route-${active}`} />
+            <mpath href={`#orbit-route-${activeConnection}`} />
           </animateMotion>
         </circle>
       </svg>
 
-      <LiquidGlass className="orbit-user">
-        <span className="orbit-user-icon"><UserRound /></span>
-        <strong>أنت تقود</strong>
-        <small>والفريق ينفّذ</small>
-      </LiquidGlass>
+      {mapCenter ? (
+        <div className="orbit-map-center">
+          <MenaMap orbit />
+          <small>فريقك يعمل من هنا</small>
+        </div>
+      ) : (
+        <LiquidGlass className="orbit-user">
+          <strong>أنت تقود</strong>
+          <small>والفريق ينفّذ</small>
+        </LiquidGlass>
+      )}
 
       <div className="orbit-rail" aria-label="فريق سهل">
         {team.map((member, index) => {
@@ -121,7 +139,14 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
           const ping = list[round % (list.length || 1)];
           const isActive = active === index;
           return (
-            <div key={member.id} className={cn("orbit-slot", `orbit-employee-${index + 1}`)}>
+            <div
+              key={member.id}
+              className={cn("orbit-slot", `orbit-employee-${index + 1}`)}
+              onPointerEnter={() => setHovered(index)}
+              onPointerLeave={() => setHovered(null)}
+              onFocusCapture={() => setHovered(index)}
+              onBlurCapture={() => setHovered(null)}
+            >
               {ping && isActive && arrived ? (
                 <div className="orbit-bubble" role="status">
                   <span className="orbit-bubble-apps">

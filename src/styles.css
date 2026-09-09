@@ -607,6 +607,8 @@
 .orbit-user strong, .orbit-user small { display: block; }
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
 .orbit-user small { color: var(--muted-foreground); font-size: 0.67rem; }
+.orbit-map-center { position: absolute; z-index: 3; inset: 50% auto auto 50%; width: 16rem; height: 10rem; translate: -50% -50%; pointer-events: none; }
+.orbit-map-center > small { position: absolute; inset: auto 0 -0.25rem; color: var(--muted-foreground); font-size: 0.62rem; font-weight: 800; text-align: center; }
 .orbit-slot { position: absolute; z-index: 2; width: min(15.5rem, 27%); }
 .orbit-employee { position: relative; display: flex; width: 100%; min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
 .orbit-connections .orbit-connection.is-active { stroke: var(--primary) !important; stroke-width: 2.2px !important; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
@@ -716,7 +718,8 @@
   .hero-actions > * { width: 100%; }
   .hero-orbit-shell { min-height: 27rem; padding: 0.7rem; }
   .team-orbit, .team-orbit-compact { min-height: 24.5rem; }
-    .orbit-user { display: grid; width: 7rem; min-height: 5rem; }
+  .orbit-user { display: grid; width: 7rem; min-height: 5rem; }
+  .orbit-map-center { width: 9.5rem; height: 6.5rem; }
   .hero-object-3d { width: 14rem; opacity: 0.16; }
   .orbit-user-icon { width: 2rem; height: 2rem; }
   .orbit-connections { display: block; }
@@ -772,6 +775,28 @@
   opacity: 0.9;
 }
 
+.mena-map-layer.mena-map-orbit {
+  inset: 0;
+  z-index: auto;
+  justify-content: center;
+  overflow: visible;
+  mask-image: none;
+}
+.mena-map-layer.mena-map-orbit svg {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  overflow: visible;
+  opacity: 1;
+  filter: drop-shadow(0 8px 14px color-mix(in oklab, var(--primary) 22%, transparent));
+}
+.mena-map-orbit .mena-map-fill { fill: color-mix(in oklab, var(--primary) 11%, transparent); }
+.mena-map-orbit .mena-map-outline { stroke: var(--primary); stroke-width: 2.5; }
+.mena-map-orbit .mena-map-borders { stroke: color-mix(in oklab, var(--primary) 48%, transparent); stroke-width: 1; }
+.mena-map-orbit .mena-route { stroke-width: 1.8; }
+.mena-map-orbit .mena-capital-dot { stroke-width: 2; }
+
 .mena-map-fill { fill: color-mix(in oklab, var(--primary) 6%, transparent); }
 .mena-map-outline {
   fill: none;
@@ -810,6 +835,17 @@
 @media (max-width: 768px) {
   .mena-map-layer { justify-content: center; }
   .mena-map-layer svg { width: 145%; margin-inline-end: 0; opacity: 0.58; }
+  .mena-map-layer.mena-map-orbit svg { width: 100%; margin: 0; opacity: 1; }
+}
+
+.integration-team-glass {
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--background) 22%, transparent);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--background) 18%, transparent), transparent 54%),
+    color-mix(in oklab, var(--card) 76%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--background) 62%, transparent), 0 24px 58px -30px color-mix(in oklab, var(--background) 35%, transparent);
+  backdrop-filter: blur(24px) saturate(145%);
 }
 
 @media (prefers-reduced-motion: reduce) {
