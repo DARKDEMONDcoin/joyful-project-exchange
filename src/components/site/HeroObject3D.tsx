@@ -39,8 +39,8 @@ ${NOISE_GLSL}
 float field(vec3 p){
   float t = uTime;
   float n = snoise(p * uFreq + vec3(0.0, t * 0.28, t * 0.16));
-  n += 0.5 * snoise(p * uFreq * 2.1 - vec3(t * 0.22, 0.0, t * 0.19));
-  if (uOctaves > 2) { n += 0.25 * snoise(p * uFreq * 4.3 + vec3(t * 0.35)); }
+  n += 0.28 * snoise(p * uFreq * 2.1 - vec3(t * 0.22, 0.0, t * 0.19));
+  if (uOctaves > 2) { n += 0.09 * snoise(p * uFreq * 4.3 + vec3(t * 0.35)); }
   float ripple = 0.0;
   float d = distance(normalize(p), uPointer);
   ripple = -uPointerForce * exp(-d * d * 3.4) * (0.75 + 0.25 * sin(t * 3.0 - d * 6.0));
@@ -137,8 +137,8 @@ function Blob({ quality, reduced }: { quality: Quality; reduced: boolean }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uAmp: { value: quality === "high" ? 0.4 : 0.3 },
-      uFreq: { value: 1.35 },
+      uAmp: { value: quality === "high" ? 0.44 : 0.34 },
+      uFreq: { value: 0.78 },
       uOctaves: { value: quality === "high" ? 3 : 2 },
       uPointer: { value: new THREE.Vector3(0, 0, 1) },
       uPointerForce: { value: 0 },

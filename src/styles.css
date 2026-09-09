@@ -661,7 +661,7 @@
   .cinematic-employee, .cinematic-primary, .cinematic-secondary { transition-duration: 1ms; }
   .cinematic-hero-beam, .cinematic-progress i.is-active span, .cinematic-enter-1, .cinematic-enter-2, .cinematic-enter-3, .cinematic-enter-4, .cinematic-enter-5 { animation: none; opacity: 1; }
 }
-.hero-liquid-metal { position: absolute; z-index: 6; inset: 74% auto auto 23%; width: min(30rem, 32vw); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; opacity: 0; filter: drop-shadow(0 3rem 6rem color-mix(in oklab, #C1663A 32%, transparent)); animation: liquid-metal-in 1400ms var(--ease-enter) 120ms forwards; }
+.hero-liquid-metal { position: absolute; z-index: 6; inset: 76% auto auto 19%; width: min(29rem, 30vw); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; opacity: 0; filter: drop-shadow(0 3rem 6rem color-mix(in oklab, #C1663A 32%, transparent)); animation: liquid-metal-in 1400ms var(--ease-enter) 120ms forwards; }
 .hero-liquid-metal canvas { width: 100% !important; height: 100% !important; }
 @keyframes liquid-metal-in { from { opacity: 0; transform: scale(0.86); } to { opacity: 0.95; transform: scale(1); } }
 .cinematic-employee.is-sparked { box-shadow: 0 0 0 1px color-mix(in oklab, var(--amber) 60%, transparent), 0 0 4rem color-mix(in oklab, var(--amber) 45%, transparent); }
