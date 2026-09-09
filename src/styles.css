@@ -898,6 +898,20 @@
   .mena-map-layer.mena-map-orbit svg { width: 100%; margin: 0; opacity: 1; }
 }
 
+/* مشهد الفريق المداري داخل قسم التكاملات الداكن */
+.integration-orbit-panel {
+  overflow: hidden;
+  border-radius: 1.6rem;
+  border: 1px solid color-mix(in oklab, var(--background) 14%, transparent);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--card) 97%, var(--primary) 3%), var(--card));
+  box-shadow: 0 30px 70px -30px rgb(0 0 0 / 0.55), inset 0 1px 0 color-mix(in oklab, var(--background) 60%, transparent);
+  padding-bottom: 0.75rem;
+}
+.integration-orbit-panel .team-orbit-compact { min-height: 25rem; }
+@media (max-width: 640px) {
+  .integration-orbit-panel .team-orbit-compact { min-height: 23rem; }
+}
+
 .integration-team-glass {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--background) 18%, transparent);
