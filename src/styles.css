@@ -578,93 +578,87 @@
 .pricing-liquid-glass.is-highlight { background: color-mix(in oklab, var(--foreground) 90%, transparent); }
 
 .home-hero { position: relative; min-height: min(980px, 96svh); overflow: hidden; padding-bottom: 3rem; }
-.sahl-carousel-hero {
-  --hero-surface: oklch(0.585 0.115 46);
-  --hero-panel: oklch(0.67 0.12 47);
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  color: var(--primary-foreground);
-  background-color: var(--hero-surface);
-  transition: background-color 650ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.sahl-carousel-theme-0 { --hero-surface: oklch(0.585 0.115 46); --hero-panel: oklch(0.68 0.13 52); }
-.sahl-carousel-theme-1 { --hero-surface: oklch(0.535 0.055 142); --hero-panel: oklch(0.65 0.07 145); }
-.sahl-carousel-theme-2 { --hero-surface: oklch(0.64 0.125 79); --hero-panel: oklch(0.73 0.12 83); }
-.sahl-carousel-theme-3 { --hero-surface: oklch(0.5 0.065 205); --hero-panel: oklch(0.65 0.075 205); }
-.sahl-carousel-viewport { position: relative; width: 100%; height: 100svh; min-height: 42rem; overflow: hidden; isolation: isolate; }
-.sahl-carousel-viewport::after { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--foreground) 13%, transparent), transparent 30%, transparent 66%, color-mix(in oklab, var(--foreground) 30%, transparent)); pointer-events: none; }
-.sahl-carousel-grain { position: absolute; z-index: 50; inset: 0; opacity: 0.4; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E"); background-size: 200px 200px; background-repeat: repeat; }
-.sahl-carousel-ghost { position: absolute; z-index: 2; top: 18%; inset-inline: 1rem; display: flex; justify-content: center; align-items: center; margin: 0; color: color-mix(in oklab, var(--primary-foreground) 92%, transparent); font-family: var(--font-display); font-size: clamp(4.75rem, 14vw, 13rem); font-weight: 900; line-height: 1; letter-spacing: 0; white-space: nowrap; user-select: none; pointer-events: none; }
-.sahl-carousel-brand { position: absolute; z-index: 60; top: 5.75rem; left: 2rem; display: flex; align-items: center; gap: 0.55rem; color: var(--primary-foreground); }
-.sahl-carousel-brand i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 0.35rem color-mix(in oklab, var(--amber) 18%, transparent); }
-.sahl-carousel-brand span { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; }
-.sahl-carousel-brand small { padding-inline-start: 0.55rem; border-inline-start: 1px solid color-mix(in oklab, var(--primary-foreground) 35%, transparent); font-size: 0.65rem; font-weight: 700; opacity: 0.78; }
-.sahl-carousel-stage { position: absolute; z-index: 3; inset: 0; }
-.sahl-carousel-person { position: absolute; aspect-ratio: 0.6 / 1; transition: transform 650ms cubic-bezier(0.4, 0, 0.2, 1), filter 650ms cubic-bezier(0.4, 0, 0.2, 1), opacity 650ms cubic-bezier(0.4, 0, 0.2, 1), left 650ms cubic-bezier(0.4, 0, 0.2, 1), height 650ms cubic-bezier(0.4, 0, 0.2, 1), bottom 650ms cubic-bezier(0.4, 0, 0.2, 1); will-change: transform, filter, opacity; }
-.sahl-carousel-person img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 2.6rem 1.5rem color-mix(in oklab, var(--foreground) 22%, transparent)); user-select: none; }
-.sahl-carousel-person.is-center { z-index: 20; left: 50%; bottom: 1%; height: min(86%, 52rem); opacity: 1; filter: none; transform: translateX(-50%) scale(1.42); }
-.sahl-carousel-person.is-left { z-index: 10; left: 30%; bottom: 12%; height: 28%; opacity: 0.82; filter: blur(2px); transform: translateX(-50%) scale(1); }
-.sahl-carousel-person.is-right { z-index: 10; left: 70%; bottom: 12%; height: 28%; opacity: 0.82; filter: blur(2px); transform: translateX(-50%) scale(1); }
-.sahl-carousel-person.is-back { z-index: 5; left: 50%; bottom: 12%; height: 22%; opacity: 0.92; filter: blur(4px); transform: translateX(-50%) scale(1); }
-.sahl-carousel-copy { position: absolute; z-index: 60; bottom: clamp(4.5rem, 8vh, 7rem); left: clamp(1.5rem, 6vw, 6rem); width: min(23rem, 29vw); color: var(--primary-foreground); }
-.sahl-carousel-kicker { display: inline-flex; margin-bottom: 0.75rem; padding: 0.35rem 0.65rem; border: 1px solid color-mix(in oklab, var(--primary-foreground) 28%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--foreground) 12%, transparent); font-size: 0.68rem; font-weight: 800; backdrop-filter: blur(10px); }
-.sahl-carousel-copy h1 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 4.2rem); font-weight: 900; line-height: 1.05; }
-.sahl-carousel-copy h1 span { color: color-mix(in oklab, var(--amber) 72%, var(--primary-foreground)); }
-.sahl-carousel-member { margin-top: 1.1rem; animation: carousel-copy-in 500ms var(--ease-enter) both; }
-.sahl-carousel-member strong, .sahl-carousel-member span { display: inline; font-size: 1rem; }
-.sahl-carousel-member strong { font-family: var(--font-display); font-size: 1.15rem; }
-.sahl-carousel-member span::before { content: "—"; margin-inline: 0.45rem; opacity: 0.58; }
-.sahl-carousel-member p { margin-top: 0.4rem; max-width: 20rem; color: color-mix(in oklab, var(--primary-foreground) 82%, transparent); font-size: 0.8rem; line-height: 1.65; }
-.sahl-carousel-actions { position: absolute; z-index: 60; right: clamp(1.5rem, 4vw, 4rem); bottom: 4.5rem; display: grid; justify-items: end; gap: 1rem; }
-.sahl-carousel-primary { display: inline-flex; min-height: 3.2rem; align-items: center; gap: 0.6rem; border-radius: 999px; padding: 0.7rem 1.25rem; color: var(--foreground); background: var(--primary-foreground); font-weight: 900; box-shadow: 0 1rem 2.5rem -1.2rem color-mix(in oklab, var(--foreground) 55%, transparent); transition: transform 200ms ease, box-shadow 200ms ease; }
-.sahl-carousel-primary:hover { transform: translateY(-3px); box-shadow: 0 1.25rem 3rem -1.1rem color-mix(in oklab, var(--foreground) 65%, transparent); }
-.sahl-carousel-primary svg { width: 1rem; }
-.sahl-carousel-discover { display: flex; align-items: center; gap: 0.55rem; color: var(--primary-foreground); font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 3.2rem); font-weight: 800; line-height: 1; transition: opacity 200ms ease, transform 200ms ease; }
-.sahl-carousel-discover:hover { opacity: 0.8; transform: translateX(-4px); }
-.sahl-carousel-discover svg { width: clamp(1.25rem, 2vw, 2rem); height: clamp(1.25rem, 2vw, 2rem); }
-.sahl-carousel-progress { position: absolute; z-index: 60; bottom: 1.5rem; left: 50%; display: flex; gap: 0.4rem; transform: translateX(-50%); }
-.sahl-carousel-progress i { position: relative; width: 1.4rem; height: 3px; overflow: hidden; background: color-mix(in oklab, var(--primary-foreground) 32%, transparent); transition: width 650ms ease; }
-.sahl-carousel-progress i.is-active { width: 3.2rem; }
-.sahl-carousel-progress i span { position: absolute; inset: 0; background: var(--primary-foreground); transform: scaleX(0); transform-origin: left center; }
-.sahl-carousel-progress i.is-active span { animation: carousel-progress 3600ms linear both; }
-@keyframes carousel-progress { to { transform: scaleX(1); } }
-@keyframes carousel-copy-in { from { opacity: 0; transform: translateY(0.6rem); } to { opacity: 1; transform: translateY(0); } }
+.cinematic-hero { position: relative; width: 100%; height: 100svh; min-height: 45rem; overflow: hidden; isolation: isolate; color: var(--primary-foreground); background: oklch(0.18 0.027 145); }
+.cinematic-hero::after { content: ""; position: absolute; z-index: 12; inset: 0; pointer-events: none; background: linear-gradient(180deg, color-mix(in oklab, var(--foreground) 28%, transparent), transparent 22%, transparent 66%, color-mix(in oklab, var(--foreground) 62%, transparent)); }
+.cinematic-hero-bg { position: absolute; z-index: 0; inset: 0; overflow: hidden; background: radial-gradient(circle at 66% 43%, color-mix(in oklab, var(--jade) 66%, transparent), transparent 35%), linear-gradient(125deg, oklch(0.16 0.022 145), oklch(0.27 0.055 142) 55%, oklch(0.19 0.035 70)); }
+.cinematic-hero-bg::after { content: ""; position: absolute; inset: 0; opacity: 0.2; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E"); mix-blend-mode: soft-light; }
+.cinematic-hero-bg p { position: absolute; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -55%); color: color-mix(in oklab, var(--primary-foreground) 5%, transparent); font-family: var(--font-display); font-size: clamp(18rem, 43vw, 43rem); font-weight: 900; line-height: 0.7; white-space: nowrap; }
+.cinematic-hero-beam { position: absolute; top: -18%; left: 54%; width: 42%; height: 125%; transform: rotate(9deg); background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--amber) 12%, transparent), transparent); filter: blur(30px); animation: cinematic-beam 9s ease-in-out infinite alternate; }
+.cinematic-hero-grid { position: absolute; inset: 0; opacity: 0.13; background-image: linear-gradient(color-mix(in oklab, var(--primary-foreground) 14%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--primary-foreground) 14%, transparent) 1px, transparent 1px); background-size: 5rem 5rem; mask-image: linear-gradient(to bottom, transparent, black 30%, transparent 92%); }
+.cinematic-team { position: absolute; z-index: 5; inset: 0; pointer-events: none; }
+.cinematic-employee { position: absolute; bottom: 0; left: 66%; width: min(39vw, 36rem); height: 88%; margin: 0; transform-origin: bottom center; transition: transform 900ms var(--ease-enter), opacity 700ms ease, filter 900ms ease; will-change: transform, opacity; }
+.cinematic-employee img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 2.5rem 2rem color-mix(in oklab, var(--foreground) 50%, transparent)); }
+.cinematic-employee.is-active { z-index: 4; opacity: 1; transform: translateX(-50%) scale(1.07); }
+.cinematic-employee.is-next { z-index: 2; opacity: 0.22; filter: blur(3px); transform: translateX(5%) scale(0.62); }
+.cinematic-employee.is-prev { z-index: 2; opacity: 0.18; filter: blur(4px); transform: translateX(-110%) scale(0.56); }
+.cinematic-employee.is-away { z-index: 1; opacity: 0; filter: blur(8px); transform: translateX(-45%) scale(0.35); }
+.cinematic-employee-status { position: absolute; z-index: 8; right: clamp(1.25rem, 6vw, 6rem); bottom: 4rem; display: grid; min-width: 12rem; padding: 0.9rem 1rem; border: 1px solid color-mix(in oklab, var(--primary-foreground) 16%, transparent); background: color-mix(in oklab, var(--foreground) 32%, transparent); box-shadow: 0 1rem 3rem color-mix(in oklab, var(--foreground) 26%, transparent); backdrop-filter: blur(18px) saturate(130%); animation: cinematic-status 600ms var(--ease-enter) both; }
+.cinematic-employee-status > span { display: flex; align-items: center; gap: 0.45rem; color: color-mix(in oklab, var(--primary-foreground) 68%, transparent); font-size: 0.62rem; font-weight: 800; }
+.cinematic-employee-status > span i { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 0.25rem color-mix(in oklab, var(--amber) 15%, transparent); }
+.cinematic-employee-status strong { margin-top: 0.4rem; font-family: var(--font-display); font-size: 1.4rem; }
+.cinematic-employee-status small { color: color-mix(in oklab, var(--primary-foreground) 64%, transparent); font-size: 0.7rem; }
+.cinematic-employee-status p { margin-top: 0.55rem; color: color-mix(in oklab, var(--primary-foreground) 84%, transparent); font-size: 0.72rem; }
+.cinematic-hero-content { position: absolute; z-index: 20; top: 50%; left: clamp(1.5rem, 6vw, 6rem); width: min(43rem, 48vw); transform: translateY(-48%); }
+.cinematic-kicker { display: flex; align-items: center; gap: 0.7rem; color: color-mix(in oklab, var(--primary-foreground) 72%, transparent); font-size: clamp(0.68rem, 1vw, 0.82rem); font-weight: 800; }
+.cinematic-kicker svg { width: 1rem; color: var(--amber); }
+.cinematic-hero h1 { margin-top: 1.4rem; font-family: var(--font-display); font-size: clamp(3rem, 6vw, 6.8rem); font-weight: 900; line-height: 0.98; letter-spacing: 0; text-wrap: balance; }
+.cinematic-hero h1 span { color: color-mix(in oklab, var(--amber) 84%, var(--primary-foreground)); }
+.cinematic-lead { max-width: 35rem; margin-top: 1.5rem; color: color-mix(in oklab, var(--primary-foreground) 73%, transparent); font-size: clamp(0.9rem, 1.3vw, 1.1rem); line-height: 1.85; text-wrap: pretty; }
+.cinematic-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.8rem; }
+.cinematic-primary, .cinematic-secondary { display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; gap: 0.65rem; padding: 0.75rem 1.25rem; border-radius: 999px; font-size: 0.86rem; font-weight: 900; transition: transform 250ms var(--ease-enter), background 250ms ease; }
+.cinematic-primary { color: var(--foreground); background: var(--primary-foreground); box-shadow: 0 1rem 2.5rem -1rem color-mix(in oklab, var(--foreground) 70%, transparent); }
+.cinematic-secondary { border: 1px solid color-mix(in oklab, var(--primary-foreground) 25%, transparent); color: var(--primary-foreground); background: color-mix(in oklab, var(--foreground) 18%, transparent); backdrop-filter: blur(12px); }
+.cinematic-primary:hover, .cinematic-secondary:hover { transform: translateY(-3px); }
+.cinematic-primary svg, .cinematic-secondary svg { width: 1rem; }
+.cinematic-proof { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.1rem; color: color-mix(in oklab, var(--primary-foreground) 56%, transparent); font-size: 0.68rem; font-weight: 700; }
+.cinematic-proof span { display: flex; align-items: center; gap: 0.35rem; }
+.cinematic-proof svg { width: 0.8rem; color: var(--amber); }
+.cinematic-stats { position: absolute; z-index: 20; right: clamp(1.25rem, 5vw, 5rem); top: 7rem; display: flex; gap: clamp(1.4rem, 3vw, 3rem); }
+.cinematic-stats div { display: grid; }
+.cinematic-stats strong { font-size: clamp(1.45rem, 2.3vw, 2.5rem); line-height: 1; }
+.cinematic-stats span { margin-top: 0.35rem; color: color-mix(in oklab, var(--primary-foreground) 48%, transparent); font-size: 0.58rem; font-weight: 700; }
+.cinematic-progress { position: absolute; z-index: 20; bottom: 1.6rem; left: 50%; display: flex; gap: 0.4rem; transform: translateX(-50%); }
+.cinematic-progress i { position: relative; width: 1.4rem; height: 2px; overflow: hidden; background: color-mix(in oklab, var(--primary-foreground) 24%, transparent); transition: width 500ms ease; }
+.cinematic-progress i.is-active { width: 3.5rem; }
+.cinematic-progress i span { position: absolute; inset: 0; background: var(--amber); transform: scaleX(0); transform-origin: left; }
+.cinematic-progress i.is-active span { animation: cinematic-progress 4200ms linear both; }
+.cinematic-enter-1, .cinematic-enter-2, .cinematic-enter-3, .cinematic-enter-4, .cinematic-enter-5 { opacity: 0; animation: cinematic-enter 800ms var(--ease-enter) forwards; }
+.cinematic-enter-2 { animation-delay: 160ms; }.cinematic-enter-3 { animation-delay: 320ms; }.cinematic-enter-4 { animation-delay: 480ms; }.cinematic-enter-5 { animation-delay: 640ms; }
+@keyframes cinematic-enter { from { opacity: 0; transform: translateY(2rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cinematic-status { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cinematic-progress { to { transform: scaleX(1); } }
+@keyframes cinematic-beam { to { transform: translateX(18%) rotate(4deg); opacity: 0.55; } }
 
-@media (max-width: 639px) {
-  .sahl-carousel-viewport { min-height: 43rem; }
-  .sahl-carousel-ghost { top: 19%; inset-inline: 0.75rem; font-size: clamp(3.65rem, 18vw, 5rem); }
-  .sahl-carousel-brand { top: 5rem; left: 1rem; }
-  .sahl-carousel-brand small { display: none; }
-  .sahl-carousel-person.is-center { bottom: 25%; height: min(52%, 27rem); transform: translateX(-50%) scale(1.12); }
-  .sahl-carousel-person.is-left { left: 20%; bottom: 32%; height: 16%; }
-  .sahl-carousel-person.is-right { left: 80%; bottom: 32%; height: 16%; }
-  .sahl-carousel-person.is-back { bottom: 32%; height: 13%; }
-  .sahl-carousel-copy { bottom: 4.75rem; left: 1rem; width: calc(100% - 2rem); }
-  .sahl-carousel-kicker, .sahl-carousel-member p { display: none; }
-  .sahl-carousel-copy h1 { width: 68%; font-size: 1.7rem; }
-  .sahl-carousel-member { margin-top: 0.45rem; }
-  .sahl-carousel-member strong { font-size: 1rem; }
-  .sahl-carousel-member span { display: block; margin-top: 0.15rem; font-size: 0.7rem; }
-  .sahl-carousel-member span::before { display: none; }
-  .sahl-carousel-actions { right: 1rem; bottom: 1rem; gap: 0.7rem; }
-  .sahl-carousel-primary { min-height: 2.8rem; padding: 0.6rem 0.85rem; font-size: 0.75rem; }
-  .sahl-carousel-discover { display: none; }
-  .sahl-carousel-progress { bottom: auto; top: 5.45rem; left: auto; right: 1rem; transform: none; }
-  .sahl-carousel-progress i { width: 0.7rem; }
-  .sahl-carousel-progress i.is-active { width: 1.8rem; }
+@media (max-width: 767px) {
+  .cinematic-hero { min-height: 47rem; }
+  .cinematic-hero::after { background: linear-gradient(180deg, color-mix(in oklab, var(--foreground) 25%, transparent), transparent 19%, transparent 45%, color-mix(in oklab, var(--foreground) 86%, transparent) 76%); }
+  .cinematic-hero-bg p { top: 25%; font-size: clamp(9rem, 52vw, 14rem); }
+  .cinematic-team { height: 62%; top: 3.5rem; }
+  .cinematic-employee { left: 50%; width: min(94vw, 30rem); height: 100%; }
+  .cinematic-employee.is-active { transform: translateX(-50%) scale(0.98); }
+  .cinematic-employee.is-next { transform: translateX(15%) scale(0.45); }
+  .cinematic-employee.is-prev { transform: translateX(-115%) scale(0.45); }
+  .cinematic-employee-status { display: none; }
+  .cinematic-hero-content { top: auto; bottom: 3.1rem; left: 1rem; width: calc(100% - 2rem); transform: none; }
+  .cinematic-kicker { display: none; }
+  .cinematic-hero h1 { width: 90%; margin-top: 0; font-size: clamp(2.15rem, 11vw, 3.4rem); line-height: 1.02; }
+  .cinematic-lead { max-width: 31rem; margin-top: 0.75rem; font-size: 0.78rem; line-height: 1.65; }
+  .cinematic-actions { margin-top: 1rem; }
+  .cinematic-primary, .cinematic-secondary { min-height: 2.75rem; padding: 0.6rem 0.9rem; font-size: 0.74rem; }
+  .cinematic-proof, .cinematic-stats { display: none; }
+  .cinematic-progress { bottom: 1.2rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .cinematic-employee { left: 70%; width: min(48vw, 32rem); height: 78%; }
+  .cinematic-hero-content { left: 2.25rem; width: 48vw; }
+  .cinematic-hero h1 { font-size: clamp(3rem, 6.5vw, 5rem); }
+  .cinematic-stats { right: 2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sahl-carousel-hero, .sahl-carousel-person, .sahl-carousel-progress i { transition-duration: 1ms; }
-  .sahl-carousel-member { animation: none; }
-  .sahl-carousel-progress i.is-active span { animation: none; transform: scaleX(1); }
-}
-
-@media (min-width: 640px) and (max-width: 1024px) {
-  .sahl-carousel-person.is-center { bottom: 10%; height: min(72%, 42rem); transform: translateX(-50%) scale(1.3); }
-  .sahl-carousel-copy { bottom: 4rem; left: 2rem; width: min(20rem, 32vw); }
-  .sahl-carousel-actions { right: 2rem; bottom: 4rem; }
+  .cinematic-employee, .cinematic-primary, .cinematic-secondary { transition-duration: 1ms; }
+  .cinematic-hero-beam, .cinematic-progress i.is-active span, .cinematic-enter-1, .cinematic-enter-2, .cinematic-enter-3, .cinematic-enter-4, .cinematic-enter-5 { animation: none; opacity: 1; }
 }
 .hero-object-3d { position: absolute; z-index: 1; inset: 50% auto auto 50%; width: min(18rem, 34vw); aspect-ratio: 1; translate: -50% -50%; opacity: 0.3; filter: blur(0.2px); pointer-events: none; }
 .hero-kicker, .auth-eyebrow, .section-kicker { color: var(--primary); font-size: 0.78rem; font-weight: 800; letter-spacing: 0; }

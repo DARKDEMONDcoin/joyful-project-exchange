@@ -1,151 +1,106 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Crown, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import sirajFigurine from "@/assets/hero/siraj-user.png";
-import amalFigurine from "@/assets/hero/amal-user.png";
-import salimFigurine from "@/assets/hero/salim-user.png";
-import nourFigurine from "@/assets/hero/nour-user.png";
+import siraj from "@/assets/hero/siraj-figurine.png";
+import amal from "@/assets/hero/amal-figurine.png";
+import salim from "@/assets/hero/salim-figurine.png";
+import nour from "@/assets/hero/nour-figurine.png";
 
-const CHARACTERS = [
-  {
-    src: sirajFigurine,
-    name: "عبدالله",
-    role: "صاحب متجر · الرياض",
-    line: "يدير محتوى متجره ومواعيده من مكان واحد، ويجد وقتًا أكبر لعملائه.",
-  },
-  {
-    src: amalFigurine,
-    name: "مريم",
-    role: "صانعة محتوى · القاهرة",
-    line: "تحوّل أفكارها إلى خطة واضحة ومحتوى جاهز للنشر بدون ضغط يومي.",
-  },
-  {
-    src: salimFigurine,
-    name: "يوسف",
-    role: "مستقل · الدار البيضاء",
-    line: "يتابع مشاريعه ورسائله بسهولة، ويركّز على الشغل الذي يحبه.",
-  },
-  {
-    src: nourFigurine,
-    name: "ليان",
-    role: "صاحبة مشروع · عمّان",
-    line: "ترتّب يومها وتتابع نمو مشروعها، بينما ينجز سهل التفاصيل المتكررة.",
-  },
+const EMPLOYEES = [
+  { src: siraj, name: "سراج", role: "مسؤول المحتوى", task: "يخطط، يكتب وينشر محتواك" },
+  { src: amal, name: "آمال", role: "المساعدة التنفيذية", task: "ترتب يومك وتتابع أولوياتك" },
+  { src: salim, name: "آدم", role: "محلل الأعمال", task: "يحوّل أرقامك إلى قرارات واضحة" },
+  { src: nour, name: "نور", role: "خبيرة الظهور", task: "تجعل عملاءك يجدونك أسرع" },
 ] as const;
-
-type CharacterRole = "center" | "left" | "right" | "back";
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const animationLock = useRef(false);
-  const releaseTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    CHARACTERS.forEach(({ src }) => {
+    EMPLOYEES.forEach(({ src }) => {
       const image = new Image();
       image.src = src;
     });
 
-    const updateViewport = () => setIsMobile(window.innerWidth < 640);
-    updateViewport();
-    window.addEventListener("resize", updateViewport);
-    return () => window.removeEventListener("resize", updateViewport);
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % EMPLOYEES.length);
+    }, 4200);
+    return () => window.clearInterval(interval);
   }, []);
 
-  const rotate = useCallback(() => {
-    if (animationLock.current) return;
-    animationLock.current = true;
-    setIsAnimating(true);
-    setActiveIndex((current) => (current + 1) % CHARACTERS.length);
-    releaseTimer.current = window.setTimeout(() => {
-      animationLock.current = false;
-      setIsAnimating(false);
-    }, 650);
-  }, []);
-
-  useEffect(() => {
-    const interval = window.setInterval(rotate, 3600);
-    return () => {
-      window.clearInterval(interval);
-      if (releaseTimer.current !== undefined) window.clearTimeout(releaseTimer.current);
-    };
-  }, [rotate]);
-
-  const center = activeIndex;
-  const left = (activeIndex + 3) % CHARACTERS.length;
-  const right = (activeIndex + 1) % CHARACTERS.length;
-  const back = (activeIndex + 2) % CHARACTERS.length;
-  const active = CHARACTERS[activeIndex] ?? CHARACTERS[0];
-
-  const roleFor = (index: number): CharacterRole => {
-    if (index === center) return "center";
-    if (index === left) return "left";
-    if (index === right) return "right";
-    return "back";
-  };
+  const active = EMPLOYEES[activeIndex] ?? EMPLOYEES[0];
 
   return (
-    <section
-      id="top"
-      className={cn("sahl-carousel-hero", `sahl-carousel-theme-${activeIndex}`)}
-      aria-label="مستخدمو سهل"
-      data-animating={isAnimating ? "true" : "false"}
-    >
-      <div className="sahl-carousel-viewport" data-mobile={isMobile ? "true" : "false"}>
-        <div className="sahl-carousel-grain" aria-hidden="true" />
-        <p className="sahl-carousel-ghost" aria-hidden="true">أهل سهل</p>
+    <section id="top" className="cinematic-hero" aria-label="فريق سهل الرقمي">
+      <div className="cinematic-hero-bg" aria-hidden="true">
+        <div className="cinematic-hero-beam" />
+        <div className="cinematic-hero-grid" />
+        <p>سهل</p>
+      </div>
 
-        <div className="sahl-carousel-stage" aria-live="polite">
-          {CHARACTERS.map((character, index) => {
-            const role = roleFor(index);
-            return (
-              <div
-                key={character.name}
-                className={cn("sahl-carousel-person", `is-${role}`)}
-                aria-hidden={role !== "center"}
-              >
-                <img
-                  src={character.src}
-                  alt={role === "center" ? `${character.name}، مستخدم سعيد مع سهل` : ""}
-                  width={1024}
-                  height={1536}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  draggable={false}
-                />
-              </div>
-            );
-          })}
+      <div className="cinematic-team" aria-live="polite">
+        {EMPLOYEES.map((employee, index) => {
+          const offset = (index - activeIndex + EMPLOYEES.length) % EMPLOYEES.length;
+          const position = offset === 0 ? "active" : offset === 1 ? "next" : offset === 3 ? "prev" : "away";
+          return (
+            <figure key={employee.name} className={cn("cinematic-employee", `is-${position}`)} aria-hidden={position !== "active"}>
+              <img
+                src={employee.src}
+                alt={position === "active" ? `${employee.name}، ${employee.role} في فريق سهل` : ""}
+                width={1024}
+                height={1536}
+                loading={index === 0 ? "eager" : "lazy"}
+                draggable={false}
+              />
+            </figure>
+          );
+        })}
+        <div className="cinematic-employee-status" key={active.name}>
+          <span><i /> يعمل الآن</span>
+          <strong>{active.name}</strong>
+          <small>{active.role}</small>
+          <p>{active.task}</p>
         </div>
+      </div>
 
-        <div className="sahl-carousel-copy" dir="rtl">
-          <span className="sahl-carousel-kicker">سهل في يومك</span>
-          <h1>ناس زيّك،<br /><span>يومهم بقى أسهل.</span></h1>
-          <div className="sahl-carousel-member" key={active.name}>
-            <strong>{active.name}</strong>
-            <span>{active.role}</span>
-            <p>{active.line}</p>
-          </div>
+      <div className="cinematic-hero-content" dir="rtl">
+        <div className="cinematic-kicker cinematic-enter-1">
+          <Crown aria-hidden="true" />
+          <span>أول فريق عمل رقمي يفهم العربية ولهجتك</span>
         </div>
-
-        <div className="sahl-carousel-actions">
-          <Link to="/auth" search={{ mode: "signup" as const }} className="sahl-carousel-primary">
-            ابدأ مع فريقك مجانًا <ArrowLeft aria-hidden="true" />
+        <h1 className="cinematic-enter-2">
+          فريق كامل.<br />
+          <span>شغل يتنجز.</span><br />
+          وأنت تقود.
+        </h1>
+        <p className="cinematic-lead cinematic-enter-3">
+          موظفون بالذكاء الاصطناعي يكتبون ويصممون ويتابعون عملاءك كل يوم — من مساحة عمل واحدة، وتحت إشرافك الكامل.
+        </p>
+        <div className="cinematic-actions cinematic-enter-4">
+          <Link to="/auth" search={{ mode: "signup" as const }} className="cinematic-primary">
+            <span>كوّن فريقك مجانًا</span><ArrowLeft aria-hidden="true" />
           </Link>
-          <a href="#workspace" className="sahl-carousel-discover">
-            شاهد مساحة العمل <ArrowLeft aria-hidden="true" />
-          </a>
+          <Link to="/app" className="cinematic-secondary">
+            <Sparkles aria-hidden="true" /><span>جرّب الموظفين</span>
+          </Link>
         </div>
+        <div className="cinematic-proof cinematic-enter-5">
+          <span><CheckCircle2 /> بدون بطاقة بنكية</span>
+          <span><CheckCircle2 /> يبدأ خلال دقائق</span>
+        </div>
+      </div>
 
-        <div className="sahl-carousel-progress" aria-hidden="true">
-          {CHARACTERS.map((character, index) => (
-            <i key={character.name} className={index === activeIndex ? "is-active" : undefined}>
-              <span />
-            </i>
-          ))}
-        </div>
+      <div className="cinematic-stats" dir="rtl">
+        <div><strong>٦</strong><span>موظفين متخصصين</span></div>
+        <div><strong>٢٤/٧</strong><span>عمل بلا توقف</span></div>
+        <div><strong>+١٠٠٠</strong><span>مهمة أُنجزت</span></div>
+      </div>
+
+      <div className="cinematic-progress" aria-hidden="true">
+        {EMPLOYEES.map((employee, index) => (
+          <i key={employee.name} className={index === activeIndex ? "is-active" : undefined}><span /></i>
+        ))}
       </div>
     </section>
   );
