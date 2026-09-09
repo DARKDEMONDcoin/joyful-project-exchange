@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { team } from "@/data/team";
 import { Portrait } from "@/components/site/Portrait";
-import { AppIcon } from "@/components/site/AppIcon";
 import { LiquidGlass } from "@/components/site/LiquidGlass";
 import { MenaMap } from "@/components/site/MenaMap";
 import { cn } from "@/lib/utils";
@@ -15,40 +14,7 @@ const outcomes: Record<string, { short: string; detail: string }> = {
   adam: { short: "يحوّل أرقامك إلى قرار", detail: "ويخبرك ماذا توقف وماذا تضاعف" },
 };
 
-type Ping = { apps: string[]; text: string; thumb: string };
-
-const pings: Record<string, Ping[]> = {
-  sonny: [
-    { apps: ["instagram", "facebook"], text: "بنشرلك بوست دلوقتي على إنستجرام", thumb: "منشور جاهز" },
-    { apps: ["linkedin"], text: "بجدولك بوستات الأسبوع", thumb: "٧ منشورات" },
-    { apps: ["facebook", "x"], text: "بردّ على تعليقات صفحتك", thumb: "١٢ تعليق" },
-  ],
-  eva: [
-    { apps: ["gmail"], text: "بفلترلك بريد الصبح", thumb: "٣ مهمّة فقط" },
-    { apps: ["calendar"], text: "بأكدلك اجتماع بكرة ١١", thumb: "موعد مؤكد" },
-    { apps: ["slack"], text: "بلخّصلك محادثات الفريق", thumb: "ملخّص اليوم" },
-  ],
-  sam: [
-    { apps: ["whatsapp"], text: "بتابع عميل محتمل على واتساب", thumb: "ردّ مُرسل" },
-    { apps: ["hubspot"], text: "بجهّزلك قايمة فرص بيع", thumb: "٩ فرص" },
-    { apps: ["gmail"], text: "بابعت عرض سعر للعميل", thumb: "عرض سعر" },
-  ],
-  nour: [
-    { apps: ["wordpress"], text: "بنشر مقال جديد على ووردبريس", thumb: "مقال ١٢٠٠ كلمة" },
-    { apps: ["search-console"], text: "بحسّن ترتيبك في البحث", thumb: "+٤ مراكز" },
-    { apps: ["indexnow"], text: "بأرشفة صفحاتك الجديدة", thumb: "٥ صفحات" },
-  ],
-  dana: [
-    { apps: ["figma"], text: "بصمّملك غلاف الحملة", thumb: "تصميم جديد" },
-    { apps: ["canva"], text: "بجهّز صور المنتج بكل المقاسات", thumb: "٦ مقاسات" },
-    { apps: ["instagram"], text: "برفعلك ستوري بهويتك", thumb: "ستوري" },
-  ],
-  adam: [
-    { apps: ["analytics"], text: "بحلّل أرقام الأسبوع", thumb: "تقرير أسبوعي" },
-    { apps: ["google-ads"], text: "برشحلك توقف الإعلان الضعيف", thumb: "توفير ٢٢٪" },
-    { apps: ["sheets"], text: "بحدّث لوحة المبيعات", thumb: "لوحة محدّثة" },
-  ],
-};
+const actionPrefixes = ["أعمل الآن على", "أنجزت لك", "أراجع الآن", "جهّزت لك"];
 
 const ROUTES = [
   { x: 700, y: 62 },
@@ -80,7 +46,7 @@ function curve(x: number, y: number, index: number) {
 const STEP_MS = 3200;
 const TRAVEL_MS = 1100;
 
-export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: boolean; mapCenter?: boolean }) {
+export function TeamOrbit({ compact = false, mapCenter = false, dark = false }: { compact?: boolean; mapCenter?: boolean; dark?: boolean }) {
   const [step, setStep] = useState(0);
   const [arrived, setArrived] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -104,7 +70,7 @@ export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: bo
   const round = Math.floor(step / ROUTES.length);
 
   return (
-    <div className={cn("team-orbit", compact && "team-orbit-compact")}>
+    <div className={cn("team-orbit", compact && "team-orbit-compact", dark && "team-orbit-dark")}>
       <svg className="orbit-connections" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden>
         {ROUTES.map((r, index) => (
           <path
@@ -124,7 +90,7 @@ export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: bo
       {mapCenter ? (
         <div className="orbit-map-center">
           <MenaMap orbit />
-          <small>من قلب المنطقة، يعمل فريقك</small>
+          <small><b>من قلب المنطقة</b><span>يفهم فريقك السوق، ثم يسلّم كل مهمة لمتخصصها</span></small>
         </div>
       ) : (
         <LiquidGlass className="orbit-user">
@@ -135,8 +101,8 @@ export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: bo
 
       <div className="orbit-rail" aria-label="فريق سهل">
         {team.map((member, index) => {
-          const list = pings[member.id] ?? [];
-          const ping = list[round % (list.length || 1)];
+          const task = member.tasks[round % member.tasks.length];
+          const prefix = actionPrefixes[round % actionPrefixes.length];
           const isActive = active === index;
           return (
             <div
@@ -147,13 +113,11 @@ export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: bo
               onFocusCapture={() => setHovered(index)}
               onBlurCapture={() => setHovered(null)}
             >
-              {ping && isActive && arrived ? (
+              {task && isActive && arrived ? (
                 <div className="orbit-bubble" role="status">
-                  <span className="orbit-bubble-apps">
-                    {ping.apps.map((a) => <AppIcon key={a} name={a} colored={false} className="size-3.5" />)}
-                  </span>
-                  <span className="orbit-bubble-text">{ping.text}</span>
-                  <span className="orbit-bubble-thumb"><i /><em>{ping.thumb}</em></span>
+                  <span className="orbit-bubble-head"><i /> تحديث من {member.name}</span>
+                  <span className="orbit-bubble-text">{prefix} {task}</span>
+                  <span className="orbit-bubble-foot">المهمة {round % member.tasks.length + 1} من {member.tasks.length}</span>
                 </div>
               ) : null}
               <LiquidGlass

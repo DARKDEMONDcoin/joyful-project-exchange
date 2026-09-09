@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Check, Play } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { AmbientBackground } from "@/components/site/AmbientBackground";
-import { TeamOrbit } from "@/components/site/TeamOrbit";
 
 export function Hero() {
   return (
@@ -53,11 +52,6 @@ export function Hero() {
           </ul>
         </Reveal>
 
-        <Reveal delay={360}>
-          <div className="hero-orbit-shell">
-            <TeamOrbit compact mapCenter />
-          </div>
-        </Reveal>
       </div>
     </section>
   );
