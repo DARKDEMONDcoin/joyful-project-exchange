@@ -1,47 +1,47 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import sirajFigurine from "@/assets/hero/siraj-figurine.png";
-import amalFigurine from "@/assets/hero/amal-figurine.png";
-import salimFigurine from "@/assets/hero/salim-figurine.png";
-import nourFigurine from "@/assets/hero/nour-figurine.png";
+import sirajFigurine from "@/assets/hero/siraj-user.png";
+import amalFigurine from "@/assets/hero/amal-user.png";
+import salimFigurine from "@/assets/hero/salim-user.png";
+import nourFigurine from "@/assets/hero/nour-user.png";
 
 const CHARACTERS = [
   {
     src: sirajFigurine,
-    name: "سِراج",
-    role: "مدير السوشيال ميديا",
-    line: "يخطط ويصمّم وينشر محتواك بالعربية، كل يوم.",
+    name: "عبدالله",
+    role: "صاحب متجر · الرياض",
+    line: "يدير محتوى متجره ومواعيده من مكان واحد، ويجد وقتًا أكبر لعملائه.",
   },
   {
     src: amalFigurine,
-    name: "أمَل",
-    role: "المساعدة التنفيذية",
-    line: "ترتّب بريدك ومواعيدك، وتحمي وقتك للأهم.",
+    name: "مريم",
+    role: "صانعة محتوى · القاهرة",
+    line: "تحوّل أفكارها إلى خطة واضحة ومحتوى جاهز للنشر بدون ضغط يومي.",
   },
   {
     src: salimFigurine,
-    name: "سالم",
-    role: "مسؤول المبيعات",
-    line: "يبحث عن عملائك ويتابع الفرص حتى موعد الاجتماع.",
+    name: "يوسف",
+    role: "مستقل · الدار البيضاء",
+    line: "يتابع مشاريعه ورسائله بسهولة، ويركّز على الشغل الذي يحبه.",
   },
   {
     src: nourFigurine,
-    name: "نور",
-    role: "مسؤولة المحتوى والسيو",
-    line: "تجعل علامتك حاضرة في البحث وإجابات الذكاء الاصطناعي.",
+    name: "ليان",
+    role: "صاحبة مشروع · عمّان",
+    line: "ترتّب يومها وتتابع نمو مشروعها، بينما ينجز سهل التفاصيل المتكررة.",
   },
 ] as const;
 
-type Direction = "next" | "prev";
 type CharacterRole = "center" | "left" | "right" | "back";
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const animationLock = useRef(false);
+  const releaseTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     CHARACTERS.forEach(({ src }) => {
@@ -55,16 +55,24 @@ export function Hero() {
     return () => window.removeEventListener("resize", updateViewport);
   }, []);
 
-  const navigate = useCallback((direction: Direction) => {
-    if (isAnimating) return;
+  const rotate = useCallback(() => {
+    if (animationLock.current) return;
+    animationLock.current = true;
     setIsAnimating(true);
-    setActiveIndex((current) =>
-      direction === "next"
-        ? (current + 1) % CHARACTERS.length
-        : (current + CHARACTERS.length - 1) % CHARACTERS.length,
-    );
-    window.setTimeout(() => setIsAnimating(false), 650);
-  }, [isAnimating]);
+    setActiveIndex((current) => (current + 1) % CHARACTERS.length);
+    releaseTimer.current = window.setTimeout(() => {
+      animationLock.current = false;
+      setIsAnimating(false);
+    }, 650);
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(rotate, 3600);
+    return () => {
+      window.clearInterval(interval);
+      if (releaseTimer.current !== undefined) window.clearTimeout(releaseTimer.current);
+    };
+  }, [rotate]);
 
   const center = activeIndex;
   const left = (activeIndex + 3) % CHARACTERS.length;
@@ -83,7 +91,8 @@ export function Hero() {
     <section
       id="top"
       className={cn("sahl-carousel-hero", `sahl-carousel-theme-${activeIndex}`)}
-      aria-label="فريق سهل الرقمي"
+      aria-label="مستخدمو سهل"
+      data-animating={isAnimating ? "true" : "false"}
     >
       <div className="sahl-carousel-viewport" data-mobile={isMobile ? "true" : "false"}>
         <div className="sahl-carousel-grain" aria-hidden="true" />
@@ -106,7 +115,7 @@ export function Hero() {
               >
                 <img
                   src={character.src}
-                  alt={role === "center" ? `${character.name} — ${character.role} في فريق سهل` : ""}
+                  alt={role === "center" ? `${character.name}، مستخدم سعيد مع سهل` : ""}
                   width={1024}
                   height={1536}
                   loading={index === 0 ? "eager" : "lazy"}
@@ -118,21 +127,12 @@ export function Hero() {
         </div>
 
         <div className="sahl-carousel-copy" dir="rtl">
-          <span className="sahl-carousel-kicker">موظفك النشط الآن</span>
-          <h1>فريق عربي كامل،<br /><span>يعمل لأجلك.</span></h1>
+          <span className="sahl-carousel-kicker">سهل في يومك</span>
+          <h1>ناس زيّك،<br /><span>يومهم بقى أسهل.</span></h1>
           <div className="sahl-carousel-member" key={active.name}>
             <strong>{active.name}</strong>
             <span>{active.role}</span>
             <p>{active.line}</p>
-          </div>
-          <div className="sahl-carousel-controls" dir="ltr">
-            <Button type="button" variant="ghost" size="icon" onClick={() => navigate("prev")} aria-label="الموظف السابق">
-              <ArrowLeft aria-hidden="true" />
-            </Button>
-            <span>{String(activeIndex + 1).padStart(2, "0")} / 04</span>
-            <Button type="button" variant="ghost" size="icon" onClick={() => navigate("next")} aria-label="الموظف التالي">
-              <ArrowRight aria-hidden="true" />
-            </Button>
           </div>
         </div>
 
@@ -147,7 +147,9 @@ export function Hero() {
 
         <div className="sahl-carousel-progress" aria-hidden="true">
           {CHARACTERS.map((character, index) => (
-            <i key={character.name} className={index === activeIndex ? "is-active" : undefined} />
+            <i key={character.name} className={index === activeIndex ? "is-active" : undefined}>
+              <span />
+            </i>
           ))}
         </div>
       </div>
