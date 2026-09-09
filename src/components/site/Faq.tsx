@@ -40,13 +40,13 @@ export function Faq() {
         </p>
       </Reveal>
       <Reveal delay={80}>
-        <Accordion type="single" collapsible className="mt-10">
+        <Accordion type="single" collapsible className="faq-accordion mt-10 space-y-3">
           {faqs.map((f) => (
-            <AccordionItem key={f.q} value={f.q} className="border-border">
-              <AccordionTrigger className="text-right font-display text-lg font-bold hover:no-underline">
+            <AccordionItem key={f.q} value={f.q} className="faq-item border-border">
+              <AccordionTrigger className="faq-trigger px-5 text-right font-display text-lg font-bold hover:no-underline">
                 {f.q}
               </AccordionTrigger>
-              <AccordionContent className="text-base leading-relaxed text-muted-foreground">
+              <AccordionContent className="faq-answer px-5 text-base leading-relaxed text-muted-foreground">
                 {f.a}
               </AccordionContent>
             </AccordionItem>
