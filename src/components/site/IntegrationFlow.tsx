@@ -2,15 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Check, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { AppIcon, appLabel } from "@/components/site/AppIcon";
+import { TeamOrbit } from "@/components/site/TeamOrbit";
 
 const inputs = ["instagram", "gmail", "shopify", "search-console"];
 const outputs = ["facebook", "linkedin", "wordpress", "analytics"];
-const employees = [
-  { name: "سِراج", job: "ينشر", tone: "bg-jade" },
-  { name: "نور", job: "تحسّن الظهور", tone: "bg-coral" },
-  { name: "أمَل", job: "تنظّم", tone: "bg-sky" },
-  { name: "سالم", job: "يتابع المبيعات", tone: "bg-amber" },
-];
 
 function AppCluster({ apps }: { apps: string[] }) {
   return (
@@ -57,7 +52,7 @@ export function IntegrationFlow() {
             <span aria-hidden className="flow-spark flow-spark-in hidden lg:block" />
             <span aria-hidden className="flow-spark flow-spark-out hidden lg:block" />
 
-            <div className="grid items-center gap-9 lg:grid-cols-[1fr_1.4fr_1fr] lg:gap-12">
+            <div className="grid items-center gap-9 lg:grid-cols-[0.75fr_2.1fr_0.75fr] lg:gap-8">
               <div className="relative mx-auto flex items-center gap-5 lg:mx-0 lg:justify-self-start">
                 <AppCluster apps={inputs} />
                 <div className="hidden text-right lg:block">
@@ -66,32 +61,18 @@ export function IntegrationFlow() {
                 </div>
               </div>
 
-              <div className="relative mx-auto w-full max-w-md">
+              <div className="relative mx-auto w-full max-w-2xl">
                 <span aria-hidden className="integration-pulse integration-pulse-a" />
                 <span aria-hidden className="integration-pulse integration-pulse-b" />
-                <div className="integration-team-glass relative z-10 p-3 sm:p-4">
-                  <div className="flex items-center justify-between border-b border-background/15 px-2 pb-3">
-                    <span className="flex items-center gap-2 text-xs font-bold text-background/65">
+                <div className="integration-orbit-panel relative z-10">
+                  <div className="flex items-center justify-between px-5 pt-4">
+                    <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
                       <span className="status-dot size-2 rounded-full bg-jade" />
                       يعمل الآن
                     </span>
-                    <span className="font-display text-lg font-black text-background">فريق سهل</span>
+                    <span className="font-display text-lg font-black text-foreground">فريق سهل</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2.5 pt-3">
-                    {employees.map((employee, index) => (
-                      <div
-                        key={employee.name}
-                        className="integration-employee flex min-h-20 items-center gap-3 border p-3"
-                        style={{ animationDelay: `${index * 450}ms` }}
-                      >
-                        <span className={`status-dot size-2.5 shrink-0 rounded-full ${employee.tone}`} style={{ animationDelay: `${index * 400}ms` }} />
-                        <span>
-                          <strong className="block font-display text-sm font-black">{employee.name}</strong>
-                          <span className="mt-0.5 block text-xs">{employee.job}</span>
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  <TeamOrbit compact mapCenter />
                 </div>
               </div>
 
