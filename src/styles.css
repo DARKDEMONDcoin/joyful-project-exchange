@@ -866,7 +866,7 @@
 .timeline-dot {
   position: absolute;
   top: 0;
-  inset-inline-start: -2.75rem;
+  inset-inline-start: -3.4rem;
   display: grid;
   place-items: center;
   width: 2.75rem;
