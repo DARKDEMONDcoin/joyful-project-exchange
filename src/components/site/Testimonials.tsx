@@ -37,7 +37,6 @@ export function Testimonials() {
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    el.dataset.mounted = "1";
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
 
     let paused = false;
@@ -53,7 +52,6 @@ export function Testimonials() {
       el.classList.add("is-user");
     };
     const tick = (now: number) => {
-      el.dataset.tick = String(Number(el.dataset.tick ?? 0) + 1);
       const dt = now - last;
       last = now;
       if (paused && now > resumeAt) {
@@ -66,7 +64,6 @@ export function Testimonials() {
         pos -= (dt / 1000) * 22;
         if (Math.abs(pos) >= half) pos += half;
         el.scrollLeft = pos;
-        el.dataset.auto = String(Math.round(el.scrollLeft));
       }
       raf = requestAnimationFrame(tick);
     };
