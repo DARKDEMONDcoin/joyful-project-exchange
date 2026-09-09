@@ -1,4 +1,5 @@
-import { Star } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Star, Quote } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 const quotes = [
@@ -22,10 +23,59 @@ const quotes = [
     n: "خالد المرزوقي",
     r: "وكالة إعلانات",
   },
+  {
+    q: "الفريق بيشتغل بالليل وأنا نايم، وأصحى ألاقي الخطة جاهزة للمراجعة.",
+    n: "سارة العتيبي",
+    r: "عيادة تجميل",
+  },
 ];
 
 export function Testimonials() {
-  const row = [...quotes, ...quotes];
+  const trackRef = useRef<HTMLDivElement>(null);
+  const cards = [...quotes, ...quotes];
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
+    let paused = false;
+    let resumeAt = 0;
+    let raf = 0;
+    let last = performance.now();
+    let pos = 0;
+
+    const pause = () => {
+      paused = true;
+      resumeAt = performance.now() + 3500;
+      pos = el.scrollLeft;
+    };
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
+      if (paused && now > resumeAt) paused = false;
+      if (!paused && !el.matches(":hover")) {
+        // RTL: التمرير التلقائي البطيء جداً (تراكم عشري حتى لا تُهمل الكسور)
+        const half = el.scrollWidth / 2;
+        pos -= (dt / 1000) * 22;
+        if (Math.abs(pos) >= half) pos += half;
+        el.scrollLeft = pos;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    el.addEventListener("pointerdown", pause);
+    el.addEventListener("touchstart", pause, { passive: true });
+    el.addEventListener("wheel", pause, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("pointerdown", pause);
+      el.removeEventListener("touchstart", pause);
+      el.removeEventListener("wheel", pause);
+    };
+  }, []);
+
   return (
     <section className="overflow-hidden py-20">
       <div className="mx-auto max-w-6xl px-5">
@@ -36,20 +86,19 @@ export function Testimonials() {
           </h2>
         </Reveal>
       </div>
-      <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="marquee-track-rtl gap-5">
-          {row.map((t, i) => (
-            <figure
-              key={`${t.n}-${i}`}
-              className="w-[22rem] shrink-0 rounded-3xl border border-border bg-card p-7 shadow-card"
-            >
-              <div className="flex gap-0.5 text-amber" aria-label="تقييم 5 من 5">
+
+      <div className="relative mt-10 [mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]">
+        <div ref={trackRef} className="testimonial-track" dir="rtl">
+          {cards.map((t, i) => (
+            <figure key={`${t.n}-${i}`} className="testimonial-card liquid-glass">
+              <Quote aria-hidden className="testimonial-quote-mark" strokeWidth={1.5} />
+              <div className="relative flex gap-0.5 text-amber" aria-label="تقييم 5 من 5">
                 {Array.from({ length: 5 }).map((_, k) => (
                   <Star key={k} className="size-4 fill-current" strokeWidth={0} />
                 ))}
               </div>
-              <blockquote className="mt-4 text-lg leading-relaxed">«{t.q}»</blockquote>
-              <figcaption className="mt-5 flex items-center gap-3">
+              <blockquote className="relative mt-4 text-lg leading-relaxed">«{t.q}»</blockquote>
+              <figcaption className="relative mt-5 flex items-center gap-3">
                 <span
                   className="grid size-10 place-items-center rounded-full font-display font-black text-background"
                   style={{ backgroundImage: "var(--gradient-ink)" }}

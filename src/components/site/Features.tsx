@@ -7,36 +7,42 @@ const items = [
     title: "عربي أصيل، مش ترجمة",
     body: "يكتب بالفصحى وبالمصري والخليجي والمغاربي، ويولّد صوراً بنص عربي منسّق بدون حروف مكسورة.",
     span: "md:col-span-2",
+    motion: "icon-flip",
   },
   {
     icon: Video,
     title: "فيديو قصير تلقائي",
     body: "ريلز وتيك توك من مقال أو منتج، مع تعليق صوتي عربي وترجمة على الشاشة.",
     span: "",
+    motion: "icon-play",
   },
   {
     icon: Zap,
     title: "نشر في التوقيت الذكي",
     body: "يتعلّم متى يتفاعل جمهورك فعلاً ويجدول النشر على أساسه.",
     span: "",
+    motion: "icon-spark",
   },
   {
     icon: Layers,
     title: "ذاكرة مشتركة للفريق",
     body: "كل موظف يعرف علامتك التجارية، منتجاتك، ونبرتك — سياق واحد يتحدث تلقائياً.",
     span: "md:col-span-2",
+    motion: "icon-stack",
   },
   {
     icon: Wallet,
     title: "رصيد شفاف يترحّل",
     body: "تشوف تكلفة كل مهمة بالضبط، والرصيد غير المستخدم ينتقل للشهر التالي.",
     span: "",
+    motion: "icon-tilt",
   },
   {
     icon: ShieldCheck,
     title: "موافقتك قبل أي نشر",
     body: "وضع المراجعة اختياري: راجع كل شيء، أو اترك الفريق يشتغل بالكامل.",
     span: "",
+    motion: "icon-lock",
   },
 ];
 
@@ -53,10 +59,10 @@ export function Features() {
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {items.map((it, i) => (
-            <Reveal key={it.title} delay={i * 70} className={it.span}>
-              <article className="group h-full rounded-3xl border border-border bg-card p-7 transition-all duration-400 hover:-translate-y-1 hover:shadow-lift">
-                <span className="grid size-11 place-items-center rounded-2xl bg-jade/12 text-jade-deep transition-colors duration-300 group-hover:bg-jade group-hover:text-background">
-                  <it.icon className="size-5" strokeWidth={2.2} />
+            <Reveal key={it.title} delay={i * 130} className={it.span}>
+              <article className="feature-glass-card group h-full rounded-3xl border border-border p-7">
+                <span className="feature-icon-shell grid size-11 place-items-center rounded-2xl">
+                  <it.icon className={`feature-icon ${it.motion} size-5`} strokeWidth={2.2} />
                 </span>
                 <h3 className="mt-5 font-display text-xl font-extrabold">{it.title}</h3>
                 <p className="mt-2 leading-relaxed text-muted-foreground">{it.body}</p>

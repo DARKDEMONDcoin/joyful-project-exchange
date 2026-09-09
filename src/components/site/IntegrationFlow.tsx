@@ -32,7 +32,7 @@ function AppCluster({ apps }: { apps: string[] }) {
 export function IntegrationFlow() {
   return (
     <section className="relative overflow-hidden bg-foreground py-24 text-background sm:py-28">
-      <div aria-hidden className="integration-grid absolute inset-0 opacity-70" />
+      <div aria-hidden className="integration-grid integration-grid-wave absolute inset-0 opacity-70" />
       <div className="relative mx-auto max-w-6xl px-5">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
@@ -54,6 +54,8 @@ export function IntegrationFlow() {
         <Reveal delay={120}>
           <div className="relative mx-auto mt-16 max-w-5xl" dir="rtl">
             <div aria-hidden className="integration-flow-line absolute top-1/2 right-[12%] left-[12%] hidden h-px -translate-y-1/2 lg:block" />
+            <span aria-hidden className="flow-spark flow-spark-in hidden lg:block" />
+            <span aria-hidden className="flow-spark flow-spark-out hidden lg:block" />
 
             <div className="grid items-center gap-9 lg:grid-cols-[1fr_1.4fr_1fr] lg:gap-12">
               <div className="relative mx-auto flex items-center gap-5 lg:mx-0 lg:justify-self-start">
@@ -70,7 +72,7 @@ export function IntegrationFlow() {
                 <div className="relative z-10 border border-background/15 bg-card p-3 shadow-lift sm:p-4">
                   <div className="flex items-center justify-between border-b border-border px-2 pb-3">
                     <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-                      <span className="size-2 rounded-full bg-jade animate-pulse" />
+                      <span className="status-dot size-2 rounded-full bg-jade" />
                       يعمل الآن
                     </span>
                     <span className="font-display text-lg font-black text-foreground">فريق سهل</span>
@@ -82,7 +84,7 @@ export function IntegrationFlow() {
                         className="integration-employee flex min-h-20 items-center gap-3 border border-border bg-secondary/70 p-3 text-foreground"
                         style={{ animationDelay: `${index * 450}ms` }}
                       >
-                        <span className={`size-2.5 shrink-0 rounded-full ${employee.tone}`} />
+                        <span className={`status-dot size-2.5 shrink-0 rounded-full ${employee.tone}`} style={{ animationDelay: `${index * 400}ms` }} />
                         <span>
                           <strong className="block font-display text-sm font-black">{employee.name}</strong>
                           <span className="mt-0.5 block text-xs text-muted-foreground">{employee.job}</span>

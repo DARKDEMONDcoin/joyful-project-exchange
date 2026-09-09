@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { plans, priceOf, currencyOf } from "@/data/pricing";
 import { useRegion } from "@/hooks/use-region";
 import { cn } from "@/lib/utils";
@@ -52,13 +53,14 @@ export function Pricing() {
         <div className="mt-12 grid items-start gap-5 md:grid-cols-3">
           {plans.map((p, i) => {
             const price = priceOf(p, yearly, country);
+            const numeric = Number(price.replace(/,/g, ""));
             return (
               <Reveal key={p.name} delay={i * 90}>
                 <article
                   className={cn(
                     "pricing-liquid-glass relative h-full rounded-3xl border p-8 transition-all duration-400 hover:-translate-y-1",
                     p.highlight
-                      ? "is-highlight border-transparent shadow-lift"
+                      ? "is-highlight pricing-glow border-transparent shadow-lift"
                       : "border-border shadow-card",
                   )}
                   style={p.highlight ? { backgroundImage: "var(--gradient-ink)" } : undefined}
@@ -90,7 +92,7 @@ export function Pricing() {
                         p.highlight && "text-background",
                       )}
                     >
-                      {price}
+                      {Number.isFinite(numeric) ? <AnimatedNumber value={numeric} /> : price}
                     </span>
                     <span
                       className={cn(
@@ -131,9 +133,12 @@ export function Pricing() {
 
 
                   <ul className="mt-7 space-y-3">
-                    {p.perks.map((f) => (
-
-                      <li key={f} className="flex items-start gap-2.5">
+                    {p.perks.map((f, pi) => (
+                      <li
+                        key={f}
+                        className="perk-row flex items-start gap-2.5"
+                        style={{ animationDelay: `${i * 90 + pi * 70}ms` }}
+                      >
                         <Check
                           className={cn(
                             "mt-0.5 size-4.5 shrink-0",
