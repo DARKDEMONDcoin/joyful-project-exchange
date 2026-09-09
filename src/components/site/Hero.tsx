@@ -1,5 +1,3 @@
-import { lazy, Suspense } from "react";
-import { ClientOnly } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Check, Play, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -7,8 +5,6 @@ import { AmbientBackground } from "@/components/site/AmbientBackground";
 import { LiquidGlass } from "@/components/site/LiquidGlass";
 import { TeamOrbit } from "@/components/site/TeamOrbit";
 import { MenaMap } from "@/components/site/MenaMap";
-
-const HeroObject3D = lazy(() => import("@/components/site/HeroObject3D"));
 
 export function Hero() {
   return (
@@ -26,16 +22,18 @@ export function Hero() {
 
         <Reveal delay={80}>
           <h1 className="hero-title">
-            بدل ما تدير كل شيء بنفسك،
-            <span>خلّي فريقك ينجزه.</span>
+            وظّف فريقًا عربيًا كاملًا،
+            <span>بلا توظيف ولا مرتبات.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={150}>
           <p className="hero-lead">
-            ستة موظفين رقميين متخصصين يعملون معًا على محتواك ومبيعاتك وتصميمك وتنظيمك وبياناتك — تحت إشرافك، ومن مكان واحد.
+            ستة موظفين بأسماء يشتغلون داخل حساباتك بعربي أصيل — من الليلة.
           </p>
         </Reveal>
+
+
 
         <Reveal delay={220}>
           <div className="hero-actions">
@@ -64,9 +62,6 @@ export function Hero() {
               <span><Sparkles /> فريق سهل</span>
               <span className="hero-status"><i /> يعمل الآن</span>
             </div>
-            <ClientOnly fallback={null}>
-              <Suspense fallback={null}><HeroObject3D /></Suspense>
-            </ClientOnly>
             <TeamOrbit compact />
           </LiquidGlass>
         </Reveal>

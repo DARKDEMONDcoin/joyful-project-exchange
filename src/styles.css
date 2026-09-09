@@ -600,17 +600,15 @@
 
 .team-orbit { position: relative; min-height: 33rem; width: 100%; }
 .team-orbit-compact { min-height: 27rem; }
-.orbit-rings { position: absolute; inset: 5% 7%; border: 1px solid color-mix(in oklab, var(--primary) 16%, transparent); border-radius: 50%; }
-.orbit-rings::before, .orbit-rings::after { content: ""; position: absolute; inset: 15%; border: 1px dashed color-mix(in oklab, var(--jade) 22%, transparent); border-radius: inherit; }
-.orbit-rings::after { inset: 31%; border-style: solid; }
 .orbit-connections { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.orbit-connection { stroke: color-mix(in oklab, var(--primary) 28%, transparent); stroke-width: 1.15; stroke-dasharray: 5 8; vector-effect: non-scaling-stroke; transition: stroke 280ms ease, stroke-width 280ms ease, filter 280ms ease; }
-.orbit-user { position: absolute; z-index: 2; inset: 50% auto auto 50%; display: grid; width: 8.5rem; min-height: 8.5rem; translate: -50% -50%; place-items: center; align-content: center; border-radius: 50%; text-align: center; }
+.orbit-connection { fill: none; stroke: color-mix(in oklab, var(--primary) 28%, transparent); stroke-width: 1.15; stroke-dasharray: 5 8; vector-effect: non-scaling-stroke; transition: stroke 280ms ease, stroke-width 280ms ease, filter 280ms ease; }
+.orbit-user { position: absolute; z-index: 3; inset: 50% auto auto 50%; display: grid; width: 10rem; min-height: 6.4rem; translate: -50% -50%; place-items: center; align-content: center; border-radius: 1.1rem; text-align: center; animation: orbit-float 7s ease-in-out infinite; }
 .orbit-user-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; color: var(--primary); background: color-mix(in oklab, var(--primary) 12%, transparent); }
 .orbit-user strong, .orbit-user small { display: block; }
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
 .orbit-user small { color: var(--muted-foreground); font-size: 0.67rem; }
-.orbit-employee { position: absolute; z-index: 2; display: flex; width: min(15.5rem, 27%); min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
+.orbit-slot { position: absolute; z-index: 2; width: min(15.5rem, 27%); }
+.orbit-employee { position: relative; display: flex; width: 100%; min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
 .orbit-connections .orbit-connection.is-active { stroke: var(--primary) !important; stroke-width: 2.2px !important; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
 .orbit-employee:hover { border-color: color-mix(in oklab, var(--employee-tone) 54%, var(--border)); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 96%, transparent), 0 18px 38px -22px color-mix(in oklab, var(--employee-tone) 65%, transparent); }
 .orbit-portrait { position: relative; width: 3.5rem; height: 3.5rem; flex: none; overflow: hidden; border-radius: 0.8rem; background: color-mix(in oklab, var(--employee-tone) 16%, var(--secondary)); }
@@ -620,12 +618,12 @@
 .orbit-copy strong { font-family: var(--font-display); font-size: 1rem; }
 .orbit-copy small { margin-top: 0.18rem; color: var(--foreground); font-size: 0.73rem; font-weight: 700; }
 .orbit-copy em { margin-top: 0.25rem; color: var(--muted-foreground); font-size: 0.63rem; font-style: normal; }
-.orbit-employee-1 { top: 4%; right: 14%; }
-.orbit-employee-2 { top: 4%; left: 14%; }
-.orbit-employee-3 { top: 40%; right: 1%; }
-.orbit-employee-4 { top: 40%; left: 1%; }
-.orbit-employee-5 { bottom: 2%; right: 14%; }
-.orbit-employee-6 { bottom: 2%; left: 14%; }
+.orbit-slot.orbit-employee-1 { top: 4%; right: 14%; }
+.orbit-slot.orbit-employee-2 { top: 4%; left: 14%; }
+.orbit-slot.orbit-employee-3 { top: 40%; right: 1%; }
+.orbit-slot.orbit-employee-4 { top: 40%; left: 1%; }
+.orbit-slot.orbit-employee-5 { bottom: 2%; right: 14%; }
+.orbit-slot.orbit-employee-6 { bottom: 2%; left: 14%; }
 @keyframes orbit-float { 50% { translate: 0 -7px; } }
 
 .impact-strip { position: relative; margin-top: -1px; padding: 2rem 0 4rem; }
@@ -718,21 +716,21 @@
   .hero-actions > * { width: 100%; }
   .hero-orbit-shell { min-height: 27rem; padding: 0.7rem; }
   .team-orbit, .team-orbit-compact { min-height: 24.5rem; }
-  .orbit-rings { inset: 9% 2%; }
-  .orbit-user { display: grid; width: 6.2rem; min-height: 6.2rem; }
+    .orbit-user { display: grid; width: 7rem; min-height: 5rem; }
   .hero-object-3d { width: 14rem; opacity: 0.16; }
   .orbit-user-icon { width: 2rem; height: 2rem; }
   .orbit-connections { display: block; }
-  .orbit-employee { width: 7.2rem; min-height: 4.25rem; gap: 0.4rem; border-radius: 0.75rem; padding: 0.42rem; animation-duration: 5.5s; }
+  .orbit-slot { width: 7.2rem; }
+  .orbit-employee { width: 100%; min-height: 4.25rem; gap: 0.4rem; border-radius: 0.75rem; padding: 0.42rem; animation-duration: 5.5s; }
   .orbit-portrait { width: 2.45rem; height: 2.85rem; border-radius: 0.55rem; }
   .orbit-copy strong { font-size: 0.78rem; }
   .orbit-copy small { font-size: 0.55rem; line-height: 1.35; }
-  .orbit-employee-1 { top: 3%; right: 8%; }
-  .orbit-employee-2 { top: 3%; left: 8%; }
-  .orbit-employee-3 { top: 41%; right: -2%; }
-  .orbit-employee-4 { top: 41%; left: -2%; }
-  .orbit-employee-5 { bottom: 1%; right: 8%; }
-  .orbit-employee-6 { bottom: 1%; left: 8%; }
+  .orbit-slot.orbit-employee-1 { top: 3%; right: 8%; }
+  .orbit-slot.orbit-employee-2 { top: 3%; left: 8%; }
+  .orbit-slot.orbit-employee-3 { top: 41%; right: -2%; }
+  .orbit-slot.orbit-employee-4 { top: 41%; left: -2%; }
+  .orbit-slot.orbit-employee-5 { bottom: 1%; right: 8%; }
+  .orbit-slot.orbit-employee-6 { bottom: 1%; left: 8%; }
   .impact-card { min-height: 8.5rem; }
   .employee-editorial-grid { display: flex; gap: 0.8rem; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -1.25rem; padding-inline: 1.25rem; scrollbar-width: none; }
   .employee-editorial-grid::-webkit-scrollbar { display: none; }
@@ -771,31 +769,42 @@
   height: auto;
   max-height: 92%;
   margin-inline-end: -6%;
-  opacity: 0.72;
+  opacity: 0.9;
 }
 
-.mena-map-fill { fill: color-mix(in oklab, var(--primary) 7%, transparent); }
+.mena-map-fill { fill: color-mix(in oklab, var(--primary) 6%, transparent); }
 .mena-map-outline {
   fill: none;
-  stroke: color-mix(in oklab, var(--primary) 68%, transparent);
-  stroke-width: 1.4;
+  stroke: color-mix(in oklab, var(--primary) 92%, transparent);
+  stroke-width: 1.5;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 14px color-mix(in oklab, var(--primary) 35%, transparent));
 }
 .mena-map-borders {
   fill: none;
-  stroke: color-mix(in oklab, var(--foreground) 16%, transparent);
+  stroke: color-mix(in oklab, var(--primary) 30%, transparent);
   stroke-width: 0.7;
 }
-.mena-routes path { fill: none; stroke: color-mix(in oklab, var(--amber) 72%, transparent); stroke-width: 1.25; stroke-linecap: round; stroke-dasharray: 5 9; animation: mena-route-flow 8s linear infinite; }
-.mena-capital-dot { fill: var(--primary); stroke: color-mix(in oklab, var(--card) 88%, transparent); stroke-width: 1.5; }
-.mena-capital-pulse { fill: color-mix(in oklab, var(--primary) 20%, transparent); transform-box: fill-box; transform-origin: center; animation: mena-capital-pulse 2.8s ease-out infinite; }
-.mena-capital-hub .mena-capital-dot { fill: var(--amber); r: 4.6px; }
-@keyframes mena-route-flow { to { stroke-dashoffset: -56; } }
+.mena-route {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primary) 55%, transparent);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-dasharray: 4 8;
+  animation: mena-route-flow 9s linear infinite;
+}
+.mena-pulse {
+  fill: var(--amber);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--amber) 90%, transparent));
+}
+.mena-capital-dot { fill: var(--primary); stroke: color-mix(in oklab, var(--card) 88%, transparent); stroke-width: 1.4; }
+.mena-capital-pulse { fill: color-mix(in oklab, var(--primary) 26%, transparent); transform-box: fill-box; transform-origin: center; animation: mena-capital-pulse 2.8s ease-out infinite; }
+.mena-capital-hub .mena-capital-dot { fill: var(--amber); }
+.mena-capital-hub .mena-capital-pulse { fill: color-mix(in oklab, var(--amber) 30%, transparent); }
+@keyframes mena-route-flow { to { stroke-dashoffset: -60; } }
 @keyframes mena-capital-pulse { 0% { scale: 0.45; opacity: 0.9; } 75%, 100% { scale: 1.65; opacity: 0; } }
 
 .dark .mena-map-fill { fill: color-mix(in oklab, var(--primary) 10%, transparent); }
-.dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 55%, transparent); }
+.dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 85%, transparent); }
 .dark .mena-map-borders { stroke: color-mix(in oklab, var(--foreground) 22%, transparent); }
 
 @media (max-width: 768px) {
@@ -805,7 +814,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mena-map-layer svg { opacity: 0.62; }
-  .mena-routes path, .mena-capital-pulse { animation: none; }
+  .mena-route, .mena-capital-pulse { animation: none; }
 }
 
 /* ===== إعادة تصميم أقسام الصفحة ===== */
@@ -1037,3 +1046,59 @@
   .timeline-step.is-on .timeline-dot { animation: none; }
   .timeline-title, .timeline-body { opacity: 1; transform: none; }
 }
+
+/* Orbit flow: travelling pulse + employee notification bubbles */
+.orbit-travel-dot { fill: var(--primary); filter: drop-shadow(0 0 8px color-mix(in oklab, var(--primary) 85%, transparent)); }
+.orbit-employee.is-lit { border-color: color-mix(in oklab, var(--employee-tone) 62%, var(--border)); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 96%, transparent), 0 0 0 1px color-mix(in oklab, var(--employee-tone) 30%, transparent), 0 22px 46px -24px color-mix(in oklab, var(--employee-tone) 75%, transparent); }
+.orbit-bubble {
+  position: absolute;
+  z-index: 5;
+  inset: auto 0 calc(100% + 0.5rem) 0;
+  display: grid;
+  gap: 0.35rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);
+  border-radius: 0.85rem;
+  padding: 0.55rem 0.65rem;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--foreground) 60%, transparent);
+  backdrop-filter: blur(18px) saturate(150%);
+  animation: orbit-bubble-in 380ms var(--ease-enter) both;
+}
+.orbit-bubble-apps { display: flex; gap: 0.3rem; color: var(--primary); }
+.orbit-bubble-text { color: var(--foreground); font-size: 0.72rem; font-weight: 700; line-height: 1.45; }
+.orbit-bubble-thumb { display: flex; align-items: center; gap: 0.4rem; border-radius: 0.5rem; padding: 0.28rem 0.4rem; background: color-mix(in oklab, var(--secondary) 80%, transparent); }
+.orbit-bubble-thumb i { width: 1.6rem; height: 1.1rem; flex: none; border-radius: 0.22rem; background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 55%, transparent), color-mix(in oklab, var(--amber) 55%, transparent)); }
+.orbit-bubble-thumb em { color: var(--muted-foreground); font-size: 0.6rem; font-style: normal; font-weight: 700; }
+@keyframes orbit-bubble-in { from { opacity: 0; translate: 0 12px; scale: 0.94; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@media (max-width: 768px) {
+  .orbit-bubble { padding: 0.4rem 0.45rem; }
+  .orbit-bubble-text { font-size: 0.58rem; }
+  .orbit-bubble-thumb { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-bubble { animation: none; }
+}
+
+.orbit-slot.orbit-employee-1 .orbit-bubble,
+.orbit-slot.orbit-employee-2 .orbit-bubble { inset: calc(100% + 0.5rem) 0 auto 0; animation-name: orbit-bubble-in-down; }
+@keyframes orbit-bubble-in-down { from { opacity: 0; translate: 0 -12px; scale: 0.94; } to { opacity: 1; translate: 0 0; scale: 1; } }
+
+/* Brand-tinted infinite icon marquee */
+.brand-icon-track { align-items: center; animation-duration: 46s; }
+.brand-icon-chip {
+  display: inline-grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid color-mix(in oklab, var(--primary) 16%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 92%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  transition: transform 240ms var(--ease-enter), border-color 240ms ease;
+}
+.brand-icon-chip svg { color: var(--primary); }
+.brand-icon-chip:nth-child(3n + 2) svg { color: var(--amber); }
+.brand-icon-chip:nth-child(3n + 3) svg { color: var(--jade); }
+.brand-icon-chip:hover { transform: translateY(-3px); border-color: color-mix(in oklab, var(--primary) 38%, transparent); }
