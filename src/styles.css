@@ -638,8 +638,7 @@
   .cinematic-employee.is-active { transform: translateX(-50%) scale(0.98); }
   .cinematic-employee.is-next { transform: translateX(15%) scale(0.45); }
   .cinematic-employee.is-prev { transform: translateX(-115%) scale(0.45); }
-  .cinematic-employee-status { right: 1rem; bottom: 0.75rem; min-width: 9.5rem; padding: 0.65rem 0.75rem; }
-  .cinematic-employee-status strong { font-size: 1rem; }.cinematic-employee-status p { display: none; }
+  .cinematic-employee-status { display: none; }
   .cinematic-hero-content { top: auto; bottom: 3.1rem; left: 1rem; width: calc(100% - 2rem); transform: none; }
   .cinematic-kicker { display: none; }
   .cinematic-hero h1 { width: 90%; margin-top: 0; font-size: clamp(2.15rem, 11vw, 3.4rem); line-height: 1.02; }
