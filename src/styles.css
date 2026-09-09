@@ -602,7 +602,7 @@
 .team-orbit-compact { min-height: 27rem; }
 .orbit-connections { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .orbit-connection { fill: none; stroke: color-mix(in oklab, var(--primary) 28%, transparent); stroke-width: 1.15; stroke-dasharray: 5 8; vector-effect: non-scaling-stroke; transition: stroke 280ms ease, stroke-width 280ms ease, filter 280ms ease; }
-.orbit-user { position: absolute; z-index: 2; inset: 50% auto auto 50%; display: grid; width: 8.5rem; min-height: 8.5rem; translate: -50% -50%; place-items: center; align-content: center; border-radius: 50%; text-align: center; }
+.orbit-user { position: absolute; z-index: 3; inset: 50% auto auto 50%; display: grid; width: 10rem; min-height: 6.4rem; translate: -50% -50%; place-items: center; align-content: center; border-radius: 1.1rem; text-align: center; animation: orbit-float 7s ease-in-out infinite; }
 .orbit-user-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; color: var(--primary); background: color-mix(in oklab, var(--primary) 12%, transparent); }
 .orbit-user strong, .orbit-user small { display: block; }
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
@@ -716,7 +716,7 @@
   .hero-actions > * { width: 100%; }
   .hero-orbit-shell { min-height: 27rem; padding: 0.7rem; }
   .team-orbit, .team-orbit-compact { min-height: 24.5rem; }
-    .orbit-user { display: grid; width: 6.2rem; min-height: 6.2rem; }
+    .orbit-user { display: grid; width: 7rem; min-height: 5rem; }
   .hero-object-3d { width: 14rem; opacity: 0.16; }
   .orbit-user-icon { width: 2rem; height: 2rem; }
   .orbit-connections { display: block; }
@@ -1078,3 +1078,7 @@
 @media (prefers-reduced-motion: reduce) {
   .orbit-bubble { animation: none; }
 }
+
+.orbit-slot.orbit-employee-1 .orbit-bubble,
+.orbit-slot.orbit-employee-2 .orbit-bubble { inset: calc(100% + 0.5rem) 0 auto 0; animation-name: orbit-bubble-in-down; }
+@keyframes orbit-bubble-in-down { from { opacity: 0; translate: 0 -12px; scale: 0.94; } to { opacity: 1; translate: 0 0; scale: 1; } }
