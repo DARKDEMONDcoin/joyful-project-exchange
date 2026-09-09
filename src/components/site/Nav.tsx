@@ -25,7 +25,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         solid
-          ? "glass border-b border-border/70 py-2 text-foreground shadow-card"
+          ? "nav-liquid-glass border-b border-border/70 py-2 text-foreground shadow-card"
           : "py-4 text-white",
       )}
     >

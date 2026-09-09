@@ -15,9 +15,6 @@ export function Hero() {
     <section id="top" className="home-hero">
       <AmbientBackground />
       <MenaMap />
-      <ClientOnly fallback={null}>
-        <Suspense fallback={null}><HeroObject3D /></Suspense>
-      </ClientOnly>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 pt-32 md:pt-40">
         <Reveal>
@@ -67,6 +64,9 @@ export function Hero() {
               <span><Sparkles /> فريق سهل</span>
               <span className="hero-status"><i /> يعمل الآن</span>
             </div>
+            <ClientOnly fallback={null}>
+              <Suspense fallback={null}><HeroObject3D /></Suspense>
+            </ClientOnly>
             <TeamOrbit compact />
           </LiquidGlass>
         </Reveal>
