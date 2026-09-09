@@ -11,9 +11,9 @@ export function ProductShowcase() {
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="section-kicker">مساحة عمل واحدة</p>
-            <h2 className="section-title">شاهد ما يحدث، وافق على المهم، واترك الباقي للفريق</h2>
-            <p className="section-lead">تقويم المحتوى والمحادثات والمهام والنتائج في مكان واحد واضح — من غير تنقّل بين عشر أدوات.</p>
+            <p className="section-kicker">هكذا يعمل فريقك الرقمي</p>
+            <h2 className="section-title">ستة موظفين ينفّذون العمل داخل حساباتك، وأنت تديرهم من مكان واحد</h2>
+            <p className="section-lead">تحدّث مع سِراج وباقي الفريق، راجع ما أنجزوه، وافق على المهم، وتابع التقويم والنتائج من مساحة عمل واضحة.</p>
           </div>
         </Reveal>
         <Reveal delay={100}>

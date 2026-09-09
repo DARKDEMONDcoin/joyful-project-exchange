@@ -82,12 +82,12 @@ function Index() {
       <Nav variant="over" />
       <Hero />
       <Marquee />
-      <ImpactStats />
-      <Employees />
       <div id="workspace"><ProductShowcase /></div>
+      <ImpactStats />
+      <HowItWorks />
+      <Employees />
       <IntegrationFlow />
       <Features />
-      <HowItWorks />
       <Testimonials />
       <Pricing />
       <Faq />
