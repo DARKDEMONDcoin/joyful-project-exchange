@@ -98,12 +98,6 @@ export function Hero() {
         <div className="sahl-carousel-grain" aria-hidden="true" />
         <p className="sahl-carousel-ghost" aria-hidden="true">أهل سهل</p>
 
-        <div className="sahl-carousel-brand" aria-label="سهل">
-          <i />
-          <span>سهل</span>
-          <small>فريقك الرقمي</small>
-        </div>
-
         <div className="sahl-carousel-stage" aria-live="polite">
           {CHARACTERS.map((character, index) => {
             const role = roleFor(index);

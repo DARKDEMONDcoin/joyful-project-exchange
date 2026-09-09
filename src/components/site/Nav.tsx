@@ -37,7 +37,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
           <span className="font-display text-xl font-extrabold tracking-tight">سهل</span>
         </Link>
 
-        <ul className="pointer-events-auto hidden items-center gap-1 lg:flex">
+        <ul className="pointer-events-auto hidden items-center gap-1 2xl:flex">
           {links.map((l) => (
             <li key={l.to}>
               <Link
@@ -95,7 +95,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
           onClick={() => setOpen((v) => !v)}
           aria-label="القائمة"
           className={cn(
-            "nav-floating-control pointer-events-auto size-10 rounded-full lg:hidden",
+            "nav-floating-control pointer-events-auto size-10 rounded-full 2xl:hidden",
             solid ? "text-foreground" : "text-white",
           )}
         >
@@ -105,7 +105,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
 
       <div
         className={cn(
-          "pointer-events-auto transition-[max-height,opacity] duration-400 lg:hidden",
+          "pointer-events-auto transition-[max-height,opacity] duration-400 2xl:hidden",
           open
             ? "max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain opacity-100"
             : "max-h-0 overflow-hidden opacity-0",
