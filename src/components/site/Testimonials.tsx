@@ -64,6 +64,7 @@ export function Testimonials() {
         pos -= (dt / 1000) * 22;
         if (Math.abs(pos) >= half) pos += half;
         el.scrollLeft = pos;
+        el.dataset.auto = String(Math.round(el.scrollLeft));
       }
       raf = requestAnimationFrame(tick);
     };
