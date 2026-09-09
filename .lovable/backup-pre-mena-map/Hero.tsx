@@ -6,7 +6,6 @@ import { Reveal } from "@/components/Reveal";
 import { AmbientBackground } from "@/components/site/AmbientBackground";
 import { LiquidGlass } from "@/components/site/LiquidGlass";
 import { TeamOrbit } from "@/components/site/TeamOrbit";
-import { MenaMap } from "@/components/site/MenaMap";
 
 const HeroObject3D = lazy(() => import("@/components/site/HeroObject3D"));
 
@@ -14,7 +13,6 @@ export function Hero() {
   return (
     <section id="top" className="home-hero">
       <AmbientBackground />
-      <MenaMap />
       <ClientOnly fallback={null}>
         <Suspense fallback={null}><HeroObject3D /></Suspense>
       </ClientOnly>
