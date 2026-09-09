@@ -592,7 +592,7 @@
 .hero-assurances { display: flex; flex-wrap: wrap; gap: 0.7rem 1.4rem; margin-top: 1.2rem; color: var(--muted-foreground); font-size: 0.82rem; font-weight: 600; }
 .hero-assurances li { display: flex; align-items: center; gap: 0.35rem; }
 .hero-assurances svg { width: 0.95rem; color: var(--jade); }
-.hero-orbit-shell { position: relative; max-width: 71rem; min-height: 31rem; margin: 3.2rem auto 0; border-radius: 1.4rem; padding: 1rem; }
+.hero-orbit-shell { position: relative; max-width: 71rem; min-height: 31rem; margin: 2.5rem auto 0; padding: 0; }
 .hero-orbit-topline { position: relative; z-index: 3; display: flex; justify-content: space-between; color: var(--muted-foreground); font-size: 0.75rem; font-weight: 700; }
 .hero-orbit-topline > span { display: flex; align-items: center; gap: 0.45rem; }
 .hero-orbit-topline svg { width: 0.9rem; color: var(--primary); }
@@ -607,8 +607,8 @@
 .orbit-user strong, .orbit-user small { display: block; }
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
 .orbit-user small { color: var(--muted-foreground); font-size: 0.67rem; }
-.orbit-map-center { position: absolute; z-index: 3; inset: 50% auto auto 50%; width: 16rem; height: 10rem; translate: -50% -50%; pointer-events: none; }
-.orbit-map-center > small { position: absolute; inset: auto 0 -0.25rem; color: var(--muted-foreground); font-size: 0.62rem; font-weight: 800; text-align: center; }
+.orbit-map-center { position: absolute; z-index: 5; inset: 46% auto auto 50%; width: 19rem; height: 11.5rem; translate: -50% -50%; pointer-events: none; animation: mena-map-breathe 7s ease-in-out infinite; }
+.orbit-map-center > small { position: absolute; inset: auto 0 -0.1rem; color: color-mix(in oklab, var(--primary) 82%, var(--foreground)); font-size: 0.62rem; font-weight: 800; text-align: center; }
 .orbit-slot { position: absolute; z-index: 2; width: min(15.5rem, 27%); }
 .orbit-employee { position: relative; display: flex; width: 100%; min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
 .orbit-connections .orbit-connection.is-active { stroke: var(--primary) !important; stroke-width: 2.2px !important; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
@@ -789,12 +789,12 @@
   margin: 0;
   overflow: visible;
   opacity: 1;
-  filter: drop-shadow(0 8px 14px color-mix(in oklab, var(--primary) 22%, transparent));
+  filter: drop-shadow(0 9px 13px color-mix(in oklab, var(--primary) 28%, transparent));
 }
-.mena-map-orbit .mena-map-fill { fill: color-mix(in oklab, var(--primary) 11%, transparent); }
-.mena-map-orbit .mena-map-outline { stroke: var(--primary); stroke-width: 2.5; }
-.mena-map-orbit .mena-map-borders { stroke: color-mix(in oklab, var(--primary) 48%, transparent); stroke-width: 1; }
-.mena-map-orbit .mena-route { stroke-width: 1.8; }
+.mena-map-orbit .mena-map-fill { fill: color-mix(in oklab, var(--primary) 15%, transparent); }
+.mena-map-orbit .mena-map-outline { stroke: var(--primary); stroke-width: 2.8; stroke-dasharray: 1800; animation: mena-outline-draw 3.2s var(--ease-enter) both, mena-outline-glow 5s 3.2s ease-in-out infinite; }
+.mena-map-orbit .mena-map-borders { stroke: color-mix(in oklab, var(--primary) 58%, transparent); stroke-width: 1.15; }
+.mena-map-orbit .mena-route { stroke-width: 2; }
 .mena-map-orbit .mena-capital-dot { stroke-width: 2; }
 
 .mena-map-fill { fill: color-mix(in oklab, var(--primary) 6%, transparent); }
@@ -827,6 +827,9 @@
 .mena-capital-hub .mena-capital-pulse { fill: color-mix(in oklab, var(--amber) 30%, transparent); }
 @keyframes mena-route-flow { to { stroke-dashoffset: -60; } }
 @keyframes mena-capital-pulse { 0% { scale: 0.45; opacity: 0.9; } 75%, 100% { scale: 1.65; opacity: 0; } }
+@keyframes mena-map-breathe { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-5px) scale(1.018); } }
+@keyframes mena-outline-draw { from { stroke-dashoffset: 1800; opacity: 0.35; } to { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes mena-outline-glow { 0%, 100% { filter: drop-shadow(0 0 0 transparent); } 50% { filter: drop-shadow(0 0 4px color-mix(in oklab, var(--primary) 48%, transparent)); } }
 
 .dark .mena-map-fill { fill: color-mix(in oklab, var(--primary) 10%, transparent); }
 .dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 85%, transparent); }
@@ -840,17 +843,25 @@
 
 .integration-team-glass {
   overflow: hidden;
-  border: 1px solid color-mix(in oklab, var(--background) 22%, transparent);
+  border: 1px solid color-mix(in oklab, var(--background) 18%, transparent);
   background:
-    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--background) 18%, transparent), transparent 54%),
-    color-mix(in oklab, var(--card) 76%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--background) 62%, transparent), 0 24px 58px -30px color-mix(in oklab, var(--background) 35%, transparent);
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--background) 10%, transparent), transparent 54%),
+    color-mix(in oklab, var(--foreground) 90%, transparent);
+  color: var(--background);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--background) 28%, transparent), 0 24px 58px -30px color-mix(in oklab, var(--foreground) 75%, transparent);
   backdrop-filter: blur(24px) saturate(145%);
+}
+.integration-team-glass .integration-employee { border-color: color-mix(in oklab, var(--background) 13%, transparent); background: color-mix(in oklab, var(--background) 7%, transparent); color: var(--background); }
+.integration-team-glass .integration-employee span span { color: color-mix(in oklab, var(--background) 64%, transparent); }
+.integration-team-glass .integration-employee { animation-name: integration-employee-dark-active; }
+@keyframes integration-employee-dark-active {
+  0%, 38%, 100% { border-color: color-mix(in oklab, var(--background) 13%, transparent); background-color: color-mix(in oklab, var(--background) 7%, transparent); }
+  48%, 68% { border-color: color-mix(in oklab, var(--primary) 58%, transparent); background-color: color-mix(in oklab, var(--primary) 22%, var(--foreground)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .mena-map-layer svg { opacity: 0.62; }
-  .mena-route, .mena-capital-pulse { animation: none; }
+  .mena-route, .mena-capital-pulse, .orbit-map-center, .mena-map-orbit .mena-map-outline { animation: none; }
 }
 
 /* ===== إعادة تصميم أقسام الصفحة ===== */

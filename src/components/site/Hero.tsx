@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Check, Play, Sparkles } from "lucide-react";
+import { ArrowLeft, Check, Play } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { AmbientBackground } from "@/components/site/AmbientBackground";
-import { LiquidGlass } from "@/components/site/LiquidGlass";
 import { TeamOrbit } from "@/components/site/TeamOrbit";
 
 export function Hero() {
@@ -55,13 +54,9 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={360}>
-          <LiquidGlass className="hero-orbit-shell">
-            <div className="hero-orbit-topline">
-              <span><Sparkles /> فريق سهل</span>
-              <span className="hero-status"><i /> يعمل الآن</span>
-            </div>
+          <div className="hero-orbit-shell">
             <TeamOrbit compact mapCenter />
-          </LiquidGlass>
+          </div>
         </Reveal>
       </div>
     </section>
