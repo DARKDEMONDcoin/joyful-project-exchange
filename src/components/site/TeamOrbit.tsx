@@ -43,6 +43,7 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
             className={`orbit-employee orbit-employee-${index + 1}`}
             style={{ "--employee-tone": member.tint, "--float-delay": `${index * -0.7}s` } as React.CSSProperties}
             onPointerEnter={() => setActiveConnection(index)}
+            onPointerMove={() => setActiveConnection(index)}
             onPointerLeave={() => setActiveConnection(null)}
             onMouseEnter={() => setActiveConnection(index)}
             onMouseLeave={() => setActiveConnection(null)}
