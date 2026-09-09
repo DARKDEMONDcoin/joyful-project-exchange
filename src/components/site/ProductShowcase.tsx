@@ -20,7 +20,7 @@ export function ProductShowcase() {
           <div className="device-stage">
             <div className="laptop-frame">
               <div className="laptop-bar"><span /><span /><span /><b>مساحة عمل سهل</b></div>
-              <img src={dashboard} alt="شاشة محادثات فريق سهل داخل مساحة العمل" loading="lazy" />
+              <img src={dashboard} alt="النظرة العامة لمساحة عمل سهل على الكمبيوتر" loading="lazy" />
               <div className="laptop-base" />
             </div>
             <figure className="phone-frame phone-calendar">
