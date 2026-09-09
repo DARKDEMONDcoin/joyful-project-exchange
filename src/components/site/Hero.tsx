@@ -1,112 +1,53 @@
-import { Suspense, lazy, useEffect, useState } from "react";
-import { ClientOnly, Link } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Crown, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
+import { ArrowLeft } from "lucide-react";
 import { Portrait } from "@/components/site/Portrait";
 import { team } from "@/data/team";
 
-const LiquidMetal = lazy(() => import("@/components/site/HeroObject3D"));
-
-const EMPLOYEES = team;
+const VIDEO_URL =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260808_112712_da9d53df-6d27-4b12-bdf6-aa9dc2622bdf.mp4";
 
 export function Hero() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [showMetal, setShowMetal] = useState(false);
-
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % EMPLOYEES.length);
-    }, 4200);
-    return () => window.clearInterval(interval);
-  }, []);
-
-  // تحميل الكتلة السائلة بعد أول رسم للنص مباشرة
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      window.setTimeout(() => setShowMetal(true), 60);
-    });
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  const active = EMPLOYEES[activeIndex] ?? EMPLOYEES[0];
-  if (!active) return null;
-
   return (
-    <section id="top" className="cinematic-hero" aria-label="فريق سهل الرقمي">
-      <div className="cinematic-hero-bg" aria-hidden="true">
-        <div className="cinematic-hero-beam" />
-        <div className="cinematic-hero-grid" />
-        <p>سهل</p>
+    <section id="top" className="sahl-video-hero" aria-labelledby="hero-title">
+      <div className="sahl-video-plate" aria-hidden="true">
+        <video className="sahl-video" autoPlay muted loop playsInline preload="auto">
+          <source src={VIDEO_URL} type="video/mp4" />
+        </video>
       </div>
 
-      {showMetal && (
-        <ClientOnly fallback={null}>
-          <Suspense fallback={null}>
-            <LiquidMetal />
-          </Suspense>
-        </ClientOnly>
-      )}
-
-      <div className="cinematic-team" aria-live="polite">
-        {EMPLOYEES.map((employee, index) => {
-          const offset = (index - activeIndex + EMPLOYEES.length) % EMPLOYEES.length;
-          const position = offset === 0 ? "active" : offset === 1 ? "next" : offset === 3 ? "prev" : "away";
-          return (
-            <figure key={employee.name} className={cn("cinematic-employee", `is-${position}`)} aria-hidden={position !== "active"}>
-              <Portrait
-                memberId={employee.id}
-                name={employee.name}
-                className="cinematic-employee-photo"
-                eager={index < 2}
-              />
-            </figure>
-          );
-        })}
-        <div className="cinematic-employee-status" key={active.name}>
-          <span><i /> يعمل الآن</span>
-          <strong>{active.name}</strong>
-          <small>{active.role}</small>
-          <p>{active.title}</p>
-        </div>
-      </div>
-
-      <div className="cinematic-hero-content" dir="rtl">
-        <div className="cinematic-kicker cinematic-enter-1">
-          <Crown aria-hidden="true" />
-          <span>أول فريق ذكاء اصطناعي عربي بيتكلم بلهجتك، مش بيترجملك</span>
-        </div>
-        <h1 className="cinematic-enter-2">
-          مش تطبيق تاني.{" "}
-          <span>فريق كامل باسمه وصورته، بيشتغل جوه حساباتك من الليلة.</span>
+      <div className="sahl-video-copy" dir="rtl">
+        <p className="sahl-video-eyebrow">فريق ذكاء اصطناعي عربي يفهم شغلك ولهجتك</p>
+        <h1 id="hero-title">
+          خلّي شغلك يكبر.
+          <span>فريق سهل يتولّى الباقي.</span>
         </h1>
-        <p className="cinematic-lead cinematic-enter-3">
-          ست موظفين حقيقيين، شغل بيتنفذ فعليًا، من غير ما توظف حد.
+        <p className="sahl-video-lead">
+          ستة موظفين رقميين ينفّذون التسويق والمبيعات والمحتوى والتنظيم داخل حساباتك — وأنت تقودهم من مكان واحد.
         </p>
-        <div className="cinematic-actions cinematic-enter-4">
-          <Link to="/auth" search={{ mode: "signup" as const }} className="cinematic-primary">
-            <span>كوّن فريقك مجانًا</span><ArrowLeft aria-hidden="true" />
+        <div className="sahl-video-actions">
+          <Link to="/auth" search={{ mode: "signup" as const }} className="sahl-video-primary">
+            <span>كوّن فريقك مجانًا</span>
+            <ArrowLeft aria-hidden="true" />
           </Link>
-          <Link to="/app" className="cinematic-secondary">
-            <Sparkles aria-hidden="true" /><span>جرّب الموظفين</span>
-          </Link>
-        </div>
-        <div className="cinematic-proof cinematic-enter-5">
-          <span><CheckCircle2 /> بدون بطاقة بنكية</span>
-          <span><CheckCircle2 /> يبدأ خلال دقائق</span>
+          <Link to="/app" className="sahl-video-secondary">شاهد فريقك يعمل</Link>
         </div>
       </div>
 
-      <div className="cinematic-stats" dir="rtl">
-        <div><strong>٦</strong><span>موظفين متخصصين</span></div>
-        <div><strong>٢٤/٧</strong><span>عمل بلا توقف</span></div>
-        <div><strong>+١٠٠٠</strong><span>مهمة أُنجزت</span></div>
+      <div className="sahl-video-team" dir="rtl" aria-label="موظفو سهل الرقميون">
+        <p>فريقك جاهز</p>
+        <ul>
+          {team.map((employee, index) => (
+            <li key={employee.id} style={{ "--team-order": index } as React.CSSProperties}>
+              <Portrait memberId={employee.id} name={employee.name} eager={index < 3} />
+              <span><strong>{employee.name}</strong><small>{employee.role}</small></span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div className="cinematic-progress" aria-hidden="true">
-        {EMPLOYEES.map((employee, index) => (
-          <i key={employee.name} className={index === activeIndex ? "is-active" : undefined}><span /></i>
-        ))}
-      </div>
+      <a className="sahl-video-scroll" href="#workspace" aria-label="انتقل إلى مساحة العمل">
+        <span />
+      </a>
     </section>
   );
 }
