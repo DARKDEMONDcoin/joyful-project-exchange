@@ -30,7 +30,7 @@ export function ProductShowcase() {
             </figure>
             <figure className="phone-frame phone-chat">
               <span className="phone-island" />
-              <img src={chat} alt="قائمة محادثات الموظفين في سهل" loading="lazy" />
+              <img src={chat} alt="محادثة سِراج داخل تطبيق سهل على الهاتف" loading="lazy" />
               <figcaption><Activity /> الفريق متاح</figcaption>
             </figure>
           </div>
