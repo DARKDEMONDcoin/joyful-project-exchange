@@ -82,12 +82,12 @@ function Index() {
       <Nav variant="over" />
       <Hero />
       <Marquee />
+      <div id="workspace" className="scroll-mt-20"><ProductShowcase /></div>
       <ImpactStats />
+      <HowItWorks />
       <Employees />
-      <div id="workspace"><ProductShowcase /></div>
       <IntegrationFlow />
       <Features />
-      <HowItWorks />
       <Testimonials />
       <Pricing />
       <Faq />
