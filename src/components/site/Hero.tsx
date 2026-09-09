@@ -18,6 +18,7 @@ export function Hero() {
   }, []);
 
   const active = EMPLOYEES[activeIndex] ?? EMPLOYEES[0];
+  if (!active) return null;
 
   return (
     <section id="top" className="cinematic-hero" aria-label="فريق سهل الرقمي">
