@@ -634,17 +634,18 @@
   .sahl-carousel-ghost { top: 18%; font-size: clamp(5.6rem, 27vw, 8rem); }
   .sahl-carousel-brand { top: 5rem; left: 1rem; }
   .sahl-carousel-brand small { display: none; }
-  .sahl-carousel-person.is-center { bottom: 19%; height: min(59%, 31rem); transform: translateX(-50%) scale(1.2); }
+  .sahl-carousel-person.is-center { bottom: 25%; height: min(52%, 27rem); transform: translateX(-50%) scale(1.12); }
   .sahl-carousel-person.is-left { left: 20%; bottom: 32%; height: 16%; }
   .sahl-carousel-person.is-right { left: 80%; bottom: 32%; height: 16%; }
   .sahl-carousel-person.is-back { bottom: 32%; height: 13%; }
-  .sahl-carousel-copy { bottom: 1.2rem; left: 1rem; width: calc(100% - 2rem); }
+  .sahl-carousel-copy { bottom: 4.75rem; left: 1rem; width: calc(100% - 2rem); }
   .sahl-carousel-kicker, .sahl-carousel-member p { display: none; }
-  .sahl-carousel-copy h1 { width: 70%; font-size: 1.85rem; }
+  .sahl-carousel-copy h1 { width: 68%; font-size: 1.7rem; }
   .sahl-carousel-member { margin-top: 0.45rem; }
   .sahl-carousel-member strong { font-size: 1rem; }
-  .sahl-carousel-member span { font-size: 0.76rem; }
-  .sahl-carousel-actions { right: 1rem; bottom: 1.35rem; gap: 0.7rem; }
+  .sahl-carousel-member span { display: block; margin-top: 0.15rem; font-size: 0.7rem; }
+  .sahl-carousel-member span::before { display: none; }
+  .sahl-carousel-actions { right: 1rem; bottom: 1rem; gap: 0.7rem; }
   .sahl-carousel-primary { min-height: 2.8rem; padding: 0.6rem 0.85rem; font-size: 0.75rem; }
   .sahl-carousel-discover { display: none; }
   .sahl-carousel-progress { bottom: auto; top: 5.45rem; left: auto; right: 1rem; transform: none; }
