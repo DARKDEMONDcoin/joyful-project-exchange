@@ -60,7 +60,7 @@ export function Hero() {
               <span><Sparkles /> فريق سهل</span>
               <span className="hero-status"><i /> يعمل الآن</span>
             </div>
-            <TeamOrbit compact />
+            <TeamOrbit compact mapCenter />
           </LiquidGlass>
         </Reveal>
       </div>

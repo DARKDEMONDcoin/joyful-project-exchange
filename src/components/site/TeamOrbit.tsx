@@ -80,7 +80,7 @@ function curve(x: number, y: number, index: number) {
 const STEP_MS = 3200;
 const TRAVEL_MS = 1100;
 
-export function TeamOrbit({ compact = false }: { compact?: boolean }) {
+export function TeamOrbit({ compact = false, mapCenter = false }: { compact?: boolean; mapCenter?: boolean }) {
   const [step, setStep] = useState(0);
   const [arrived, setArrived] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -121,10 +121,17 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
         </circle>
       </svg>
 
-      <div className="orbit-map-center">
-        <MenaMap orbit />
-        <small>فريقك يعمل من هنا</small>
-      </div>
+      {mapCenter ? (
+        <div className="orbit-map-center">
+          <MenaMap orbit />
+          <small>فريقك يعمل من هنا</small>
+        </div>
+      ) : (
+        <LiquidGlass className="orbit-user">
+          <strong>أنت تقود</strong>
+          <small>والفريق ينفّذ</small>
+        </LiquidGlass>
+      )}
 
       <div className="orbit-rail" aria-label="فريق سهل">
         {team.map((member, index) => {
