@@ -43,20 +43,23 @@ export function Testimonials() {
     let resumeAt = 0;
     let raf = 0;
     let last = performance.now();
+    let pos = 0;
 
     const pause = () => {
       paused = true;
       resumeAt = performance.now() + 3500;
+      pos = el.scrollLeft;
     };
     const tick = (now: number) => {
       const dt = now - last;
       last = now;
       if (paused && now > resumeAt) paused = false;
       if (!paused && !el.matches(":hover")) {
-        // RTL: التمرير التلقائي البطيء جداً
-        el.scrollLeft -= (dt / 1000) * 22;
+        // RTL: التمرير التلقائي البطيء جداً (تراكم عشري حتى لا تُهمل الكسور)
         const half = el.scrollWidth / 2;
-        if (Math.abs(el.scrollLeft) >= half) el.scrollLeft += half;
+        pos -= (dt / 1000) * 22;
+        if (Math.abs(pos) >= half) pos += half;
+        el.scrollLeft = pos;
       }
       raf = requestAnimationFrame(tick);
     };
