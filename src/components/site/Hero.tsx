@@ -1,20 +1,31 @@
-import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Suspense, lazy, useEffect, useState } from "react";
+import { ClientOnly, Link } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Crown, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Portrait } from "@/components/site/Portrait";
 import { team } from "@/data/team";
 
+const LiquidMetal = lazy(() => import("@/components/site/HeroObject3D"));
+
 const EMPLOYEES = team;
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showMetal, setShowMetal] = useState(false);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % EMPLOYEES.length);
     }, 4200);
     return () => window.clearInterval(interval);
+  }, []);
+
+  // تحميل الكتلة السائلة بعد أول رسم للنص مباشرة
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      window.setTimeout(() => setShowMetal(true), 60);
+    });
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const active = EMPLOYEES[activeIndex] ?? EMPLOYEES[0];
@@ -27,6 +38,14 @@ export function Hero() {
         <div className="cinematic-hero-grid" />
         <p>سهل</p>
       </div>
+
+      {showMetal && (
+        <ClientOnly fallback={null}>
+          <Suspense fallback={null}>
+            <LiquidMetal />
+          </Suspense>
+        </ClientOnly>
+      )}
 
       <div className="cinematic-team" aria-live="polite">
         {EMPLOYEES.map((employee, index) => {
@@ -54,15 +73,14 @@ export function Hero() {
       <div className="cinematic-hero-content" dir="rtl">
         <div className="cinematic-kicker cinematic-enter-1">
           <Crown aria-hidden="true" />
-          <span>أول فريق عمل رقمي يفهم العربية ولهجتك</span>
+          <span>أول فريق ذكاء اصطناعي عربي بيتكلم بلهجتك، مش بيترجملك</span>
         </div>
         <h1 className="cinematic-enter-2">
-          فريق كامل.<br />
-          <span>شغل يتنجز.</span><br />
-          وأنت تقود.
+          مش تطبيق تاني.{" "}
+          <span>فريق كامل باسمه وصورته، بيشتغل جوه حساباتك من الليلة.</span>
         </h1>
         <p className="cinematic-lead cinematic-enter-3">
-          موظفون بالذكاء الاصطناعي يكتبون ويصممون ويتابعون عملاءك كل يوم — من مساحة عمل واحدة، وتحت إشرافك الكامل.
+          ست موظفين حقيقيين، شغل بيتنفذ فعليًا، من غير ما توظف حد.
         </p>
         <div className="cinematic-actions cinematic-enter-4">
           <Link to="/auth" search={{ mode: "signup" as const }} className="cinematic-primary">
