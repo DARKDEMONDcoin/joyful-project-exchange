@@ -49,11 +49,15 @@ export function Testimonials() {
       paused = true;
       resumeAt = performance.now() + 3500;
       pos = el.scrollLeft;
+      el.classList.add("is-user");
     };
     const tick = (now: number) => {
       const dt = now - last;
       last = now;
-      if (paused && now > resumeAt) paused = false;
+      if (paused && now > resumeAt) {
+        paused = false;
+        el.classList.remove("is-user");
+      }
       if (!paused && !el.matches(":hover")) {
         // RTL: التمرير التلقائي البطيء جداً (تراكم عشري حتى لا تُهمل الكسور)
         const half = el.scrollWidth / 2;
