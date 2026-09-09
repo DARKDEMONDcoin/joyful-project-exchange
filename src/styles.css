@@ -668,7 +668,7 @@
 .cinematic-hero-content::before { content: ""; position: absolute; z-index: -1; inset: -12% -18% -18% -10%; background: radial-gradient(70% 60% at 30% 50%, color-mix(in oklab, var(--foreground) 55%, transparent), transparent 78%); filter: blur(6px); pointer-events: none; }
 .cinematic-hero h1, .cinematic-lead, .cinematic-kicker { text-shadow: 0 1px 14px color-mix(in oklab, var(--foreground) 62%, transparent); }
 @media (max-width: 767px) {
-  .hero-liquid-metal { inset: 30% auto auto 50%; width: 86vw; }
+  .hero-liquid-metal { z-index: 2; inset: auto auto -12% -10%; width: 62vw; translate: 0 0; }
   .cinematic-hero .cinematic-kicker { display: flex; font-size: 0.62rem; line-height: 1.5; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-liquid-metal { animation: none; opacity: 0.95; } }
