@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserRound } from "lucide-react";
 import { team } from "@/data/team";
 import { Portrait } from "@/components/site/Portrait";
+import { AppIcon } from "@/components/site/AppIcon";
 import { LiquidGlass } from "@/components/site/LiquidGlass";
 import { cn } from "@/lib/utils";
 
@@ -14,54 +15,140 @@ const outcomes: Record<string, { short: string; detail: string }> = {
   adam: { short: "يحوّل أرقامك إلى قرار", detail: "ويخبرك ماذا توقف وماذا تضاعف" },
 };
 
+type Ping = { apps: string[]; text: string; thumb: string };
+
+const pings: Record<string, Ping[]> = {
+  sonny: [
+    { apps: ["instagram", "facebook"], text: "بنشرلك بوست دلوقتي على إنستجرام", thumb: "منشور جاهز" },
+    { apps: ["linkedin"], text: "بجدولك بوستات الأسبوع", thumb: "٧ منشورات" },
+    { apps: ["facebook", "x"], text: "بردّ على تعليقات صفحتك", thumb: "١٢ تعليق" },
+  ],
+  eva: [
+    { apps: ["gmail"], text: "بفلترلك بريد الصبح", thumb: "٣ مهمّة فقط" },
+    { apps: ["calendar"], text: "بأكدلك اجتماع بكرة ١١", thumb: "موعد مؤكد" },
+    { apps: ["slack"], text: "بلخّصلك محادثات الفريق", thumb: "ملخّص اليوم" },
+  ],
+  sam: [
+    { apps: ["whatsapp"], text: "بتابع عميل محتمل على واتساب", thumb: "ردّ مُرسل" },
+    { apps: ["hubspot"], text: "بجهّزلك قايمة فرص بيع", thumb: "٩ فرص" },
+    { apps: ["gmail"], text: "بابعت عرض سعر للعميل", thumb: "عرض سعر" },
+  ],
+  nour: [
+    { apps: ["wordpress"], text: "بنشر مقال جديد على ووردبريس", thumb: "مقال ١٢٠٠ كلمة" },
+    { apps: ["search-console"], text: "بحسّن ترتيبك في البحث", thumb: "+٤ مراكز" },
+    { apps: ["indexnow"], text: "بأرشفة صفحاتك الجديدة", thumb: "٥ صفحات" },
+  ],
+  dana: [
+    { apps: ["figma"], text: "بصمّملك غلاف الحملة", thumb: "تصميم جديد" },
+    { apps: ["canva"], text: "بجهّز صور المنتج بكل المقاسات", thumb: "٦ مقاسات" },
+    { apps: ["instagram"], text: "برفعلك ستوري بهويتك", thumb: "ستوري" },
+  ],
+  adam: [
+    { apps: ["analytics"], text: "بحلّل أرقام الأسبوع", thumb: "تقرير أسبوعي" },
+    { apps: ["google-ads"], text: "برشحلك توقف الإعلان الضعيف", thumb: "توفير ٢٢٪" },
+    { apps: ["sheets"], text: "بحدّث لوحة المبيعات", thumb: "لوحة محدّثة" },
+  ],
+};
+
+const ROUTES = [
+  { x: 700, y: 62 },
+  { x: 300, y: 62 },
+  { x: 875, y: 250 },
+  { x: 125, y: 250 },
+  { x: 700, y: 438 },
+  { x: 300, y: 438 },
+];
+
+function curve(x: number, y: number) {
+  const mx = (500 + x) / 2;
+  const my = (250 + y) / 2;
+  const dx = x - 500;
+  const dy = y - 250;
+  return `M500 250 Q${(mx - dy * 0.14).toFixed(1)} ${(my + dx * 0.14).toFixed(1)} ${x} ${y}`;
+}
+
+const STEP_MS = 3200;
+const TRAVEL_MS = 1100;
+
 export function TeamOrbit({ compact = false }: { compact?: boolean }) {
-  const [activeConnection, setActiveConnection] = useState<number | null>(null);
+  const [step, setStep] = useState(0);
+  const [arrived, setArrived] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      setArrived(true);
+      return;
+    }
+    setArrived(false);
+    const arrive = window.setTimeout(() => setArrived(true), TRAVEL_MS);
+    const next = window.setTimeout(() => setStep((s) => s + 1), STEP_MS);
+    return () => {
+      window.clearTimeout(arrive);
+      window.clearTimeout(next);
+    };
+  }, [step]);
+
+  const active = step % ROUTES.length;
+  const round = Math.floor(step / ROUTES.length);
+
   return (
     <div className={cn("team-orbit", compact && "team-orbit-compact")}>
-      <div className="orbit-rings" aria-hidden />
       <svg className="orbit-connections" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden>
-        {[
-          [700, 62],
-          [300, 62],
-          [875, 250],
-          [125, 250],
-          [700, 438],
-          [300, 438],
-        ].map(([x, y], index) => (
-          <line key={index} className={cn("orbit-connection", activeConnection === index && "is-active")} x1="500" y1="250" x2={x} y2={y} />
+        {ROUTES.map((r, index) => (
+          <path
+            key={index}
+            id={`orbit-route-${index}`}
+            className={cn("orbit-connection", active === index && "is-active")}
+            d={curve(r.x, r.y)}
+          />
         ))}
+        <circle key={step} className="orbit-travel-dot" r="6">
+          <animateMotion dur={`${TRAVEL_MS}ms`} begin="0s" fill="freeze" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1">
+            <mpath href={`#orbit-route-${active}`} />
+          </animateMotion>
+        </circle>
       </svg>
+
       <LiquidGlass className="orbit-user">
         <span className="orbit-user-icon"><UserRound /></span>
         <strong>أنت تقود</strong>
         <small>والفريق ينفّذ</small>
       </LiquidGlass>
+
       <div className="orbit-rail" aria-label="فريق سهل">
-        {team.map((member, index) => (
-          <LiquidGlass
-            key={member.id}
-            className={`orbit-employee orbit-employee-${index + 1}`}
-            style={{ "--employee-tone": member.tint, "--float-delay": `${index * -0.7}s` } as React.CSSProperties}
-            onPointerEnter={() => setActiveConnection(index)}
-            onPointerMove={() => setActiveConnection(index)}
-            onPointerLeave={() => setActiveConnection(null)}
-            onMouseEnter={() => setActiveConnection(index)}
-            onMouseLeave={() => setActiveConnection(null)}
-            onFocus={() => setActiveConnection(index)}
-            onBlur={() => setActiveConnection(null)}
-            tabIndex={0}
-          >
-            <span className="orbit-portrait">
-              <Portrait memberId={member.id} name={member.name} eager={index < 3} className="size-full" />
-              <i aria-hidden />
-            </span>
-            <span className="orbit-copy">
-              <strong>{member.name}</strong>
-              <small>{outcomes[member.id]?.short}</small>
-              {!compact ? <em>{outcomes[member.id]?.detail}</em> : null}
-            </span>
-          </LiquidGlass>
-        ))}
+        {team.map((member, index) => {
+          const list = pings[member.id] ?? [];
+          const ping = list[round % (list.length || 1)];
+          const isActive = active === index;
+          return (
+            <div key={member.id} className={cn("orbit-slot", `orbit-employee-${index + 1}`)}>
+              {ping && isActive && arrived ? (
+                <div className="orbit-bubble" role="status">
+                  <span className="orbit-bubble-apps">
+                    {ping.apps.map((a) => <AppIcon key={a} name={a} colored={false} className="size-3.5" />)}
+                  </span>
+                  <span className="orbit-bubble-text">{ping.text}</span>
+                  <span className="orbit-bubble-thumb"><i /><em>{ping.thumb}</em></span>
+                </div>
+              ) : null}
+              <LiquidGlass
+                className={cn("orbit-employee", isActive && arrived && "is-lit")}
+                style={{ "--employee-tone": member.tint, "--float-delay": `${index * -0.7}s` } as React.CSSProperties}
+                tabIndex={0}
+              >
+                <span className="orbit-portrait">
+                  <Portrait memberId={member.id} name={member.name} eager={index < 3} className="size-full" />
+                  <i aria-hidden />
+                </span>
+                <span className="orbit-copy">
+                  <strong>{member.name}</strong>
+                  <small>{outcomes[member.id]?.short}</small>
+                  {!compact ? <em>{outcomes[member.id]?.detail}</em> : null}
+                </span>
+              </LiquidGlass>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
