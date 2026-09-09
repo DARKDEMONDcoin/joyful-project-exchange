@@ -76,7 +76,7 @@ varying vec3 vNormalW; varying vec3 vViewDir; varying float vDisp;
 // بيئة إجرائية دافئة (كريمي/ذهبي/طيني) بدل ملف HDR
 vec3 envColor(vec3 r){
   float up = r.y * 0.5 + 0.5;
-  vec3 sky = mix(uBase * 0.12, uCream, pow(up, 2.6));
+  vec3 sky = mix(uBase * 0.10, mix(uBase, uCream, 0.45), pow(up, 2.2));
   float glint = pow(max(0.0, r.y), 3.2);
   sky += uGold * glint * 1.35;
   float side = pow(max(0.0, dot(normalize(vec3(0.6, 0.15, 0.7)), r)), 8.0);
@@ -118,7 +118,8 @@ void main(){
   float spec2 = pow(max(dot(n, normalize(vec3(-0.6, 0.3, 0.7))), 0.0), 24.0);
   col += uGold * spec2 * 0.7;
 
-  col *= 1.25;
+  col = mix(col, uBase, 0.22);
+  col *= 1.32;
   col = col / (col + vec3(0.85));
   col = pow(col, vec3(0.85));
   gl_FragColor = vec4(col, 1.0);
