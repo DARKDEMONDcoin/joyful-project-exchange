@@ -866,7 +866,6 @@
 .timeline-dot {
   position: absolute;
   top: 0;
-  right: calc(var(--rail) * -1 - 1.25rem + var(--rail) - var(--rail));
   inset-inline-end: -2.75rem;
   display: grid;
   place-items: center;
