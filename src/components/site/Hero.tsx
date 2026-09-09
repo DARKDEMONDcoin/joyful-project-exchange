@@ -10,7 +10,15 @@ export function Hero() {
   return (
     <section id="top" className="sahl-video-hero" aria-labelledby="hero-title">
       <div className="sahl-video-plate" aria-hidden="true">
-        <video className="sahl-video" autoPlay muted loop playsInline preload="auto">
+        <video
+          className="sahl-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero/cinematic-poster.jpg"
+        >
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
       </div>
