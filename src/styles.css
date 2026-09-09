@@ -586,11 +586,12 @@
 .cinematic-hero-beam { position: absolute; top: -18%; left: 54%; width: 42%; height: 125%; transform: rotate(9deg); background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--amber) 12%, transparent), transparent); filter: blur(30px); animation: cinematic-beam 9s ease-in-out infinite alternate; }
 .cinematic-hero-grid { position: absolute; inset: 0; opacity: 0.13; background-image: linear-gradient(color-mix(in oklab, var(--primary-foreground) 14%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--primary-foreground) 14%, transparent) 1px, transparent 1px); background-size: 5rem 5rem; mask-image: linear-gradient(to bottom, transparent, black 30%, transparent 92%); }
 .cinematic-team { position: absolute; z-index: 5; inset: 0; pointer-events: none; }
-.cinematic-employee { position: absolute; bottom: 0; left: 66%; width: min(39vw, 36rem); height: 88%; margin: 0; transform-origin: bottom center; transition: transform 900ms var(--ease-enter), opacity 700ms ease, filter 900ms ease; will-change: transform, opacity; }
-.cinematic-employee img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 2.5rem 2rem color-mix(in oklab, var(--foreground) 50%, transparent)); }
-.cinematic-employee.is-active { z-index: 4; opacity: 1; transform: translateX(-50%) scale(1.07); }
-.cinematic-employee.is-next { z-index: 2; opacity: 0.22; filter: blur(3px); transform: translateX(5%) scale(0.62); }
-.cinematic-employee.is-prev { z-index: 2; opacity: 0.18; filter: blur(4px); transform: translateX(-110%) scale(0.56); }
+.cinematic-employee { position: absolute; bottom: 11%; left: 70%; width: min(34vw, 31rem); aspect-ratio: 4 / 5; height: auto; margin: 0; overflow: hidden; border: 1px solid color-mix(in oklab, var(--primary-foreground) 18%, transparent); border-radius: 0.4rem; box-shadow: 0 2.5rem 5rem -2rem color-mix(in oklab, var(--foreground) 78%, transparent); transform-origin: bottom center; transition: transform 900ms var(--ease-enter), opacity 700ms ease, filter 900ms ease; will-change: transform, opacity; }
+.cinematic-employee::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 52%, color-mix(in oklab, var(--foreground) 34%, transparent)); pointer-events: none; }
+.cinematic-employee-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(0.88) contrast(1.04); }
+.cinematic-employee.is-active { z-index: 4; opacity: 1; transform: translateX(-50%) scale(1); }
+.cinematic-employee.is-next { z-index: 2; opacity: 0.24; filter: blur(2px); transform: translateX(20%) scale(0.62) rotate(3deg); }
+.cinematic-employee.is-prev { z-index: 2; opacity: 0.2; filter: blur(3px); transform: translateX(-120%) scale(0.58) rotate(-3deg); }
 .cinematic-employee.is-away { z-index: 1; opacity: 0; filter: blur(8px); transform: translateX(-45%) scale(0.35); }
 .cinematic-employee-status { position: absolute; z-index: 8; right: clamp(1.25rem, 6vw, 6rem); bottom: 4rem; display: grid; min-width: 12rem; padding: 0.9rem 1rem; border: 1px solid color-mix(in oklab, var(--primary-foreground) 16%, transparent); background: color-mix(in oklab, var(--foreground) 32%, transparent); box-shadow: 0 1rem 3rem color-mix(in oklab, var(--foreground) 26%, transparent); backdrop-filter: blur(18px) saturate(130%); animation: cinematic-status 600ms var(--ease-enter) both; }
 .cinematic-employee-status > span { display: flex; align-items: center; gap: 0.45rem; color: color-mix(in oklab, var(--primary-foreground) 68%, transparent); font-size: 0.62rem; font-weight: 800; }
@@ -633,9 +634,9 @@
   .cinematic-hero { min-height: 47rem; }
   .cinematic-hero::after { background: linear-gradient(180deg, color-mix(in oklab, var(--foreground) 25%, transparent), transparent 19%, transparent 45%, color-mix(in oklab, var(--foreground) 86%, transparent) 76%); }
   .cinematic-hero-bg p { top: 25%; font-size: clamp(9rem, 52vw, 14rem); }
-  .cinematic-team { height: 62%; top: 3.5rem; }
-  .cinematic-employee { left: 50%; width: min(94vw, 30rem); height: 100%; }
-  .cinematic-employee.is-active { transform: translateX(-50%) scale(0.98); }
+  .cinematic-team { height: 54%; top: 4.5rem; }
+  .cinematic-employee { bottom: 0; left: 50%; width: min(72vw, 19rem); height: auto; }
+  .cinematic-employee.is-active { transform: translateX(-50%) scale(1); }
   .cinematic-employee.is-next { transform: translateX(15%) scale(0.45); }
   .cinematic-employee.is-prev { transform: translateX(-115%) scale(0.45); }
   .cinematic-employee-status { display: none; }
@@ -650,7 +651,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 1100px) {
-  .cinematic-employee { left: 70%; width: min(48vw, 32rem); height: 78%; }
+  .cinematic-employee { left: 72%; width: min(43vw, 28rem); }
   .cinematic-hero-content { left: 2.25rem; width: 48vw; }
   .cinematic-hero h1 { font-size: clamp(3rem, 6.5vw, 5rem); }
   .cinematic-stats { right: 2rem; }
