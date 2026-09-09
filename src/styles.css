@@ -608,7 +608,9 @@
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
 .orbit-user small { color: var(--muted-foreground); font-size: 0.67rem; }
 .orbit-map-center { position: absolute; z-index: 5; inset: 46% auto auto 50%; width: 19rem; height: 11.5rem; translate: -50% -50%; pointer-events: none; animation: mena-map-breathe 7s ease-in-out infinite; }
-.orbit-map-center > small { position: absolute; inset: auto 0 -0.1rem; color: color-mix(in oklab, var(--primary) 82%, var(--foreground)); font-size: 0.62rem; font-weight: 800; text-align: center; }
+.orbit-map-center > small { position: absolute; inset: auto -18% -1.15rem; display: grid; gap: 0.15rem; color: color-mix(in oklab, var(--primary) 82%, var(--foreground)); font-size: 0.62rem; font-weight: 800; text-align: center; }
+.orbit-map-center > small b { font-family: var(--font-display); font-size: 0.82rem; }
+.orbit-map-center > small span { color: var(--muted-foreground); font-weight: 600; }
 .orbit-slot { position: absolute; z-index: 2; width: min(15.5rem, 27%); }
 .orbit-employee { position: relative; display: flex; width: 100%; min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
 .orbit-connections .orbit-connection.is-active { stroke: var(--primary) !important; stroke-width: 2.2px !important; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
@@ -882,7 +884,10 @@
 .mena-capital-pulse { fill: color-mix(in oklab, var(--primary) 26%, transparent); transform-box: fill-box; transform-origin: center; animation: mena-capital-pulse 2.8s ease-out infinite; }
 .mena-capital-hub .mena-capital-dot { fill: var(--amber); }
 .mena-capital-hub .mena-capital-pulse { fill: color-mix(in oklab, var(--amber) 30%, transparent); }
+.mena-map-aura { fill: color-mix(in oklab, var(--primary) 8%, transparent); filter: url(#mena-soft-glow); }
+.mena-map-scan { fill: none; stroke: color-mix(in oklab, var(--amber) 58%, transparent); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 1 22; animation: mena-scan 8s linear infinite; }
 @keyframes mena-route-flow { to { stroke-dashoffset: -60; } }
+@keyframes mena-scan { to { stroke-dashoffset: -184; } }
 @keyframes mena-capital-pulse { 0% { scale: 0.45; opacity: 0.9; } 75%, 100% { scale: 1.65; opacity: 0; } }
 @keyframes mena-map-breathe { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-5px) scale(1.018); } }
 @keyframes mena-outline-draw { from { stroke-dashoffset: 1800; opacity: 0.35; } to { stroke-dashoffset: 0; opacity: 1; } }
@@ -898,24 +903,32 @@
   .mena-map-layer.mena-map-orbit svg { width: 100%; margin: 0; opacity: 1; }
 }
 
-/* مشهد الفريق المداري داخل قسم التكاملات الداكن */
-.integration-orbit-panel {
-  overflow: hidden;
-  border-radius: 1.6rem;
-  border: 1px solid color-mix(in oklab, var(--background) 14%, transparent);
-  background: linear-gradient(180deg, color-mix(in oklab, var(--card) 97%, var(--primary) 3%), var(--card));
-  box-shadow: 0 30px 70px -30px rgb(0 0 0 / 0.55), inset 0 1px 0 color-mix(in oklab, var(--background) 60%, transparent);
-  padding-bottom: 0.75rem;
-}
-.integration-orbit-panel .team-orbit-compact { min-height: 25rem; }
+/* مشهد الفريق المداري مباشرة فوق القسم الداكن، بلا غلاف */
+.integration-team-stage { isolation: isolate; }
+.integration-team-stage::before { content: ""; position: absolute; z-index: -1; inset: 17% 10%; border-radius: 50%; background: color-mix(in oklab, var(--primary) 10%, transparent); filter: blur(90px); pointer-events: none; }
+.integration-team-status { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-inline: 1rem; color: color-mix(in oklab, var(--background) 58%, transparent); font-size: 0.72rem; }
+.integration-team-status span { display: flex; align-items: center; gap: 0.5rem; color: var(--background); font-weight: 800; }
+.integration-team-status i { width: 0.48rem; height: 0.48rem; border-radius: 50%; background: var(--jade); box-shadow: 0 0 0 0.35rem color-mix(in oklab, var(--jade) 14%, transparent); animation: pulse-ring 2.4s infinite; }
+.integration-team-stage .team-orbit-compact { min-height: 30rem; }
 @media (min-width: 1024px) {
-  .integration-orbit-panel { margin-inline: -3.5rem; }
-  .integration-orbit-panel .orbit-slot { width: min(13.5rem, 30%); }
-  .integration-orbit-panel .orbit-map-center { width: 16rem; height: 9.5rem; }
+  .integration-team-stage .orbit-slot { width: min(14.5rem, 25%); }
+  .integration-team-stage .orbit-map-center { width: 20rem; height: 12rem; }
 }
 @media (max-width: 640px) {
-  .integration-orbit-panel .team-orbit-compact { min-height: 23rem; }
+  .integration-team-stage .team-orbit-compact { min-height: 26rem; }
+  .integration-team-status { align-items: flex-start; flex-direction: column; padding-inline: 0; }
 }
+
+.team-orbit-dark { color: var(--background); }
+.team-orbit-dark .orbit-connection { stroke: color-mix(in oklab, var(--primary) 34%, transparent); }
+.team-orbit-dark .orbit-employee { border-color: color-mix(in oklab, var(--background) 12%, transparent); background: color-mix(in oklab, var(--background) 7%, transparent); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--background) 13%, transparent), 0 18px 45px -28px color-mix(in oklab, var(--primary) 45%, transparent); backdrop-filter: blur(20px) saturate(145%); }
+.team-orbit-dark .orbit-copy small { color: color-mix(in oklab, var(--background) 72%, transparent); }
+.team-orbit-dark .orbit-map-center > small { color: var(--amber); }
+.team-orbit-dark .orbit-map-center > small span { color: color-mix(in oklab, var(--background) 58%, transparent); }
+.team-orbit-dark .mena-map-orbit { color: var(--primary); }
+.team-orbit-dark .mena-map-fill { fill: url(#mena-land); }
+.team-orbit-dark .mena-map-outline { stroke: color-mix(in oklab, var(--primary) 92%, var(--background)); }
+.team-orbit-dark .mena-map-borders { stroke: color-mix(in oklab, var(--background) 30%, transparent); }
 
 .integration-team-glass {
   overflow: hidden;
@@ -1187,11 +1200,13 @@
   backdrop-filter: blur(18px) saturate(150%);
   animation: orbit-bubble-in 380ms var(--ease-enter) both;
 }
-.orbit-bubble-apps { display: flex; gap: 0.3rem; color: var(--primary); }
+.orbit-bubble-head { display: flex; align-items: center; gap: 0.4rem; color: var(--primary); font-size: 0.57rem; font-weight: 900; }
+.orbit-bubble-head i { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--jade); box-shadow: 0 0 0 0.22rem color-mix(in oklab, var(--jade) 15%, transparent); }
 .orbit-bubble-text { color: var(--foreground); font-size: 0.72rem; font-weight: 700; line-height: 1.45; }
-.orbit-bubble-thumb { display: flex; align-items: center; gap: 0.4rem; border-radius: 0.5rem; padding: 0.28rem 0.4rem; background: color-mix(in oklab, var(--secondary) 80%, transparent); }
-.orbit-bubble-thumb i { width: 1.6rem; height: 1.1rem; flex: none; border-radius: 0.22rem; background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 55%, transparent), color-mix(in oklab, var(--amber) 55%, transparent)); }
-.orbit-bubble-thumb em { color: var(--muted-foreground); font-size: 0.6rem; font-style: normal; font-weight: 700; }
+.orbit-bubble-foot { color: var(--muted-foreground); font-size: 0.54rem; font-weight: 700; }
+.team-orbit-dark .orbit-bubble { border-color: color-mix(in oklab, var(--background) 18%, transparent); background: color-mix(in oklab, var(--foreground) 78%, transparent); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--background) 12%, transparent), 0 20px 45px -20px color-mix(in oklab, var(--primary) 45%, transparent); }
+.team-orbit-dark .orbit-bubble-text { color: var(--background); }
+.team-orbit-dark .orbit-bubble-foot { color: color-mix(in oklab, var(--background) 52%, transparent); }
 @keyframes orbit-bubble-in { from { opacity: 0; translate: 0 12px; scale: 0.94; } to { opacity: 1; translate: 0 0; scale: 1; } }
 @media (max-width: 768px) {
   .orbit-bubble { padding: 0.4rem 0.45rem; }
@@ -1199,7 +1214,7 @@
   .orbit-bubble-thumb { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .orbit-bubble { animation: none; }
+  .orbit-bubble, .mena-map-scan, .integration-team-status i { animation: none; }
 }
 
 .orbit-slot.orbit-employee-1 .orbit-bubble,

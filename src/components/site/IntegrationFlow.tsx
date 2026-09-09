@@ -1,28 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Check, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { AppIcon, appLabel } from "@/components/site/AppIcon";
 import { TeamOrbit } from "@/components/site/TeamOrbit";
-
-const inputs = ["instagram", "gmail", "shopify", "search-console"];
-const outputs = ["facebook", "linkedin", "wordpress", "analytics"];
-
-function AppCluster({ apps }: { apps: string[] }) {
-  return (
-    <div className="grid grid-cols-2 gap-2.5" aria-label={apps.map(appLabel).join("، ")}>
-      {apps.map((app, index) => (
-        <span
-          key={app}
-          title={appLabel(app)}
-          className="integration-app grid size-13 place-items-center rounded-xl border border-background/15 bg-background shadow-card sm:size-15"
-          style={{ animationDelay: `${index * 180}ms` }}
-        >
-          <AppIcon name={app} className="size-6 sm:size-7" />
-        </span>
-      ))}
-    </div>
-  );
-}
 
 export function IntegrationFlow() {
   return (
@@ -47,43 +26,12 @@ export function IntegrationFlow() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="relative mx-auto mt-16 max-w-5xl" dir="rtl">
-            <div aria-hidden className="integration-flow-line absolute top-1/2 right-[12%] left-[12%] hidden h-px -translate-y-1/2 lg:block" />
-            <span aria-hidden className="flow-spark flow-spark-in hidden lg:block" />
-            <span aria-hidden className="flow-spark flow-spark-out hidden lg:block" />
-
-            <div className="grid items-center gap-9 lg:grid-cols-[0.75fr_2.1fr_0.75fr] lg:gap-8">
-              <div className="relative mx-auto flex items-center gap-5 lg:mx-0 lg:justify-self-start">
-                <AppCluster apps={inputs} />
-                <div className="hidden text-right lg:block">
-                  <span className="block text-xs font-bold text-background/45">يفهم</span>
-                  <span className="mt-1 block font-display font-black">بيانات عملك</span>
-                </div>
-              </div>
-
-              <div className="relative mx-auto w-full max-w-2xl">
-                <span aria-hidden className="integration-pulse integration-pulse-a" />
-                <span aria-hidden className="integration-pulse integration-pulse-b" />
-                <div className="integration-orbit-panel relative z-10">
-                  <div className="flex items-center justify-between px-5 pt-4">
-                    <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-                      <span className="status-dot size-2 rounded-full bg-jade" />
-                      يعمل الآن
-                    </span>
-                    <span className="font-display text-lg font-black text-foreground">فريق سهل</span>
-                  </div>
-                  <TeamOrbit compact mapCenter />
-                </div>
-              </div>
-
-              <div className="relative mx-auto flex items-center gap-5 lg:mx-0 lg:justify-self-end">
-                <div className="hidden text-left lg:block">
-                  <span className="block text-xs font-bold text-background/45">ينفّذ</span>
-                  <span className="mt-1 block font-display font-black">داخل منصاتك</span>
-                </div>
-                <AppCluster apps={outputs} />
-              </div>
+          <div className="integration-team-stage relative mx-auto mt-12 max-w-6xl" dir="rtl">
+            <div className="integration-team-status">
+              <span><i /> فريقك يعمل الآن</span>
+              <strong>كل مهمة تصل إلى المتخصص المناسب</strong>
             </div>
+            <TeamOrbit compact mapCenter dark />
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-background/65">
               {["صلاحيات تحددها أنت", "موافقتك قبل النشر", "تفصل أي حساب فوراً"].map((item) => (
