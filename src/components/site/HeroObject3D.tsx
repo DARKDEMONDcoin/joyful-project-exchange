@@ -81,9 +81,8 @@ vec3 envColor(vec3 r){
   sky += uGold * glint * 1.35;
   float side = pow(max(0.0, dot(normalize(vec3(0.6, 0.15, 0.7)), r)), 8.0);
   sky += uGold * side * 0.6;
-  float band = 0.5 + 0.5 * sin(r.x * 4.0 + r.z * 3.0 + uTime * 0.35);
-  sky = mix(sky, uBase * 0.6, 0.4 * band);
-  sky += uCream * pow(band, 8.0) * 0.35;
+  float band = 0.5 + 0.5 * sin(r.x * 1.6 + r.z * 1.2 + uTime * 0.25);
+  sky = mix(sky, uBase * 0.7, 0.14 * band);
   return sky;
 }
 
@@ -106,7 +105,7 @@ void main(){
   }
 
   col = mix(col * mix(uBase, uGold, 0.45), col, 0.4);
-  col += uGold * fres * 1.5;
+  col += uGold * fres * 1.9;
   col += uCream * pow(fres, 4.0) * 0.6;
 
   float pulse = 0.5 + 0.5 * sin(uTime * 0.6);
@@ -137,8 +136,8 @@ function Blob({ quality, reduced }: { quality: Quality; reduced: boolean }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uAmp: { value: quality === "high" ? 0.44 : 0.34 },
-      uFreq: { value: 0.78 },
+      uAmp: { value: quality === "high" ? 0.34 : 0.26 },
+      uFreq: { value: 0.95 },
       uOctaves: { value: quality === "high" ? 3 : 2 },
       uPointer: { value: new THREE.Vector3(0, 0, 1) },
       uPointerForce: { value: 0 },
