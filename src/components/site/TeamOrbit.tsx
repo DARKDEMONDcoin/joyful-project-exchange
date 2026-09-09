@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { UserRound } from "lucide-react";
 import { team } from "@/data/team";
 import { Portrait } from "@/components/site/Portrait";
@@ -14,6 +15,7 @@ const outcomes: Record<string, { short: string; detail: string }> = {
 };
 
 export function TeamOrbit({ compact = false }: { compact?: boolean }) {
+  const [activeConnection, setActiveConnection] = useState<number | null>(null);
   return (
     <div className={cn("team-orbit", compact && "team-orbit-compact")}>
       <div className="orbit-rings" aria-hidden />
@@ -26,7 +28,7 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
           [700, 438],
           [300, 438],
         ].map(([x, y], index) => (
-          <line key={index} className={`orbit-connection orbit-connection-${index + 1}`} x1="500" y1="250" x2={x} y2={y} />
+          <line key={index} className={cn("orbit-connection", activeConnection === index && "is-active")} x1="500" y1="250" x2={x} y2={y} />
         ))}
       </svg>
       <LiquidGlass className="orbit-user">
@@ -40,6 +42,11 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
             key={member.id}
             className={`orbit-employee orbit-employee-${index + 1}`}
             style={{ "--employee-tone": member.tint, "--float-delay": `${index * -0.7}s` } as React.CSSProperties}
+            onPointerEnter={() => setActiveConnection(index)}
+            onPointerLeave={() => setActiveConnection(null)}
+            onFocus={() => setActiveConnection(index)}
+            onBlur={() => setActiveConnection(null)}
+            tabIndex={0}
           >
             <span className="orbit-portrait">
               <Portrait memberId={member.id} name={member.name} eager={index < 3} className="size-full" />

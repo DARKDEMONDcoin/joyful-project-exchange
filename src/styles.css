@@ -611,12 +611,7 @@
 .orbit-user strong { margin-top: 0.35rem; font-family: var(--font-display); }
 .orbit-user small { color: var(--muted-foreground); font-size: 0.67rem; }
 .orbit-employee { position: absolute; z-index: 2; display: flex; width: min(15.5rem, 27%); min-height: 5.25rem; align-items: center; gap: 0.75rem; border-radius: 1rem; padding: 0.7rem; animation: orbit-float 5s ease-in-out infinite; animation-delay: var(--float-delay); transition: border-color 280ms ease, box-shadow 280ms ease; }
-.team-orbit:has(.orbit-employee-1:hover) .orbit-connection-1,
-.team-orbit:has(.orbit-employee-2:hover) .orbit-connection-2,
-.team-orbit:has(.orbit-employee-3:hover) .orbit-connection-3,
-.team-orbit:has(.orbit-employee-4:hover) .orbit-connection-4,
-.team-orbit:has(.orbit-employee-5:hover) .orbit-connection-5,
-.team-orbit:has(.orbit-employee-6:hover) .orbit-connection-6 { stroke: var(--primary); stroke-width: 2.2; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
+.orbit-connection.is-active { stroke: var(--primary); stroke-width: 2.2; filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 78%, transparent)); }
 .orbit-employee:hover { border-color: color-mix(in oklab, var(--employee-tone) 54%, var(--border)); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--card) 96%, transparent), 0 18px 38px -22px color-mix(in oklab, var(--employee-tone) 65%, transparent); }
 .orbit-portrait { position: relative; width: 3.5rem; height: 3.5rem; flex: none; overflow: hidden; border-radius: 0.8rem; background: color-mix(in oklab, var(--employee-tone) 16%, var(--secondary)); }
 .orbit-portrait i { position: absolute; inset: auto 0 0; height: 3px; background: var(--employee-tone); }
@@ -725,6 +720,7 @@
   .team-orbit, .team-orbit-compact { min-height: 24.5rem; }
   .orbit-rings { inset: 9% 2%; }
   .orbit-user { display: grid; width: 6.2rem; min-height: 6.2rem; }
+  .hero-object-3d { width: 14rem; opacity: 0.16; }
   .orbit-user-icon { width: 2rem; height: 2rem; }
   .orbit-connections { display: block; }
   .orbit-employee { width: 7.2rem; min-height: 4.25rem; gap: 0.4rem; border-radius: 0.75rem; padding: 0.42rem; animation-duration: 5.5s; }
