@@ -44,6 +44,8 @@ export function TeamOrbit({ compact = false }: { compact?: boolean }) {
             style={{ "--employee-tone": member.tint, "--float-delay": `${index * -0.7}s` } as React.CSSProperties}
             onPointerEnter={() => setActiveConnection(index)}
             onPointerLeave={() => setActiveConnection(null)}
+            onMouseEnter={() => setActiveConnection(index)}
+            onMouseLeave={() => setActiveConnection(null)}
             onFocus={() => setActiveConnection(index)}
             onBlur={() => setActiveConnection(null)}
             tabIndex={0}
